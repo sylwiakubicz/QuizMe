@@ -1,0 +1,82 @@
+/* Reset some CSS styling */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* General Navber Styling */
+.navbar {
+    position: sticky;
+    top: 0;
+}
+
+/* .navbar-scroll {
+    padding: .8rem 20%;
+    box-shadow: 0 0.313rem 0.313rem 0 rgba(0,0,0,.15);
+} */
+
+.nav-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: rgb(31, 201, 130);
+    padding: 1.5rem 20%;
+}
+
+
+/* Logo Styling */
+.logo {
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    transition: all .3s ease-in-out;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+
+/* Navbar List Styling */
+.navbar-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.nav-item {
+    font-size: 1.4rem;
+    margin: 0 1.5rem;
+    padding: .5rem 1.5rem;
+}
+
+
+/* Underline the text transition */
+a:not(a.logo)::after {
+    content: '';
+    background-color: white;
+    display: block;
+    width: 0;
+    height: .150rem;
+    transition: 0.3s ease-out; 
+}
+
+a:not(a.logo):hover::after {
+    width: 100%;
+}
+
+
+/* Button styling */
+.btn {
+    background: rgb(10, 63, 54);
+    border-radius: 15px;
+}
+
+.btn:hover {
+    background: rgba(10, 63, 54, .8);
+}
