@@ -10,11 +10,14 @@ a {
     color: white;
 }
 
+
 /* General Navber Styling */
 .navbar {
     position: sticky;
     top: 0;
 }
+
+
 
 .nav-container {
     display: flex;
@@ -79,4 +82,18 @@ a:not(a.logo):hover::after {
 
 .btn:hover {
     background: rgba(10, 63, 54, .8);
+}
+
+
+/* footer styling */
+footer {
+    background-color: #363636;
+    padding: 1.3rem 0;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+
+    list-style: none;
 }
