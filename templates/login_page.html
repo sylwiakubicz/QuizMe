@@ -44,42 +44,37 @@
             </div>
         </nav>
 
+        <div class="login-wrapper">
+            <form action="">
+                <h1>Login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Email" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remeber me</label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="#">Register</a></p>
+                </div>
+            </form>    
+        </div>
+
+
+        
 
         <footer>
             <ul>
-                <li><a><i class="fa-solid fa-envelope"></i>Contact us</a></li>
-                <li><a><i class="fa-regular fa-square-plus"></i>Create a quiz</a></li>
-                <li><a><i class="fa-solid fa-circle-question"></i>General knowledge quizzes</a></li>
-                <li><a><i class="fa-regular fa-star"></i>Celebrity quizzes</a></li>
-                <li><a><i class="fa-regular fa-id-badge"></i>Personality quizzes</a></li>
+                <li><a><i class="fa-solid fa-envelope"></i> Contact us</a></li>
+                <li><a><i class="fa-regular fa-square-plus"></i> Create a quiz</a></li>
+                <li><a><i class="fa-solid fa-circle-question"></i> General knowledge quizzes</a></li>
+                <li><a><i class="fa-regular fa-star"></i> Celebrity quizzes</a></li>
+                <li><a><i class="fa-regular fa-id-badge"></i> Personality quizzes</a></li>
             </ul>
         </footer>
-
-        <script>
-            // $(function(){}) == $(document).ready(function() { ... }); - czyli czekamy aż strona się załaduje zanim wykonamy jakiekolwiem skrypty
-            $(function() { 
-                // Funkcja dodająca lub usuwająca klase z navbar w zależności od położenia scrolla
-                function handleScroll() {
-                    if (document.documentElement.scrollTop <= 40) {
-                        if ($(".nav-container ").hasClass("navbar-scrolled")) {
-                            $(".nav-container ").removeClass("navbar-scrolled")
-                        }
-                        console.log("<=40")
-
-                    } else {
-                        $(".nav-container").addClass("navbar-scrolled")
-                        console.log("more than 40")
-                    }
-                } 
-            
-                // wywołanie przy pierwszym uruchomieniu strony
-                handleScroll()
-                // wywoływanie funkcji scroll za każdym razem, gdy scroll zmieni pozycje 
-                $(window).on("scroll", function()
-                    { setTimeout (handleScroll, 400) } )                
-            })
-
-            
-        </script>
     </body>
 </html>

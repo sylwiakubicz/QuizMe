@@ -11,13 +11,12 @@ a {
 }
 
 
+
 /* General Navber Styling */
 .navbar {
     position: sticky;
     top: 0;
 }
-
-
 
 .nav-container {
     display: flex;
@@ -25,6 +24,8 @@ a {
     justify-content: space-between;
     background-color: rgb(31, 201, 130);
     padding: 1.5rem 20%;
+    transition: box-shadow .3s;
+    transition: padding .3s;
 }
 
 .navbar-scrolled {
@@ -59,7 +60,7 @@ a {
 }
 
 
-/* Underline the text transition */
+/* Underline the text - transition */
 a:not(a.logo)::after {
     content: '';
     background-color: white;
@@ -96,3 +97,4 @@ ul {
     justify-content: space-around;
     list-style: none;
 }
+
