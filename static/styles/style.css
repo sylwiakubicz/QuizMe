@@ -10,7 +10,10 @@ a {
     color: white;
 }
 
-
+body {
+    min-height: 100vh;
+    position: relative;
+}
 
 /* General Navber Styling */
 .navbar {
@@ -24,8 +27,8 @@ a {
     justify-content: space-between;
     background-color: rgb(31, 201, 130);
     padding: 1.5rem 20%;
-    transition: box-shadow .3s;
-    transition: padding .3s;
+    transition: box-shadow .3s ease-in-out;
+    transition: padding .3s ease-in-out;
 }
 
 .navbar-scrolled {
@@ -61,16 +64,20 @@ a {
 
 
 /* Underline the text - transition */
-a:not(a.logo)::after {
+.navbar a:not(a.logo)::after, .remember-forgot a::after, .login-form a::after{
     content: '';
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     display: block;
     width: 0;
     height: .150rem;
     transition: 0.3s ease-out; 
 }
 
-a:not(a.logo):hover::after {
+.remember-forgot a::after, .login-form a::after {
+    background-color: rgb(31, 201, 130);
+}
+
+.navbar a:not(a.logo):hover::after, .remember-forgot a:hover::after,.login-form a:hover::after  {
     width: 100%;
 }
 
@@ -86,10 +93,111 @@ a:not(a.logo):hover::after {
 }
 
 
+/* Login form styling */
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+}
+
+.wrapper {
+    width: 420px;
+    border: 3px solid rgba(31, 201, 130, .8);
+    border-radius: 15px;
+    color: rgba(31, 201, 130, .8);
+    padding: 15px;
+    transition: color .5s ease-in-out;
+}
+
+.wrapper:hover {
+    border: 3px solid rgba(31, 201, 130, 1);
+    color: rgba(31, 201, 130, 1);
+}
+
+.wrapper h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    position: relative;
+
+}
+
+.wrapper .input-box {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%; 
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid rgba(10, 63, 54, .2);
+    border-radius: 40px;
+    color: rgb(31, 201, 130);
+    font-size: 1rem;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: rgba(31, 201, 130, .8);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+}
+
+.remember-forgot, .register-link {
+    display: flex;
+    justify-content: space-around;
+}
+
+.remember-forgot input {
+    background-color: rgb(31, 201, 130);
+    accent-color: rgb(31, 201, 130);
+    
+}
+
+.register-link {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form a, .login-form label, .register-link p {
+    color:rgb(31, 201, 130);
+    font-size: 1rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.register-link p{
+    padding-right: 5px;
+}
+
+.wrapper .btn {
+    padding: 10px 30px;
+    color:rgb(255, 255, 255);
+    border: 1px solid rgb(31, 201, 130);
+    background-color: rgba(31, 201, 130, .8);
+
+}
+
+.wrapper .btn:hover{
+    background-color: rgba(31, 201, 130, 1);
+}
+
 /* footer styling */
 footer {
     background-color: #363636;
     padding: 1.3rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
 }
 
 ul {
