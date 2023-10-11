@@ -64,7 +64,7 @@ body {
 
 
 /* Underline the text - transition */
-.navbar a:not(a.logo)::after, .remember-forgot a::after, .login-form a::after, footer li::after{
+.navbar a:not(a.logo)::after, .remember-forgot a::after, .form a::after, footer li::after{
     content: '';
     background-color: rgb(255, 255, 255);
     display: block;
@@ -73,11 +73,11 @@ body {
     transition: 0.3s ease-out; 
 }
 
-.remember-forgot a::after, .login-form a::after {
+.remember-forgot a::after, .form a::after {
     background-color: rgb(31, 201, 130);
 }
 
-.navbar a:not(a.logo):hover::after, .remember-forgot a:hover::after,.login-form a:hover::after, footer li:hover::after  {
+.navbar a:not(a.logo):hover::after, .remember-forgot a:hover::after,.form a:hover::after, footer li:hover::after  {
     width: 100%;
 }
 
@@ -94,7 +94,7 @@ body {
 
 
 /* Login form styling */
-.login-form {
+.form {
     position: absolute;
     top: 50%;
     left: 50%; 
@@ -240,7 +240,7 @@ body {
     justify-content: center;
 }
 
-.login-form a, .login-form label, .register-or-login-link p {
+.form a, .form label, .register-or-login-link p {
     color:rgb(31, 201, 130);
     font-size: 1rem;
     font-family: 'Yanone Kaffeesatz', sans-serif;
