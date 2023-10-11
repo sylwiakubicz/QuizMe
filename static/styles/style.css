@@ -64,7 +64,7 @@ body {
 
 
 /* Underline the text - transition */
-.navbar a:not(a.logo)::after, .remember-forgot a::after, .login-form a::after{
+.navbar a:not(a.logo)::after, .remember-forgot a::after, .login-form a::after, footer li::after{
     content: '';
     background-color: rgb(255, 255, 255);
     display: block;
@@ -77,7 +77,7 @@ body {
     background-color: rgb(31, 201, 130);
 }
 
-.navbar a:not(a.logo):hover::after, .remember-forgot a:hover::after,.login-form a:hover::after  {
+.navbar a:not(a.logo):hover::after, .remember-forgot a:hover::after,.login-form a:hover::after, footer li:hover::after  {
     width: 100%;
 }
 
@@ -235,18 +235,18 @@ body {
     color: white;
 }
 
-.register-link {
+.register-or-login-link {
     display: flex;
     justify-content: center;
 }
 
-.login-form a, .login-form label, .register-link p {
+.login-form a, .login-form label, .register-or-login-link p {
     color:rgb(31, 201, 130);
     font-size: 1rem;
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-.register-link p{
+.register-or-login-link p{
     padding-right: 5px;
 }
 
