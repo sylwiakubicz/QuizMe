@@ -1,0 +1,316 @@
+/* Reset some CSS styling */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
+
+/* General Navber Styling */
+.navbar {
+    position: sticky;
+    top: 0;
+}
+
+.nav--container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: rgb(31, 201, 130);
+    padding: 1.5rem 20%;
+    transition: box-shadow .3s ease-in-out;
+    transition: padding .3s ease-in-out;
+}
+
+.navbar--scrolled {
+    padding: .8rem 20%;
+    box-shadow: 0 0.313rem 0.313rem 0 rgba(0, 0, 0, .15);
+}
+
+/* Logo Styling */
+.nav--logo {
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    transition: all .3s ease-in-out;
+}
+
+.nav--logo i {
+    font-size: 2rem;
+}
+
+/* Navbar List Styling */
+.nav--list {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.nav--item {
+    font-size: 1.4rem;
+    margin: 0 1.5rem;
+    padding: .5rem 1.5rem;
+}
+
+
+/* Underline the text - transition */
+.navbar a:not(a.nav--logo)::after,
+.remember-forgot a::after,
+.form a::after,
+footer li::after {
+    content: '';
+    background-color: rgb(255, 255, 255);
+    display: block;
+    width: 0;
+    height: .150rem;
+    transition: 0.3s ease-out;
+}
+
+.remember-forgot a::after,
+.form a::after {
+    background-color: rgb(31, 201, 130);
+}
+
+.navbar a:not(a.nav--logo):hover::after,
+.remember-forgot a:hover::after,
+.form a:hover::after,
+footer li:hover::after {
+    width: 100%;
+}
+
+
+/* Button styling */
+.btn {
+    background: rgb(10, 63, 54);
+    border-radius: 15px;
+}
+
+.btn:hover {
+    background: rgba(10, 63, 54, .8);
+}
+
+
+/* Login form styling */
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper {
+    width: 420px;
+    border: 3px solid rgba(31, 201, 130, .8);
+    border-radius: 15px;
+    color: rgba(31, 201, 130, .8);
+    padding: 15px;
+    transition: color .5s ease-in-out;
+}
+
+.wrapper:hover {
+    border: 3px solid rgba(31, 201, 130, 1);
+    color: rgba(31, 201, 130, 1);
+}
+
+.wrapper h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    position: relative;
+
+}
+
+.wrapper .input-box,
+.wrapper .btn,
+.wrapper .textarea-box {
+    width: 100%;
+    height: 50px;
+    margin: 15px 0;
+}
+
+.input-box input,
+.textarea-box textarea {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid rgba(10, 63, 54, .2);
+    border-radius: 40px;
+    color: rgb(31, 201, 130);
+    font-size: 1rem;
+    padding: 20px 45px 20px 20px;
+    position: relative;
+}
+
+.input-box input::placeholder,
+.textarea-box textarea::placeholder {
+    color: rgba(31, 201, 130, .8);
+}
+
+.input-box i {
+    position: absolute;
+    right: 30px;
+    transform: translateY(10px);
+    font-size: 1.4rem;
+}
+
+.remember-forgot,
+.register-link {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* checkbox styling */
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border-radius: 3px;
+    background-color: rgba(31, 201, 130, .2);
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: rgba(31, 201, 130, .5);
+}
+
+/* When the checkbox is checked, add green background */
+.container input:checked~.checkmark {
+    background-color: rgb(31, 201, 130);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* end of checkbox styling  */
+
+.remember-forgot input {
+    background-color: rgb(31, 201, 130);
+    accent-color: rgb(31, 201, 130);
+    color: white;
+}
+
+.register-or-login-link {
+    display: flex;
+    justify-content: center;
+}
+
+.form a,
+.form label,
+.register-or-login-link p {
+    color: rgb(31, 201, 130);
+    font-size: 1rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.register-or-login-link p {
+    padding-right: 5px;
+}
+
+.wrapper .btn {
+    padding: 10px 30px;
+    width: 100%;
+    font-size: 1.3rem;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(31, 201, 130);
+    background-color: rgba(31, 201, 130, .8);
+    border-radius: 20px;
+    position: relative;
+}
+
+.wrapper .btn:hover {
+    background-color: rgba(31, 201, 130, 1);
+}
+
+.message-input input {
+    height: 50px;
+}
+
+.textarea-box {
+    resize: both;
+    overflow: auto;
+    max-width: 100%;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+::-webkit-resizer {
+    border: 2px solid rgba(10, 63, 54, .2);
+}
+
+/* footer styling */
+footer {
+    background-color: #363636;
+    padding: 1.3rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
