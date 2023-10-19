@@ -1,8 +1,8 @@
 import React from "react"
 import "./style.css"
-import Header from "./Header"
-import Footer from "./Footer"
-import Home from "./Home"
+import Header from "./compontens/Header"
+import Footer from "./compontens/Footer"
+import Home from "./compontens/Home"
 
 
 function MainPage() {

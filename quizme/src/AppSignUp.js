@@ -1,8 +1,8 @@
 import React from "react"
 import "./style.css"
-import Header from "./Header"
-import Footer from "./Footer"
-import SignUp from "./SignUp"
+import Header from "./compontens/Header"
+import Footer from "./compontens/Footer"
+import SignUp from "./compontens/SignUp"
 
 function SignUpPage() {
     return (

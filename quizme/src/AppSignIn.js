@@ -1,8 +1,8 @@
 import React from "react"
 import "./style.css"
-import Header from "./Header"
-import Footer from "./Footer"
-import SignIn from "./SignIn"
+import Header from "./compontens/Header"
+import Footer from "./compontens/Footer"
+import SignIn from "./compontens/SignIn"
 
 function SignInPage() {
     return (
