@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import "../style.css"
 
 
@@ -7,18 +8,18 @@ function Header() {
         <nav className="navbar">
             <div className="nav--container">
                 <div className="nav--logo_container">
-                    <a className="nav--logo" href="#">
+                    <Link className="nav--logo" to="/">
                         Qu<i className="fa-solid fa-question fa-rotate-180"></i>zMe
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="nav--main_menu">
                     <ul className="nav--list">
                         <li className="nav--item">
-                            <a href="#" className="nav--link">Login</a>
+                            <Link to="/AppSignIn" className="nav--link">Login</Link>
                         </li>
                         <li className="nav--item btn">
-                            <a href="#" className="nav--link">Create a quiz</a>
+                            <Link to="#" className="nav--link">Create a quiz</Link>
                         </li>
                     </ul>
                 </div>

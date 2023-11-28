@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import "../style.css"
 
 function SignIn() {
@@ -25,7 +26,7 @@ function SignIn() {
                     <button type="submit" className="btn">Sign In</button>
                     <div className="register-or-login-link">
                         <p>Don't have an account? </p>
-                        <a href="#">Sign Up</a>
+                        <Link to="/AppSignUp">Sign Up</Link>
                     </div>
                 </form>
             </div>

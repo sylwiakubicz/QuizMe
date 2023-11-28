@@ -1,15 +1,16 @@
 import React from "react"
+import {Link} from "react-router-dom"
 import "../style.css"
 
 function Footer() {
     return (
         <footer>
             <ul>
-                <li><a><i className="fa-solid fa-envelope"></i> Contact us</a></li>
-                <li><a><i className="fa-regular fa-square-plus"></i> Create a quiz</a></li>
-                <li><a><i className="fa-solid fa-circle-question"></i> General knowledge quizzes</a></li>
-                <li><a><i className="fa-regular fa-star"></i> Celebrity quizzes</a></li>
-                <li><a><i className="fa-regular fa-id-badge"></i> Personality quizzes</a></li>
+                <li><Link to="/AppContactUs"><i className="fa-solid fa-envelope"></i> Contact us</Link></li>
+                <li><Link to=""><i className="fa-regular fa-square-plus"></i> Create a quiz</Link></li>
+                <li><Link to=""><i className="fa-solid fa-circle-question"></i> General knowledge quizzes</Link></li>
+                <li><Link to=""><i className="fa-regular fa-star"></i> Celebrity quizzes</Link></li>
+                <li><Link to=""><i className="fa-regular fa-id-badge"></i> Personality quizzes</Link></li>
             </ul>
         </footer>
     )

@@ -1,25 +1,28 @@
 import React from "react"
 import "../style.css"
 
-const [contactFormData, setContanctFormData] = React.useState(
-    {
-        email: "",
-        title: "",
-        mwssage: ""
-    }
-)
 
-function handleChange(event) {
-    const {name, type, value} = event.target
-    setContanctFormData(prevData => {
-        return {
-            ...prevData,
-            [name]: value
-        }
-    })
-}
 
 function ContactUs() {
+
+    const [contactFormData, setContanctFormData] = React.useState(
+        {
+            email: "",
+            title: "",
+            mwssage: ""
+        }
+    )
+    
+    function handleChange(event) {
+        const {name, type, value} = event.target
+        setContanctFormData(prevData => {
+            return {
+                ...prevData,
+                [name]: value
+            }
+        })
+    }
+    
     return (
         <div class="form" id="contact-form">
             <div class="wrapper">
