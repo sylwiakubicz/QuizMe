@@ -22,7 +22,7 @@ function ContactUs() {
             }
         })
     }
-    
+
     return (
         <div class="form" id="contact-form">
             <div class="wrapper">
