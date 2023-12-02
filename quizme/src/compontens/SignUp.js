@@ -23,7 +23,7 @@ function SignUp() {
                     <button type="submit" className="btn">Sign Up</button>
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
-                        <Link to="/AppSignIn">Sign In</Link>
+                        <Link to="/SignIn">Sign In</Link>
                     </div>
                 </form>
             </div>

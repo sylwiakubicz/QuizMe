@@ -9,12 +9,12 @@ function ContactUs() {
         {
             email: "",
             title: "",
-            mwssage: ""
+            message: ""
         }
     )
     
     function handleChange(event) {
-        const {name, type, value} = event.target
+        const {name, value} = event.target
         setContanctFormData(prevData => {
             return {
                 ...prevData,
@@ -34,6 +34,7 @@ function ContactUs() {
                             name="email" 
                             placeholder="Email"
                             onChange={handleChange}
+                            value={contactFormData.email}
                             required 
                         />
                         <i class="fa-solid fa-user"></i>
@@ -44,6 +45,7 @@ function ContactUs() {
                             name="title" 
                             placeholder="Title" 
                             onChange={handleChange}
+                            value={contactFormData.title}
                             required 
                         />
                         <i class="fa-solid fa-envelope"></i>
@@ -55,6 +57,7 @@ function ContactUs() {
                             placeholder="Message..." 
                             maxlength="3000" 
                             onChange={handleChange}
+                            value={contactFormData.message}
                             required></textarea>
                     </div>
                     <button class="btn">Send Message</button>

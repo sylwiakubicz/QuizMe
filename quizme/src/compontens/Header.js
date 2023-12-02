@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import "../style.css"
 
 
-function Header() {
+const Header = () => {
     return (
         <nav className="navbar">
             <div className="nav--container">
@@ -16,7 +16,7 @@ function Header() {
                 <div className="nav--main_menu">
                     <ul className="nav--list">
                         <li className="nav--item">
-                            <Link to="/AppSignIn" className="nav--link">Login</Link>
+                            <Link to="/SignIn" className="nav--link">Login</Link>
                         </li>
                         <li className="nav--item btn">
                             <Link to="#" className="nav--link">Create a quiz</Link>

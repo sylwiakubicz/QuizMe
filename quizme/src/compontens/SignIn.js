@@ -21,12 +21,12 @@ function SignIn() {
                             <input type="checkbox" />
                             <span className="checkmark"></span>
                         </label>
-                        <a href="#">Forgot password?</a>
+                        <Link>Forgot password?</Link>
                     </div>
                     <button type="submit" className="btn">Sign In</button>
                     <div className="register-or-login-link">
                         <p>Don't have an account? </p>
-                        <Link to="/AppSignUp">Sign Up</Link>
+                        <Link to="/SignUp">Sign Up</Link>
                     </div>
                 </form>
             </div>

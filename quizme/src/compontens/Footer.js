@@ -6,7 +6,7 @@ function Footer() {
     return (
         <footer>
             <ul>
-                <li><Link to="/AppContactUs"><i className="fa-solid fa-envelope"></i> Contact us</Link></li>
+                <li><Link to="/ContactUs"><i className="fa-solid fa-envelope"></i> Contact us</Link></li>
                 <li><Link to=""><i className="fa-regular fa-square-plus"></i> Create a quiz</Link></li>
                 <li><Link to=""><i className="fa-solid fa-circle-question"></i> General knowledge quizzes</Link></li>
                 <li><Link to=""><i className="fa-regular fa-star"></i> Celebrity quizzes</Link></li>
