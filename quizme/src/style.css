@@ -18,11 +18,12 @@ body {
 
 /* General Navber Styling */
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
 }
 
 .nav--container {
+    width: 100vw;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -32,7 +33,7 @@ body {
     transition: padding .3s ease-in-out;
 }
 
-.navbar--scrolled {
+.nav--scrolled {
     padding: .8rem 20%;
     box-shadow: 0 0.313rem 0.313rem 0 rgba(0, 0, 0, .15);
 }
@@ -287,8 +288,9 @@ footer li:hover::after {
     resize: both;
     overflow: auto;
     max-width: 100%;
+    min-width: 100%;
     min-height: 100px;
-    overflow: hidden;
+    max-height: 380px;
 }
 
 textarea {

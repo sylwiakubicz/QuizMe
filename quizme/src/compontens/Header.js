@@ -4,9 +4,29 @@ import "../style.css"
 
 
 const Header = () => {
+    
+    const [scrollPosition, setScrollPosition] = React.useState(0);
+    
+    function handleScroll() {
+        const position = window.scrollY;
+        setScrollPosition(position);
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    React.useEffect(() => {
+        handleScroll()
+    })
+    
     return (
         <nav className="navbar">
-            <div className="nav--container">
+            <div className={`nav--container ${scrollPosition > 30 ? "nav--scrolled" : ""}`}>
                 <div className="nav--logo_container">
                     <Link className="nav--logo" to="/">
                         Qu<i className="fa-solid fa-question fa-rotate-180"></i>zMe
