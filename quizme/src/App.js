@@ -1,14 +1,14 @@
 import React from "react"
 
 import {Routes, Route} from "react-router-dom";
-import Home from "./Home"
-import ContactUs from "./ContactUs"
-import SignUp from "./SignUp"
-import SignIn from "./SignIn"
-import Header from "./Header"
-import Footer from "./Footer"
+import Home from "./compontens/Home"
+import ContactUs from "./compontens/ContactUs"
+import SignUp from "./compontens/SignUp"
+import SignIn from "./compontens/SignIn"
+import Header from "./compontens/Header"
+import Footer from "./compontens/Footer"
 
-import "../style.css"
+import "./style.css"
 
 
 function App() {

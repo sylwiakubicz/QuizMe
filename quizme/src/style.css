@@ -16,6 +16,7 @@ body {
 }
 
 
+
 /* General Navber Styling */
 .navbar {
     position: fixed;
@@ -315,4 +316,9 @@ ul {
     display: flex;
     justify-content: space-around;
     list-style: none;
+}
+
+.quizInfo {
+    color: black;
+    margin-top: 100px;
 }
