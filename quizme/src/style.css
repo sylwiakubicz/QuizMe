@@ -21,6 +21,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
+    z-index: 2;
 }
 
 .nav--container {
@@ -310,6 +311,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100vw;
+    z-index: 2;
 }
 
 ul {
@@ -321,4 +323,12 @@ ul {
 .quizInfo {
     color: black;
     margin-top: 100px;
+}
+
+/* QUIZES */
+.quizes {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 200px 10%;
+    justify-content: space-between;
 }

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react"
 import axios from "axios"
 import "../style.css"
 import { useLocation } from "react-router-dom"
+import { Quiz } from "./Quiz"
 
 function Home() {
     const category = useLocation().search
@@ -28,13 +29,8 @@ function Home() {
     }, [category])
 
     return (
-        <div>
-            <h1>Tutaj będą quizy</h1>
-            {quizes.map(quiz => (
-                <div key={quiz.id}>
-                    <p className="quizInfo">{quiz.title}</p>
-                </div>
-            ))}    
+        <div className="quizes">
+            {quizes.map(quiz => ( <Quiz title={quiz.title} stats={quiz.stats} id={quiz.id} key={quiz.id}/>))}    
         </div>
     )
 }
