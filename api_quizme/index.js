@@ -12,5 +12,5 @@ app.use("/api/quiz", quizRoutes)
 
 
 app.listen(12345, () => {
-    console.log("Connected!")
+    console.log("Connected! ")
 })
