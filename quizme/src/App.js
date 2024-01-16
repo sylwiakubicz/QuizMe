@@ -7,6 +7,7 @@ import SignUp from "./compontens/SignUp"
 import SignIn from "./compontens/SignIn"
 import Header from "./compontens/Header"
 import Footer from "./compontens/Footer"
+import SingleQuiz from "./compontens/SingleQuiz"
 
 import "./style.css"
 
@@ -17,6 +18,7 @@ function App() {
         <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<SingleQuiz />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
