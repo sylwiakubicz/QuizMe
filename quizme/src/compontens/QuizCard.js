@@ -5,7 +5,7 @@ import {Link} from "react-router-dom"
 
 
 
-export function Quiz(props) {
+export function QuizCard(props) {
     return (
         <Link to={`/${props.id}`}>
             <div className="quizCard" >
