@@ -4,6 +4,7 @@ import axios from "axios"
 import "../styles/quizQuestionCard.css"
 import Answer from "./Answer"
 import QuizQuestionInfo from "./QuizQuestionInfo"
+import QuizScoreCard from "./QuizScoreCard"
 
 export default function QuizQuestionCard() {
     const quizID = useLocation().pathname.split("/")[1]
@@ -12,6 +13,7 @@ export default function QuizQuestionCard() {
     const [questions, setQuestions] = useState([])
     const [currentAnswer, setCurrentAnswer] = useState("")
     const [showScore, setShowScore] = useState(false)
+    const [score, setScore] = useState(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +31,7 @@ export default function QuizQuestionCard() {
 
     const handleAnswerChange = (answerText) => {
         setCurrentAnswer(answerText)
-        console.log(answerText)
+        return answerText
     }
 
     const handleNextQuestion = () => {
@@ -38,19 +40,29 @@ export default function QuizQuestionCard() {
                 return (prevIndex + 1)
             }
             else {
+                //
+                setCurrentIndex(0)
                 setShowScore(true)
             }
         });
     };
 
+    const handleTryAgain = () => {
+        setCurrentAnswer("")
+        setScore(0)
+        setShowScore(false)
+    }
+
     return (
         <div>
             {showScore  
-            ? <button className="quiz--btn" onClick={handleNextQuestion}>Try Again</button>
+            ?  <div>
+                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score} />}
+            </div>
             : (<div className="question--container"> 
                 {questions.length > 0 && (
             <div>
-                <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle}/>
+                <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage}/>
                 <div className="question--card">
                     <h1 className="question--text">{questions[currentIndex].question}</h1>
                     <form>

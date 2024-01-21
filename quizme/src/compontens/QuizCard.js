@@ -15,7 +15,7 @@ export function QuizCard(props) {
                     className="quizImg">
                 </img>
                 <h2 className="quizTitle">{props.title}</h2>
-                <p className="quizStats"><i class="fa-solid fa-chart-simple"></i> {props.stats}</p>
+                <p className="quizStats"><i className="fa-solid fa-chart-simple"></i> {props.stats}</p>
             </div>
         </Link>
 
