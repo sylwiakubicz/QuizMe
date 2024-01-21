@@ -20,7 +20,6 @@ export default function QuizQuestionCard() {
             try {const res = await axios.get(`/quiz/${quizID}`, {
                 withCredentials:true,
             })
-            console.log(res.data)
             setQuestions(res.data)
         } catch (err) {
             console.log(err)

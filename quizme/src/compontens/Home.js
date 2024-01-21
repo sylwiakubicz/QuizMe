@@ -12,9 +12,7 @@ function Home() {
     useEffect(() => {
         const contrller = new AbortController()
         const signal = contrller.signal
-        console.log("Category changed:", category);
         const fetchData = async () => {
-            console.log("fetch")
             try {
                 const res = await axios.get(`/quiz${category}`, {signal}, {
                     withCredentials:true,
@@ -32,15 +30,10 @@ function Home() {
         return () => {
             console.log("aborted")
             setQuizes([])
-            console.log(quizes)
             contrller.abort();
         }
 
     }, [category])
-
-
-    console.log("render")
-    console.log(quizes)
 
     return (
         <div className="quizes">
