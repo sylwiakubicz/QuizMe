@@ -1,13 +1,9 @@
 import React from "react";
-import { useState } from "react";
 
 export default function Answer(props) {
 
-    const [answerText, setAnswetText] = useState(props.answerText)
-
     const handleChange = (event) => {
-        setAnswetText(event.target.value)
-        props.onChangeAnswer(answerText)
+        props.onChangeAnswer(event.target.value)
     }
 
     return (
@@ -19,8 +15,9 @@ export default function Answer(props) {
                     key={props.answerIndex}
                     type="radio"
                     id={props.answerText}
-                    value={props.answerText} 
-                    onChange={handleChange}   
+                    value={props.answerText}
+                    onChange={handleChange}
+                    checked={props.checkedAnswer === props.answerText ? true : false}
                 />
                 <span className="radioBtn"></span>
             </label>

@@ -9,11 +9,12 @@ import QuizScoreCard from "./QuizScoreCard"
 export default function QuizQuestionCard() {
     const quizID = useLocation().pathname.split("/")[1]
     
-    const [currentIndex, setCurrentIndex] = useState(0)
     const [questions, setQuestions] = useState([])
+    const [currentIndex, setCurrentIndex] = useState(0)
     const [currentAnswer, setCurrentAnswer] = useState("")
     const [showScore, setShowScore] = useState(false)
     const [score, setScore] = useState(0)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,6 +37,7 @@ export default function QuizQuestionCard() {
     const handleNextQuestion = () => {
         setCurrentIndex((prevIndex) => {
             if ((prevIndex + 1) < questions.length) {
+                setCurrentAnswer("")
                 return (prevIndex + 1)
             }
             else {
@@ -51,12 +53,12 @@ export default function QuizQuestionCard() {
         setScore(0)
         setShowScore(false)
     }
-
+    
     return (
         <div>
             {showScore  
             ?  <div>
-                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score} />}
+                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score}/>}
             </div>
             : (<div className="question--container"> 
                 {questions.length > 0 && (
@@ -66,7 +68,7 @@ export default function QuizQuestionCard() {
                     <h1 className="question--text">{questions[currentIndex].question}</h1>
                     <form>
                         {questions[currentIndex].answers.map((answer, answerIndex) => (
-                            <Answer key={answerIndex} answerText={Object.values(answer)[0]} answerIndex={answerIndex} onChangeAnswer={handleAnswerChange}/>
+                            <Answer key={answerIndex} answerText={Object.values(answer)[0]} answerIndex={answerIndex} onChangeAnswer={handleAnswerChange} checkedAnswer={currentAnswer} currentQuestionIndex={currentIndex}/>
                         ))}                    
                     </form>
                 </div>
