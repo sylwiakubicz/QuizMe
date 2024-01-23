@@ -2,13 +2,13 @@ import React from "react"
 
 import {Routes, Route} from "react-router-dom";
 
-import Home from "./compontens/Home"
-import ContactUs from "./compontens/ContactUs"
-import SignUp from "./compontens/SignUp"
-import SignIn from "./compontens/SignIn"
-import Header from "./compontens/Header"
-import Footer from "./compontens/Footer"
-import QuizQuestionCard from "./compontens/QuizQuestionCard"
+import Home from "./compontens/pages/Home"
+import ContactUs from "./compontens/pages/ContactUs"
+import SignUp from "./compontens/pages/SignUp"
+import SignIn from "./compontens/pages/SignIn"
+import Header from "./compontens/layout/Header"
+import Footer from "./compontens/layout/Footer"
+import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
 
 import "./style.css"
 
@@ -18,7 +18,7 @@ function App() {
         <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/:id" element={<QuizQuestionCard />} />
+            <Route path="/:id" element={<TakeTheQuiz />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />

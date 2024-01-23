@@ -1,9 +1,9 @@
 import React from "react"
 import {useEffect, useState} from "react"
 import axios from "axios"
-import "../style.css"
+import "../../style.css"
 import { useLocation } from "react-router-dom"
-import { QuizCard } from "./QuizCard"
+import { QuizCard } from "../QuizCard"
 
 function Home() {
     const [quizes, setQuizes] = useState([])

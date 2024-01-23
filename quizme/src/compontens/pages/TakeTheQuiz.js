@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import axios from "axios"
-import "../styles/quizQuestionCard.css"
-import Answer from "./Answer"
-import QuizQuestionInfo from "./QuizQuestionInfo"
-import QuizScoreCard from "./QuizScoreCard"
+import "../../styles/quizQuestionCard.css"
+import Answer from "../Answer"
+import QuizQuestionInfo from "../QuizInfo"
+import QuizScoreCard from "../QuizScoreCard"
 
-export default function QuizQuestionCard() {
+export default function TakeTheQuiz() {
     const quizID = useLocation().pathname.split("/")[1]
     
     const [questions, setQuestions] = useState([])
@@ -37,15 +37,14 @@ export default function QuizQuestionCard() {
     const handleNextQuestion = () => {
         setCurrentIndex((prevIndex) => {
             if ((prevIndex + 1) < questions.length) {
-                setCurrentAnswer("")
                 return (prevIndex + 1)
             }
             else {
-                //
-                setCurrentIndex(0)
                 setShowScore(true)
+                return 0
             }
         });
+        setCurrentAnswer("")
     };
 
     const handleTryAgain = () => {
