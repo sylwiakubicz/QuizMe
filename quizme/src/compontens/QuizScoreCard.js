@@ -15,7 +15,7 @@ export default function QuizScoreCard(props) {
             <div className="score-container">
                 <div className="info">
                     <h1 className="title">{props.quizTitle}</h1>
-                    <h2 className="score">Score 2/3</h2>
+                    <h2 className="score">Score {props.quizScore}/{props.quizLenght}</h2>
                 </div>
                 <img className="quiz--imgBig" src={img} alt=""></img>
             </div>

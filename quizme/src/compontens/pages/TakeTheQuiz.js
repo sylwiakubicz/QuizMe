@@ -34,17 +34,21 @@ export default function TakeTheQuiz() {
         return answerText
     }
 
-    const handleNextQuestion = () => {
-        setCurrentIndex((prevIndex) => {
-            if ((prevIndex + 1) < questions.length) {
-                return (prevIndex + 1)
-            }
-            else {
-                setShowScore(true)
-                return 0
-            }
-        });
+    const handleNextQuestion = (correctAnswer) => {
+        if (currentAnswer === correctAnswer) {
+            setScore(prevScore => prevScore + 1)
+        }
+
+        if(currentIndex + 1 < questions.length) {
+            setCurrentIndex(prevIndex => prevIndex + 1)
+        }
+        else {
+            setCurrentIndex(0)
+            setShowScore(true)
+        }
+
         setCurrentAnswer("")
+        console.log(score)
     };
 
     const handleTryAgain = () => {
@@ -57,7 +61,7 @@ export default function TakeTheQuiz() {
         <div>
             {showScore  
             ?  <div>
-                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score}/>}
+                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score} quizLenght={questions.length}/>}
             </div>
             : (<div className="question--container"> 
                 {questions.length > 0 && (
@@ -71,7 +75,7 @@ export default function TakeTheQuiz() {
                         ))}                    
                     </form>
                 </div>
-                <button className="quiz--btn" onClick={handleNextQuestion}>Next Question</button>
+                <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer)}>Next Question</button>
             </div>)}
             </div>
             )}
