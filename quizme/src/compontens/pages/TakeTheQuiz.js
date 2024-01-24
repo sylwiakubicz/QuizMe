@@ -40,6 +40,15 @@ export default function TakeTheQuiz() {
         }
     }
 
+    const getUserScore = async () => {
+        try {
+            const res = await axios.get(`/quiz/${quizID}/score`)
+            console.log(res.data)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
 
     const handleAnswerChange = (answerText) => {
         setCurrentAnswer(answerText)
@@ -57,18 +66,18 @@ export default function TakeTheQuiz() {
         else {
             quizStats += 1
             sendStats(quizStats)
+            getUserScore()
             setCurrentIndex(0)
             setShowScore(true)
         }
 
         setCurrentAnswer("")
-        console.log(score)
     };
 
 
     const handleTryAgain = () => {
         setCurrentAnswer("")
-        setScore(0)
+        setScore(0) 
         setShowScore(false)
     }
     
