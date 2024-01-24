@@ -78,7 +78,6 @@ export const setUserScore = (req, res) => {
         if (err) {
             return res.status(500).send(err)
         }
-        console.log("add")
         return res.status(200).send("Score added")
     })
 }
@@ -91,7 +90,6 @@ export const updateUserScore = (req, res) => {
         if (err) {
             return res.status(500).send(err)
         }
-        console.log("update")
         return res.status(200).send("Score updated")
     })
 

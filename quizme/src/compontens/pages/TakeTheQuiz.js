@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { useLocation } from "react-router-dom"
 import axios from "axios"
 import "../../styles/quizQuestionCard.css"
@@ -13,7 +13,7 @@ export default function TakeTheQuiz() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentAnswer, setCurrentAnswer] = useState("")
     const [showScore, setShowScore] = useState(false)
-    const [score, setScore] = useState(0)
+    const score = useRef(0)
 
 
     useEffect(() => {
@@ -46,16 +46,16 @@ export default function TakeTheQuiz() {
             if (res.data.length === 0) {
                 try {
                     await axios.post(`/quiz/${quizID}`, {
-                        quizScore: score
+                        quizScore: score.current
                     })
                 } catch (err) {
                     console.log(err)
                 }
             } 
-            if (res.data[0].score < score) {
+            if (res.data[0].score < score.current) {
                 try{
                     await axios.put(`/quiz/${quizID}`, {
-                        quizScore: score
+                        quizScore: score.current
                     })
                 } catch (err) {
                     console.log(err)
@@ -73,7 +73,7 @@ export default function TakeTheQuiz() {
 
     const handleNextQuestion = (correctAnswer, quizStats) => {
         if (currentAnswer === correctAnswer) {
-            setScore(prevScore => prevScore + 1)
+            score.current += 1
         }
 
         if(currentIndex + 1 < questions.length) {
@@ -93,7 +93,7 @@ export default function TakeTheQuiz() {
 
     const handleTryAgain = () => {
         setCurrentAnswer("")
-        setScore(0) 
+        score.current = 0
         setShowScore(false)
     }
     
@@ -101,7 +101,7 @@ export default function TakeTheQuiz() {
         <div>
             {showScore  
             ?  <div>
-                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score} quizLenght={questions.length}/>}
+                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length}/>}
             </div>
             : (<div className="question--container"> 
                 {questions.length > 0 && (
