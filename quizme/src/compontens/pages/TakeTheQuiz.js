@@ -40,14 +40,30 @@ export default function TakeTheQuiz() {
         }
     }
 
-    const getUserScore = async () => {
+    const setUserScore = async () => {
         try {
-            const res = await axios.get(`/quiz/${quizID}/score`)
-            console.log(res.data)
+            const res = await axios.get(`/quiz/${quizID}/score`, )
+            if (res.data.length === 0) {
+                try {
+                    await axios.post(`/quiz/${quizID}`, {
+                        quizScore: score
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
+            } 
+            if (res.data[0].score < score) {
+                try{
+                    await axios.put(`/quiz/${quizID}`, {
+                        quizScore: score
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
+            }
         } catch (err) {
             console.log(err)
         }
-
     }
 
     const handleAnswerChange = (answerText) => {
@@ -66,7 +82,7 @@ export default function TakeTheQuiz() {
         else {
             quizStats += 1
             sendStats(quizStats)
-            getUserScore()
+            setUserScore()
             setCurrentIndex(0)
             setShowScore(true)
         }
