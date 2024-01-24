@@ -28,13 +28,25 @@ export default function TakeTheQuiz() {
         fetchData()
     }, [quizID])
 
+    const sendStats = async (quizStats) => {
+        try {
+            axios.put(`/quiz/${quizID}/stats`, {
+                quizStats: quizStats
+            }, {
+                withCredentials: true,
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     const handleAnswerChange = (answerText) => {
         setCurrentAnswer(answerText)
         return answerText
     }
 
-    const handleNextQuestion = (correctAnswer) => {
+    const handleNextQuestion = (correctAnswer, quizStats) => {
         if (currentAnswer === correctAnswer) {
             setScore(prevScore => prevScore + 1)
         }
@@ -43,6 +55,8 @@ export default function TakeTheQuiz() {
             setCurrentIndex(prevIndex => prevIndex + 1)
         }
         else {
+            quizStats += 1
+            sendStats(quizStats)
             setCurrentIndex(0)
             setShowScore(true)
         }
@@ -50,6 +64,7 @@ export default function TakeTheQuiz() {
         setCurrentAnswer("")
         console.log(score)
     };
+
 
     const handleTryAgain = () => {
         setCurrentAnswer("")
@@ -75,7 +90,7 @@ export default function TakeTheQuiz() {
                         ))}                    
                     </form>
                 </div>
-                <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer)}>Next Question</button>
+                <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer, questions[currentIndex].quizStats)}>Next Question</button>
             </div>)}
             </div>
             )}

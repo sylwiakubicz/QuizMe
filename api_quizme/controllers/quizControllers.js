@@ -14,7 +14,7 @@ export const getQuizes = (req,res) => {
 
 export const getQuiz = (req,res) => {
     const quizID  = req.params.id
-    const q = "SELECT questions.id AS question_id, quizes.id AS quiz_id, quizes.title AS quizTitle, quizes.image AS quizImage, question, answer1, answer2, answer3, answer4, answer5, correctAnswer FROM questions INNER JOIN quizes ON questions.quiz_id = quizes.id WHERE quizes.id = ?"
+    const q = "SELECT questions.id AS question_id, quizes.id AS quiz_id, quizes.title AS quizTitle, quizes.image AS quizImage, stats, question, answer1, answer2, answer3, answer4, answer5, correctAnswer FROM questions INNER JOIN quizes ON questions.quiz_id = quizes.id WHERE quizes.id = ?"
     db.query(q, [quizID], (err, data) => {
         if (err) {
             return res.status(500).send(err)
@@ -34,12 +34,30 @@ export const getQuiz = (req,res) => {
                     { answer4: item.answer4 },
                     { answer5: item.answer5 },
                 ],
-                correctAnswer: item.correctAnswer
+                correctAnswer: item.correctAnswer,
+                quizStats: item.stats
             };
         });
         return res.status(200).json(formatedData)
     })
 }
+
+export const updateQuizStats = (req, res) => {
+    const quizID = req.params.id
+    const q = "UPDATE quizes SET stats = ? WHERE id = ?"
+    db.query(q, [req.body.quizStats, quizID], (err, data) => {
+        if (err) {
+            return res.status(500).send(err)
+        }
+        return res.status(200).send("Stats updated")
+    })
+}
+
+
+
+
+
+
 
 export const addQuiz = (req,res) => {
     console.log("addQuiz")

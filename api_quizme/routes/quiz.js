@@ -1,11 +1,12 @@
 import express from "express"
-import {getQuizes, getQuiz, updateQuiz, addQuiz, deleteQuiz} from "../controllers/quizControllers.js"
+import {getQuizes, getQuiz, updateQuiz, addQuiz, deleteQuiz, updateQuizStats} from "../controllers/quizControllers.js"
 
 const router = express.Router()
 
 router.get("/", getQuizes)
 
 router.get('/:id', getQuiz)
+router.put('/:id/stats', updateQuizStats)
 
 router.put("/:id", updateQuiz)
 router.post("/", addQuiz)
