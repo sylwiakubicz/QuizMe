@@ -95,7 +95,6 @@ export const updateUserScore = (req, res) => {
 
 }
 
-
 export const addQuiz = (req,res) => {
     console.log("addQuiz")
 }

@@ -6,7 +6,7 @@ export const db = mysql.createConnection(config.mysql)
 
 db.connect(error => {
     if (error) {
-        console.log("error wityh connection")
+        console.log("error with connection")
         console.log(error)
     }
     console.log("connected to db")

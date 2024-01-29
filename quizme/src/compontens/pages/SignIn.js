@@ -1,11 +1,11 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import "../../style.css"
 
 
 
 function SignIn() {
-
+    const navigate = useNavigate()
     const [signInData, setSignInData] = React.useState(
         {
             email: "",
@@ -25,6 +25,7 @@ function SignIn() {
             })
     }
 
+    
     return (
         <div className="form">
             <div className="wrapper">
@@ -64,7 +65,7 @@ function SignIn() {
                         </label>
                         <Link>Forgot password?</Link>
                     </div>
-                    <button type="submit" className="btn">Sign In</button>
+                    <button className="btn">Sign In</button>
                     <div className="register-or-login-link">
                         <p>Don't have an account? </p>
                         <Link to="/SignUp">Sign Up</Link>
