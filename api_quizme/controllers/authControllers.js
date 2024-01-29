@@ -1,16 +1,11 @@
 import {db} from "../db.js"
+import bcrypt from "bcryptjs"
 
 export const login = (req, res) => {
     console.log("login")
 }
 
 export const register = (req, res) => {
-    const values = [
-        req.body.username,
-        req.body.email,
-        req.body.password,
-        "2024-01-13 00:00:00"
-    ]
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"
     db.query(q, [req.body.email], (err, data) => {
@@ -39,7 +34,18 @@ export const register = (req, res) => {
                 return res.status(409).json("Passwors is too short.")
             }
 
+            // HASH THE PASSWORD AND CREATE THE USER
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(req.body.password, salt)
+            
             // Add user
+            const values = [
+                req.body.username,
+                req.body.email,
+                hash,
+                "2024-01-13 00:00:00"
+            ]
+
             const q = "INSERT INTO users (username, email, password, register_date) VALUES (?)"
 
             db.query(q, [values], (err, data) => {
