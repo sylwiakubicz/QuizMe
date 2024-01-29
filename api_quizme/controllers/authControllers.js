@@ -35,6 +35,9 @@ export const register = (req, res) => {
             if (req.body.password !== req.body.confrimPassword)  {
                 return res.status(409).json("Passwords do not match")
             }
+            if (req.body.password.length < 8) {
+                return res.status(409).json("Passwors is too short.")
+            }
 
             // Add user
             const q = "INSERT INTO users (username, email, password, register_date) VALUES (?)"

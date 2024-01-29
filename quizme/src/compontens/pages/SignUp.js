@@ -58,7 +58,7 @@ function SignUp() {
                     </div>
                     <div className="input-box">
                         <input 
-                            type="text" 
+                            type="email" 
                             placeholder="Email"
                             name="email"
                             value={signUpData.email}
