@@ -5,6 +5,35 @@ export const login = (req, res) => {
     console.log("login")
 }
 
+
+
+const getCurrentTime = () => {
+    var now     = new Date(); 
+        var year    = now.getFullYear();
+        var month   = now.getMonth()+1; 
+        var day     = now.getDate();
+        var hour    = now.getHours();
+        var minute  = now.getMinutes();
+        var second  = now.getSeconds(); 
+        if(month.toString().length == 1) {
+             month = '0'+month;
+        }
+        if(day.toString().length == 1) {
+             day = '0'+day;
+        }   
+        if(hour.toString().length == 1) {
+             hour = '0'+hour;
+        }
+        if(minute.toString().length == 1) {
+             minute = '0'+minute;
+        }
+        if(second.toString().length == 1) {
+             second = '0'+second;
+        }   
+        var dateTime = year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;   
+         return dateTime;
+}
+
 export const register = (req, res) => {
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"
@@ -38,12 +67,13 @@ export const register = (req, res) => {
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(req.body.password, salt)
             
+            const registerTime = getCurrentTime()
             // Add user
             const values = [
                 req.body.username,
                 req.body.email,
                 hash,
-                "2024-01-13 00:00:00"
+                registerTime,
             ]
 
             const q = "INSERT INTO users (username, email, password, register_date) VALUES (?)"
