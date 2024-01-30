@@ -35,6 +35,11 @@ const validatePassword = (password) => {
 }
 
 export const register = (req, res) => {
+    // check username and email
+    if (!req.body.username || !req.body.email) {
+        return res.status(409).json("Invalid username or email")
+    }
+
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"
     db.query(q, [req.body.email], (err, data) => {
@@ -60,6 +65,7 @@ export const register = (req, res) => {
                 return res.status(409).json("Passwords do not match")
             }
 
+            // Validate password
             if (!validatePassword(req.body.password)) {
                 return res.status(409).json("Password should contain at least one lowercase and uppercase letter, one digit, oen special character and be at least 8 characters long.")
             }
@@ -68,8 +74,8 @@ export const register = (req, res) => {
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(req.body.password, salt)
             
-            const registerTime = getCurrentTime()
             // Add user
+            const registerTime = getCurrentTime()
             const values = [
                 req.body.username,
                 req.body.email,
