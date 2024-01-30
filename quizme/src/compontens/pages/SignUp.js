@@ -52,7 +52,7 @@ function SignUp() {
                             name="username"
                             value={signUpData.username}
                             onChange={handleChange}
-                            required 
+                            required
                             />
                         <i className="fa-solid fa-user"></i>
                     </div>

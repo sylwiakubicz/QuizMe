@@ -1,11 +1,6 @@
 import {db} from "../db.js"
 import bcrypt from "bcryptjs"
 
-export const login = (req, res) => {
-    console.log("login")
-}
-
-
 
 const getCurrentTime = () => {
     var now     = new Date(); 
@@ -34,6 +29,11 @@ const getCurrentTime = () => {
          return dateTime;
 }
 
+const validatePassword = (password) => {
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
+    return strongRegex.test(password)
+}
+
 export const register = (req, res) => {
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"
@@ -59,8 +59,9 @@ export const register = (req, res) => {
             if (req.body.password !== req.body.confrimPassword)  {
                 return res.status(409).json("Passwords do not match")
             }
-            if (req.body.password.length < 8) {
-                return res.status(409).json("Passwors is too short.")
+
+            if (!validatePassword(req.body.password)) {
+                return res.status(409).json("Password should contain at least one lowercase and uppercase letter, one digit, oen special character and be at least 8 characters long.")
             }
 
             // HASH THE PASSWORD AND CREATE THE USER
@@ -87,6 +88,12 @@ export const register = (req, res) => {
         })
     })
 }
+
+
+export const login = (req, res) => {
+    console.log("login")
+}
+
 
 export const logout = (req, res) => {
     console.log("logout")
