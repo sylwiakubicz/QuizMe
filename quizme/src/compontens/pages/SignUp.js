@@ -89,8 +89,8 @@ function SignUp() {
                             />
                         <i className="fa-solid fa-lock"></i>
                     </div>
+                    {error && <p className="error">{error}</p>}
                     <button className="btn" onClick={handleSubmit}>Sign Up</button>
-                    {error && <p>{error}</p>}
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
                         <Link to="/SignIn">Sign In</Link>
