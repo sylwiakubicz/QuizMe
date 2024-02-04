@@ -1,7 +1,11 @@
-import React from "react"
+import React, {useRef} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import ReCAPTCHA from "react-google-recaptcha"
 import "../../style.css"
+require('dotenv').config()
+
+
 
 
 function SignUp() {
@@ -13,10 +17,12 @@ function SignUp() {
             username: "",
             email: "",
             password: "",
-            confrimPassword: ""
+            confrimPassword: "",
         }
     )
     const [error, setError] = React.useState("")
+
+    const recaptcha = useRef()
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -30,20 +36,31 @@ function SignUp() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        try {
-            await axios.post("/auth/register", signUpData, {
-                withCredentials: true
-            })
-            navigate("/SignIn")
-        } catch (err) {
-            setError(err.response.data)
+        const captchaValue = recaptcha.current.getValue()
+        // captchaValue.current.reset()
+        if (!captchaValue) {
+          alert("Please verify the reCAPTCHA!");
+        } else {
+            const res = await axios.post("/auth/verify", { captchaValue })
+            if (res.data.success) {
+                try { 
+                    await axios.post("/auth/register", signUpData, {
+                        withCredentials: true
+                    })
+                    navigate("/SignIn")
+                } catch (err) {
+                    setError(err.response.data)
+                }
+              } else {
+                alert("reCAPTCHA validation failed!");
+              }
         }
     }
 
     return (
         <div className="form">
             <div className="wrapper">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h1>Sign Up</h1>
                     <div className="input-box">
                         <input 
@@ -90,7 +107,11 @@ function SignUp() {
                         <i className="fa-solid fa-lock"></i>
                     </div>
                     {error && <p className="error">{error}</p>}
-                    <button className="btn" onClick={handleSubmit}>Sign Up</button>
+                    <ReCAPTCHA 
+                        sitekey={process.env.REACT_APP_SITE_KEY}
+                        ref={recaptcha}
+                        />
+                    <button className="btn" >Sign Up</button>
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
                         <Link to="/SignIn">Sign In</Link>

@@ -1,6 +1,11 @@
 import {db} from "../db.js"
+import axios from "axios"
 import bcrypt from "bcryptjs"
+import 'dotenv/config.js'
 
+
+const SITE_SECRET = process.env.REACT_APP_SITE_SECRET
+console.log(SITE_SECRET)
 
 const getCurrentTime = () => {
     var now     = new Date(); 
@@ -34,12 +39,15 @@ const validatePassword = (password) => {
     return strongRegex.test(password)
 }
 
+export const checkIfHuman = async (req, res) => {
+    const {captchaValue} = req.body
+    const { data } = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${SITE_SECRET}&response=${captchaValue}`
+    );
+    res.send(data);
+}
+  
 export const register = (req, res) => {
-    // check username and email
-    if (!req.body.username || !req.body.email) {
-        return res.status(409).json("Invalid username or email")
-    }
-
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"
     db.query(q, [req.body.email], (err, data) => {
