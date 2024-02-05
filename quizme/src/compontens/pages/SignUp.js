@@ -106,12 +106,12 @@ function SignUp() {
                             />
                         <i className="fa-solid fa-lock"></i>
                     </div>
-                    {error && <p className="error">{error}</p>}
                     <ReCAPTCHA 
                         sitekey={process.env.REACT_APP_SITE_KEY}
                         ref={recaptcha}
                         />
                     <button className="btn" >Sign Up</button>
+                    {error && <p className="error">{error}</p>}
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
                         <Link to="/SignIn">Sign In</Link>

@@ -1,11 +1,10 @@
 import {db} from "../db.js"
 import axios from "axios"
 import bcrypt from "bcryptjs"
-import 'dotenv/config.js'
+import config from "../config/index.js"
 
 
-const SITE_SECRET = process.env.REACT_APP_SITE_SECRET
-console.log(SITE_SECRET)
+const SITE_SECRET = config.reCaptcha.REACT_APP_SECRET_KEY
 
 const getCurrentTime = () => {
     var now     = new Date(); 
@@ -105,7 +104,26 @@ export const register = (req, res) => {
 
 
 export const login = (req, res) => {
-    console.log("login")
+    // Check user
+    const q = "SELECT * FROM users WHERE email = ?"
+    db.query(q, req.body.email, (err, data) => {
+        if (err) {
+            return res.status(500).json(err)
+        }
+        if (data.length === 0) {
+            return res.status(404).send("User does not exist")
+        }
+
+        // Check password
+        bcrypt.compare(req.body.password, data[0].password, function(err, result) {
+            if (result === false) {
+                return res.status(409).send("Wrong password")
+            } 
+        }) 
+
+        // User session
+        
+    })
 }
 
 

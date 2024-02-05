@@ -1,10 +1,12 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
+import axios from "axios"
 import "../../style.css"
 
 
 
 function SignIn() {
+
     const navigate = useNavigate()
     const [signInData, setSignInData] = React.useState(
         {
@@ -13,6 +15,8 @@ function SignIn() {
             rememberMe: false,
         }
     )
+    const [error, setError] = React.useState("")
+
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -23,6 +27,19 @@ function SignIn() {
                     [name]: type === "checkbox" ? checked : value 
                 }
             })
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+        try {
+            const res = await axios.post("/auth/login", signInData, {
+                withCredentials: true
+            })
+            console.log(res)
+            navigate("/")
+        }catch (err) {
+            setError(err.response.data)
+        }
     }
 
     
@@ -65,7 +82,8 @@ function SignIn() {
                         </label>
                         <Link>Forgot password?</Link>
                     </div>
-                    <button className="btn">Sign In</button>
+                    <button className="btn" onClick={handleSubmit}>Sign In</button>
+                    {error && <p className="error">{error}</p>}
                     <div className="register-or-login-link">
                         <p>Don't have an account? </p>
                         <Link to="/SignUp">Sign Up</Link>
