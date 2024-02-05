@@ -1,6 +1,7 @@
 import {db} from "../db.js"
 import axios from "axios"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
 import config from "../config/index.js"
 
 
@@ -102,6 +103,20 @@ export const register = (req, res) => {
     })
 }
 
+export function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+
+    if(token == null) return res.status(401).send("Token missing")
+
+    jwt.verify(token, config.jwt.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) return res.status(403).send("Token is not valid")
+        req.user = user
+        console.log(user)
+        next()
+    })
+
+}
 
 export const login = (req, res) => {
     // Check user
@@ -121,11 +136,17 @@ export const login = (req, res) => {
             } 
         }) 
 
-        // User session
-        
+
+        // session
+        const user = {
+            username: data[0].username,
+            email: req.body.email,
+            id: data[0].id
+        }
+        const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
+        res.json({accessToken: accessToken})
     })
 }
-
 
 export const logout = (req, res) => {
     console.log("logout")
