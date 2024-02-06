@@ -92,7 +92,6 @@ export const updateUserScore = (req, res) => {
         }
         return res.status(200).send("Score updated")
     })
-
 }
 
 export const addQuiz = (req,res) => {

@@ -104,8 +104,7 @@ export const register = (req, res) => {
 }
 
 export function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    const token = req.cookies.accessToken
 
     if(token == null) return res.status(401).send("Token missing")
 
@@ -115,7 +114,6 @@ export function authenticateToken(req, res, next) {
         console.log(user)
         next()
     })
-
 }
 
 export const login = (req, res) => {
@@ -136,15 +134,19 @@ export const login = (req, res) => {
             } 
         }) 
 
-
         // session
         const user = {
             username: data[0].username,
             email: req.body.email,
             id: data[0].id
         }
+
         const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
-        res.json({accessToken: accessToken})
+        res.cookie("accessToken", accessToken, {
+            httpOnly: true,
+            semeSite: "none",
+            secure: true
+        }).status(200).send(user)
     })
 }
 
