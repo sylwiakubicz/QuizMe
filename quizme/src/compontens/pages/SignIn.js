@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import { AuthContext } from "../../context/authContext"
 import "../../style.css"
 
 
@@ -17,6 +18,10 @@ function SignIn() {
     )
     const [error, setError] = React.useState("")
 
+    const {currentUser, login} = React.useContext(AuthContext)
+    console.log(currentUser)
+
+
 
     function handleChange(event) {
         const {name, value, type, checked} = event.target
@@ -32,10 +37,7 @@ function SignIn() {
     async function handleSubmit(e) {
         e.preventDefault()
         try {
-            const res = await axios.post("/auth/login", signInData, {
-                withCredentials: true
-            })
-            console.log(res)
+            await login(signInData)
             navigate("/")
         }catch (err) {
             setError(err.response.data)
