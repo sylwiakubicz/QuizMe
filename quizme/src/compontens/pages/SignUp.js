@@ -109,6 +109,7 @@ function SignUp() {
                     <ReCAPTCHA 
                         sitekey={process.env.REACT_APP_SITE_KEY}
                         ref={recaptcha}
+                        className="captcha"
                         />
                     <button className="btn" >Sign Up</button>
                     {error && <p className="error">{error}</p>}

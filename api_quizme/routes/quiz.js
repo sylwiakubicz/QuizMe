@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get("/", getQuizes)
 
-router.get('/:id', authenticateToken, getQuiz)
+router.get('/:id', getQuiz)
 router.get('/:id/score', getUserScore)
 router.post('/:id', setUserScore)
 router.put('/:id', updateUserScore)

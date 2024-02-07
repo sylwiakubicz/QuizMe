@@ -55,24 +55,23 @@ export const updateQuizStats = (req, res) => {
 
 export const getUserScore = (req, res) => {
     const quizID = req.params.id
-    const userID = 1
+    const userID = req.query.userID
     const q = "SELECT score FROM usersscore WHERE userID = ? AND quizID = ?"
     db.query(q, [userID, quizID], (err, data) => {
         if (err) {
             return res.status(500).send(err)
         }
+        console.log(data)
         return res.status(200).json(data)
     })
 }
 
 export const setUserScore = (req, res) => {
     const values = [
-        1,
+        req.body.userID,
         req.params.id,
         req.body.quizScore
     ]
-    const quizID = req.params.id
-    const userID = 1
     const q = "INSERT INTO usersscore (userID, quizID, score) VALUES (?)"
     db.query(q, [values], (err, data) => {
         if (err) {
@@ -84,7 +83,7 @@ export const setUserScore = (req, res) => {
 
 export const updateUserScore = (req, res) => {
     const quizID = req.params.id
-    const userID = 1
+    const userID = req.body.userID
     const q = "UPDATE usersscore SET score = ? WHERE quizID = ? AND userID = ?"
     db.query(q, [req.body.quizScore, quizID, userID], (err, data) => {
         if (err) {

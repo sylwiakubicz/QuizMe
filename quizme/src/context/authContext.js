@@ -13,6 +13,7 @@ export const AuthContextProvider = ({children}) => {
             withCredentials: true
         })
         setCurrentUser(res.data)
+        console.log(res.data)
     }
 
     const logout = async (inputs) => {

@@ -95,6 +95,8 @@ footer li:hover::after {
 .btn {
     background: rgb(10, 63, 54);
     border-radius: 15px;
+    cursor: pointer;
+    
 }
 
 .btn:hover {
@@ -162,6 +164,7 @@ footer li:hover::after {
 .input-box i {
     position: absolute;
     right: 30px;
+    
     transform: translateY(10px);
     font-size: 1.4rem;
 }
@@ -310,6 +313,10 @@ textarea {
     font-size: 1.2rem;
 }
 
+/* recaptcha */
+.captcha {
+    margin-left: 40px;
+}
 
 /* footer styling */
 footer {
