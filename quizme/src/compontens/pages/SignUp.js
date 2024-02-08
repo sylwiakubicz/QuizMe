@@ -37,7 +37,7 @@ function SignUp() {
     const handleSubmit = async e => {
         e.preventDefault()
         const captchaValue = recaptcha.current.getValue()
-        // captchaValue.current.reset()
+        recaptcha.current.reset()
         if (!captchaValue) {
           alert("Please verify the reCAPTCHA!");
         } else {
@@ -111,8 +111,9 @@ function SignUp() {
                         ref={recaptcha}
                         className="captcha"
                         />
-                    <button className="btn" >Sign Up</button>
                     {error && <p className="error">{error}</p>}
+
+                    <button className="btn" >Sign Up</button>
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
                         <Link to="/SignIn">Sign In</Link>

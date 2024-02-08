@@ -36,7 +36,23 @@ const getCurrentTime = () => {
 
 const validatePassword = (password) => {
     var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
-    return strongRegex.test(password)
+    if (strongRegex.test(password)) return "correct"
+
+    var lowercaseRegex = new RegExp("^(?=.*[a-z])")
+    if (!lowercaseRegex.test(password)) return "Password must contain at least one lowercase letter"
+
+    var uppercaseRegex = new RegExp("^(?=.*[A-Z])")
+    if (!uppercaseRegex.test(password)) return "Password must contain at least one uppercase letter"
+
+    var numberRegex = new RegExp("^(?=.*[0-9])")
+    if (!numberRegex.test(password)) return "Password must contain at one least number"
+
+    var specialCharRegex = new RegExp("^(?=.[!@#$%^&])")
+    if (!specialCharRegex.test(password)) return "Password must contain at least one special character"
+
+    var lengthRegex = new RegExp("^(?=.{8,})")
+    if (!lengthRegex.test(password)) return "Password must be eight characters or longer"
+
 }
 
 export const checkIfHuman = async (req, res) => {
@@ -74,8 +90,8 @@ export const register = (req, res) => {
             }
 
             // Validate password
-            if (!validatePassword(req.body.password)) {
-                return res.status(409).json("Password should contain at least one lowercase and uppercase letter, one digit, oen special character and be at least 8 characters long.")
+            if (validatePassword(req.body.password) !== "correct") {
+                return res.status(409).json(validatePassword(req.body.password))
             }
 
             // HASH THE PASSWORD AND CREATE THE USER

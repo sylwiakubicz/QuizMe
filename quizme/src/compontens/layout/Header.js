@@ -56,10 +56,10 @@ const Header = () => {
                             :
                             <ul className="nav--list">
                                 <li className="nav--item">
-                                    <Link to="/SignIn" className="nav--link">Login</Link>
+                                    <Link to="/SignIn" className="nav--link">Sign In</Link>
                                 </li>
-                                <li className="nav--item btn">
-                                    <Link to="#" className="nav--link">Create a quiz</Link>
+                                <li className={currentUser ? "nav--item btn" : "nav--item btn onlyForLogInUser"}>
+                                    <Link to={currentUser ? "#" : "/SignIn"} className="nav--link">Create a quiz</Link>
                                 </li>
                             </ul>
                         }
