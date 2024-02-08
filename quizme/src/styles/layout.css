@@ -1,0 +1,129 @@
+/* General Navber Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
+.nav--container {
+    width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: rgb(31, 201, 130);
+    padding: 1.5rem 20%;
+    transition: box-shadow .3s ease-in-out;
+    transition: padding .3s ease-in-out;
+}
+
+.nav--scrolled {
+    padding: .8rem 20%;
+    box-shadow: 0 0.313rem 0.313rem 0 rgba(0, 0, 0, .15);
+}
+
+/* Logo Styling */
+.nav--logo {
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    transition: all .3s ease-in-out;
+}
+
+.nav--logo i {
+    font-size: 2rem;
+}
+
+/* Navbar List Styling */
+.nav--list {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.nav--item {
+    font-size: 1.4rem;
+    margin: 0 1.5rem;
+    padding: .5rem 1.5rem;
+}
+
+.onlyForLogInUser::before {
+    display: none;
+    content: "Sign In to create a quiz";
+    position: absolute;
+    bottom: -1.875rem;
+    right: 0;
+    padding: .25rem;
+    text-wrap: nowrap;
+    border: 0.125rem solid rgb(10, 63, 54);
+    border-radius: 0.438rem;
+    background-color: white;
+    color: rgb(10, 63, 54);
+    font-size: 1.125rem;
+    opacity: .7;
+}
+
+.nav--item:hover::before {
+    display: block;
+}
+
+/* Underline the text - transition */
+.nav--link::after,
+.onlyForLogInUser::after,
+.remember-forgot a::after,
+.form a::after,
+footer li::after {
+    content: '';
+    background-color: rgb(255, 255, 255);
+    display: block;
+    width: 0;
+    height: .150rem;
+    transition: 0.3s ease-out;
+}
+
+.remember-forgot a::after,
+.form a::after {
+    background-color: rgb(31, 201, 130);
+}
+
+.nav--link:hover::after,
+.onlyForLogInUser:hover::after,
+.remember-forgot a:hover::after,
+.form a:hover::after,
+footer li:hover::after {
+    width: 100%;
+}
+
+
+/* Button styling */
+.btn {
+    background: rgb(10, 63, 54);
+    border-radius: 0.938rem;
+    cursor: pointer;
+    
+}
+
+.btn:hover {
+    background: rgba(10, 63, 54, .8);
+}
+
+
+/* footer styling */
+footer {
+    background-color: #363636;
+    padding: 1.3rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 2;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.quizInfo {
+    color: black;
+    margin-top: 6.25rem;
+}

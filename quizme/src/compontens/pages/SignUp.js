@@ -2,7 +2,8 @@ import React, {useRef} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 import ReCAPTCHA from "react-google-recaptcha"
-import "../../style.css"
+import "../../styles/form.css"
+
 require('dotenv').config()
 
 

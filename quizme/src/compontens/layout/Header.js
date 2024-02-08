@@ -1,7 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import { AuthContext } from "../../context/authContext"
-import "../../style.css"
+import "../../styles/layout.css"
 
 
 const Header = () => {
@@ -49,18 +49,21 @@ const Header = () => {
                                 <li className="nav--item">
                                     <Link to="/SignIn" className="nav--link" onClick={logout}>Logout</Link>
                                 </li>
-                                <li className="nav--item btn">
-                                    <Link to="#" className="nav--link">Create a quiz</Link>
-                                </li>
+                                <Link to="#">
+                                <li className="nav--item btn nav--link">
+                                    Create a quiz
+                                </li></Link>
                             </ul>
                             :
                             <ul className="nav--list">
                                 <li className="nav--item">
                                     <Link to="/SignIn" className="nav--link">Sign In</Link>
                                 </li>
-                                <li className={currentUser ? "nav--item btn" : "nav--item btn onlyForLogInUser"}>
-                                    <Link to={currentUser ? "#" : "/SignIn"} className="nav--link">Create a quiz</Link>
-                                </li>
+                                <Link to="/SignIn">
+                                    <li className="nav--item nav--link btn onlyForLogInUser">
+                                        Create a quiz
+                                    </li>
+                                </Link>
                             </ul>
                         }
 

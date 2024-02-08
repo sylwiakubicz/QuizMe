@@ -3,34 +3,34 @@
     display: flex;
     flex-direction: column;
     z-index: 1;
-    width: 335px;
-    height: 500px;
-    border: 3px solid rgba(31, 201, 130, .1);
-    border-radius: 15px;
-    margin-bottom: 15px;
+    width: 20.9rem;
+    height: 31.25rem;
+    border: .0188rem solid rgba(31, 201, 130, .1);
+    border-radius:.938rem;
+    margin-bottom: .938rem;
     background-color: rgba(31, 201, 130, .6);
 }
 
 .quizCard:hover {
     background-color: rgba(31, 201, 130, .8);  
-    border: 3px solid rgba(31, 201, 130, .6);
+    border: .188rem solid rgba(31, 201, 130, .6);
     scale: 1.05;
     transition: all ease-in-out 300ms;
 }
 
 .quizImg {
-    height: 400px;
-    border-radius: 5px;
+    height: 25rem;
+    border-radius: .313rem;
 }
 
 .quizTitle {
     color: white;
-    padding-left: 10px;
+    padding-left: .625rem;
 }
 
 .quizStats {
     color: white;
-    padding-left: 10px;
+    padding-left: .625rem;
     position: absolute;
-    bottom: 15px;
+    bottom: .938rem;
 }

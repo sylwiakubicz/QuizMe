@@ -1,0 +1,207 @@
+/* Login form styling */
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wrapper {
+    width: 26.25rem;
+    border: .188rem solid rgba(31, 201, 130, .8);
+    border-radius: .938rem;
+    color: rgba(31, 201, 130, .8);
+    padding: .938rem;
+    transition: color .5s ease-in-out;
+}
+
+.wrapper:hover {
+    border: .188rem solid rgba(31, 201, 130, 1);
+    color: rgba(31, 201, 130, 1);
+}
+
+.wrapper h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    position: relative;
+}
+
+.wrapper .input-box,
+.wrapper .btn,
+.wrapper .textarea-box {
+    width: 100%;
+    height: 3.125rem;
+    margin:  .938rem 0;
+}
+
+.input-box input,
+.textarea-box textarea {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    outline: none;
+    border: .125rem solid rgba(10, 63, 54, .2);
+    border-radius: 2.5rem;
+    color: rgb(31, 201, 130);
+    font-size: 1rem;
+    padding: 1.25rem 2.8rem 1.25rem 1.25rem;
+    position: relative;
+}
+
+.input-box input::placeholder,
+.textarea-box textarea::placeholder {
+    color: rgba(31, 201, 130, .8);
+}
+
+.input-box i {
+    position: absolute;
+    right: 1.875rem;
+    transform: translateY(.625rem);
+    font-size: 1.4rem;
+}
+
+.remember-forgot,
+.register-link {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* checkbox styling */
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: .75rem;
+    cursor: pointer;
+    font-size: 1.375rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1.125rem;
+    width: 1.125rem;
+    border-radius: .188;
+    background-color: rgba(31, 201, 130, .2);
+}
+
+.container:hover input~.checkmark {
+    background-color: rgba(31, 201, 130, .5);
+}
+
+.container input:checked~.checkmark {
+    background-color: rgb(31, 201, 130);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: .313rem;
+    top: 0;
+    width: .313rem;
+    height: .625rem;
+    border: solid white;
+    border-width: 0 .188rem .188rem 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* end of checkbox styling  */
+
+.remember-forgot input {
+    background-color: rgb(31, 201, 130);
+    accent-color: rgb(31, 201, 130);
+    color: white;
+}
+
+.register-or-login-link {
+    display: flex;
+    justify-content: center;
+}
+
+.form a,
+.form label,
+.register-or-login-link p {
+    color: rgb(31, 201, 130);
+    font-size: 1rem;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.register-or-login-link p {
+    padding-right: .313rem;
+}
+
+.wrapper .btn {
+    padding: .625rem 1.875rem;
+    width: 100%;
+    font-size: 1.3rem;
+    color: rgb(255, 255, 255);
+    border: .063rem solid rgb(31, 201, 130);
+    background-color: rgba(31, 201, 130, .8);
+    border-radius: 1.25rem;
+    position: relative;
+}
+
+.wrapper .btn:hover {
+    background-color: rgba(31, 201, 130, 1);
+}
+
+.message-input input {
+    height: 3.125rem;
+}
+
+.textarea-box {
+    resize: both;
+    overflow: auto;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 6.25rem;
+    max-height: 23.75rem;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+::-webkit-resizer {
+    border: .125rem solid rgba(10, 63, 54, .2);
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.captcha {
+    margin-left: 2.5rem;
+}
+
