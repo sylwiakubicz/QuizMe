@@ -134,7 +134,10 @@ export function authenticateToken(req, res, next) {
 
 export const login = (req, res) => {
     // Check user
-    const q = "SELECT * FROM users WHERE email = ?"
+
+    var emailRegex = new RegExp("^(?=.[@])")
+    const q = emailRegex.test(req.body.email) ? "SELECT * FROM users WHERE email = ?" : "SELECT * FROM users WHERE username = ?"
+
     db.query(q, req.body.email, (err, data) => {
         if (err) {
             return res.status(500).json(err)
@@ -142,7 +145,6 @@ export const login = (req, res) => {
         if (data.length === 0) {
             return res.status(404).send("User does not exist")
         }
-
         // Check password
         bcrypt.compare(req.body.password, data[0].password, function(err, result) {
             if (result === false) {
@@ -164,6 +166,7 @@ export const login = (req, res) => {
             secure: true
         }).status(200).send(user)
     })
+        
 }
 
 export const logout = (req, res) => {

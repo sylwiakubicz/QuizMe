@@ -52,7 +52,7 @@ function SignIn() {
                     <div className="input-box">
                         <input 
                             type="text" 
-                            placeholder="Email" 
+                            placeholder="Email/Username" 
                             name="email"
                             value={signInData.email}
                             onChange={handleChange}

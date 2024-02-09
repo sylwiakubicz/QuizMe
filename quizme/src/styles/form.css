@@ -43,7 +43,6 @@
     outline: none;
     border: .125rem solid rgba(10, 63, 54, .2);
     border-radius: 2.5rem;
-    color: rgb(31, 201, 130);
     font-size: 1rem;
     padding: 1.25rem 2.8rem 1.25rem 1.25rem;
     position: relative;
@@ -51,7 +50,7 @@
 
 .input-box input::placeholder,
 .textarea-box textarea::placeholder {
-    color: rgba(31, 201, 130, .8);
+    color: rgba(10, 63, 54, .2);
 }
 
 .input-box i {
