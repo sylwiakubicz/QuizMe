@@ -35,9 +35,22 @@ function Home() {
     }, [category])
 
     return (
+        <>
+        <div className="searchContainer">
+            <input></input>
+            <label htmlFor="cars">Choose a category:</label>
+            <select id="cars" name="cars">
+                <option value="volvo">General knowledge</option>
+                <option value="saab">Celebrity</option>
+                <option value="fiat">Personality</option>
+                <option value="audi">Science</option>
+                <option value="audi">Geography</option>
+            </select>
+        </div>
         <div className="quizes">
             {quizes.length > 0 && quizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
         </div>
+        </>
     )
 }
 

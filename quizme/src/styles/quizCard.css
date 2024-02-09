@@ -20,7 +20,8 @@
 
 .quizImg {
     height: 25rem;
-    border-radius: .313rem;
+    /* width: 20.625rem; */
+    border-radius: .88rem;
 }
 
 .quizTitle {

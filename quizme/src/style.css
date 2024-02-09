@@ -24,3 +24,8 @@ body {
     margin: 12.5rem 10%;
     justify-content: space-between;
 }
+
+.searchContainer {
+    display: flex;
+    color: black;
+}
