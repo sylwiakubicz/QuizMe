@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "../../styles/quizQuestionCard.css"
 import Answer from "../Answer"
@@ -8,15 +8,18 @@ import QuizScoreCard from "../QuizScoreCard"
 import {AuthContext} from "../../context/authContext"
 
 
+
 export default function TakeTheQuiz() {
+    const navigate = useNavigate()
     const quizID = useLocation().pathname.split("/")[1]
-    
+    const {currentUser, logout} = useContext(AuthContext)
+
+    const [error, setError] = useState("")
     const [questions, setQuestions] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentAnswer, setCurrentAnswer] = useState("")
     const [showScore, setShowScore] = useState(false)
     const score = useRef(0)
-    const {currentUser} = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -74,7 +77,10 @@ export default function TakeTheQuiz() {
                     }
                 }
             } catch (err) {
-                console.log(err)
+                if (err.response.data === "Token is not valid") {
+                    logout()
+                    navigate("/SignIn")
+                }
             }
         }
 
@@ -82,10 +88,16 @@ export default function TakeTheQuiz() {
 
     const handleAnswerChange = (answerText) => {
         setCurrentAnswer(answerText)
+        setError("")
         return answerText
     }
 
     const handleNextQuestion = (correctAnswer, quizStats) => {
+        if (currentAnswer === "") {
+            setError("Choose an answer to continue")
+            return
+        }
+
         if (currentAnswer === correctAnswer) {
             score.current += 1
         }
@@ -129,6 +141,7 @@ export default function TakeTheQuiz() {
                         ))}                    
                     </form>
                 </div>
+                {error && <div className="quiz--error">{error}</div>}
                 <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer, questions[currentIndex].quizStats)}>Next Question</button>
             </div>)}
             </div>

@@ -159,7 +159,7 @@ export const login = (req, res) => {
             id: data[0].id
         }
 
-        const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
+        const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET, {expiresIn: 60})
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             semeSite: "none",

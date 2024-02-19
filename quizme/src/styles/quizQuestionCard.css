@@ -8,7 +8,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 10rem auto;
 }
 
 /* SECTION 1 */
@@ -31,7 +31,6 @@
 
 .quiz--title {
     font-size: 2.5rem;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 .quiz--line {
@@ -50,6 +49,18 @@
 .quiz--img {
     width: 10%;
 }
+
+
+.quiz--error {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: .063rem solid rgba(220,220,220, .7);
+    border-radius: .625rem;
+    padding: .3rem;
+    text-align: center;
+    color: red;
+}
+
 /* SECTION 2 */
 .question--card {
     margin:  1.25rem 0;
@@ -61,7 +72,6 @@
 
 .question--text {
     font-size: 1.875rem;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
     padding:  1.25rem 0;
 }
 

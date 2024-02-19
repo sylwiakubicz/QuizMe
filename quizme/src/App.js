@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 
 import {Routes, Route} from "react-router-dom";
 
@@ -13,11 +13,12 @@ import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
 import "./style.css"
 
 function App() {
+
     return (
       <div>
         <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home/>} />
             <Route path="/:id" element={<TakeTheQuiz />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />

@@ -1,10 +1,14 @@
 import React from "react"
 import {Link} from "react-router-dom"
 import { AuthContext } from "../../context/authContext"
+import { QuizContext } from "../../context/quizContext"
+
 import "../../styles/layout.css"
 
 
+
 const Header = () => {
+    const {changeCategory} = React.useContext(QuizContext)
     
     const [scrollPosition, setScrollPosition] = React.useState(0);
     const {currentUser, logout} = React.useContext(AuthContext)
@@ -26,12 +30,12 @@ const Header = () => {
     React.useEffect(() => {
         handleScroll()
     })
-    
+
     return (
         <nav className="navbar">
             <div className={`nav--container ${scrollPosition > 30 ? "nav--scrolled" : ""}`}>
-                <div className="nav--logo_container">
-                    <Link className="nav--logo" to="/">
+                <div className="nav--logo_container" >
+                    <Link className="nav--logo" to="/" onClick={() => changeCategory("")}>
                         Qu<i className="fa-solid fa-question fa-rotate-180"></i>zMe
                     </Link>
                 </div>

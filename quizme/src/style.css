@@ -13,6 +13,7 @@ a {
 body {
     min-height: 100vh;
     position: relative;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 
@@ -21,11 +22,43 @@ body {
 .quizes {
     display: flex;
     flex-wrap: wrap;
-    margin: 12.5rem 10%;
     justify-content: space-between;
+    margin: 5rem 10%;
+
 }
 
-.searchContainer {
+.searchSection {
+    margin: 12.5rem 10% 0 10%;
     display: flex;
-    color: black;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.serachContainer {
+    width: 65rem;
+    display: flex;
+    position: relative;
+}
+
+.search {
+    width: 100%;
+    border: .125rem solid rgba(10, 63, 54, .2);
+    border-radius: 2.5rem;
+    font-size: 1rem;
+    padding: .7rem;
+}
+
+.serachContainer i {
+    position: absolute;
+    right: 1rem;
+    top: .8rem;
+    color: rgb(31, 201, 130);
+}
+
+.categoryDropList {
+    border: .125rem solid rgba(10, 63, 54, .2);
+    padding: .7rem 3rem;
+    border-radius: 2.5rem;
+    color: rgba(10, 63, 54);
+
 }
