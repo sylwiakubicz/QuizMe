@@ -11,11 +11,6 @@ export const QuizContextProvider = ({children}) => {
     const [filterQuizes, setFilterQuizes] = React.useState([])
     const [serachingText, setSearchingText] = React.useState("")
 
-    const changeCategory = (cat) => {
-        setCategory(cat)
-    }
-
-
     React.useEffect(() => {
         const controller = new AbortController()
         const signal = controller.signal
@@ -49,23 +44,20 @@ export const QuizContextProvider = ({children}) => {
             for (let i = 0; i < quizes.length; i++) {
                 let currentQuizName = quizes[i].title.toString()
                     if (currentQuizName.toLowerCase().startsWith(serachingText.toLowerCase())) {
-                    console.log("Wyszukiwana fraza to " + serachingText)
-                    console.log(currentQuizName);
-                    // dodawanie do temporaru array
                     temp.push(quizes[i])
                 }
             }
-            // dodanie tablicy do state
+
             setFilterQuizes(temp)
+
         } else {
-            // usunięcie tablicy z state
             setFilterQuizes([])
         }
 
-    }, [serachingText])
+    }, [serachingText, quizes])
 
     return (
-        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, setSearchingText, changeCategory}}>
+        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, setSearchingText, setCategory}}>
             {children}
         </QuizContext.Provider>
     )

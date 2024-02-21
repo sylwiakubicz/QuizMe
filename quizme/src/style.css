@@ -24,7 +24,6 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 5rem 10%;
-
 }
 
 .searchSection {
@@ -60,5 +59,10 @@ body {
     padding: .7rem 3rem;
     border-radius: 2.5rem;
     color: rgba(10, 63, 54);
+}
 
+.notFound {
+    text-align: center;
+    color: rgb(31, 201, 130);
+    font-size: 2rem;    
 }
