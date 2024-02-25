@@ -8,16 +8,16 @@
 
 .wrapper {
     width: 26.25rem;
-    border: .188rem solid rgba(31, 201, 130, .8);
+    border: .188rem solid rgba(var(--primary-color), .8);
     border-radius: .938rem;
-    color: rgba(31, 201, 130, .8);
+    color: rgba(var(--primary-color), .8);
     padding: .938rem;
     transition: color .5s ease-in-out;
 }
 
 .wrapper:hover {
-    border: .188rem solid rgba(31, 201, 130, 1);
-    color: rgba(31, 201, 130, 1);
+    border: .188rem solid rgba(var(--primary-color), 1);
+    color: rgba(var(--primary-color), 1);
 }
 
 .wrapper h1 {
@@ -41,7 +41,7 @@
     height: 100%;
     background-color: transparent;
     outline: none;
-    border: .125rem solid rgba(10, 63, 54, .2);
+    border: .125rem solid rgba(var(--additional-color), .2);
     border-radius: 2.5rem;
     font-size: 1rem;
     padding: 1.25rem 2.8rem 1.25rem 1.25rem;
@@ -50,7 +50,7 @@
 
 .input-box input::placeholder,
 .textarea-box textarea::placeholder {
-    color: rgba(10, 63, 54, .2);
+    color: rgba(var(--additional-color), .2);
 }
 
 .input-box i {
@@ -98,15 +98,15 @@
     height: 1.125rem;
     width: 1.125rem;
     border-radius: .188;
-    background-color: rgba(31, 201, 130, .2);
+    background-color: rgba(var(--primary-color), .2);
 }
 
 .container:hover input~.checkmark {
-    background-color: rgba(31, 201, 130, .5);
+    background-color: rgba(var(--primary-color), .5);
 }
 
 .container input:checked~.checkmark {
-    background-color: rgb(31, 201, 130);
+    background-color: rgb(var(--primary-color));
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -135,9 +135,9 @@
 /* end of checkbox styling  */
 
 .remember-forgot input {
-    background-color: rgb(31, 201, 130);
-    accent-color: rgb(31, 201, 130);
-    color: white;
+    background-color: rgb(var(--primary-color));
+    accent-color: rgb(var(--primary-color));
+    color: rgb(var(--text));
 }
 
 .register-or-login-link {
@@ -148,7 +148,7 @@
 .form a,
 .form label,
 .register-or-login-link p {
-    color: rgb(31, 201, 130);
+    color: rgb(var(--primary-color));
     font-size: 1rem;
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
@@ -161,15 +161,15 @@
     padding: .625rem 1.875rem;
     width: 100%;
     font-size: 1.3rem;
-    color: rgb(255, 255, 255);
-    border: .063rem solid rgb(31, 201, 130);
-    background-color: rgba(31, 201, 130, .8);
+    color: rgb(var(--text));
+    border: .063rem solid rgb(var(--primary-color));
+    background-color: rgba(var(--primary-color), .8);
     border-radius: 1.25rem;
     position: relative;
 }
 
 .wrapper .btn:hover {
-    background-color: rgba(31, 201, 130, 1);
+    background-color: rgba(var(--primary-color), 1);
 }
 
 .message-input input {
@@ -191,7 +191,7 @@ textarea {
 }
 
 ::-webkit-resizer {
-    border: .125rem solid rgba(10, 63, 54, .2);
+    border: .125rem solid rgba(var(--additional-color), .2);
 }
 
 .error {

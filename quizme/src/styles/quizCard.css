@@ -5,10 +5,10 @@
     z-index: 1;
     width: 20.9rem;
     height: 31.25rem;
-    border: .188rem solid rgba(31, 201, 130, .1);
+    border: .188rem solid rgba(var(--primary-color), .1);
     border-radius:.938rem;
     margin-bottom: .938rem;
-    background-color: rgba(31, 201, 130, .6);
+    background-color: rgba(var(--primary-color), .6);
 }
 
 .quizImg {
@@ -29,8 +29,8 @@
 
 
 .quizCard:hover {
-    background-color: rgba(31, 201, 130, .8);  
-    border: .188rem solid rgba(31, 201, 130, .6);
+    background-color: rgba(var(--primary-color), .8);  
+    border: .188rem solid rgba(var(--primary-color), .6);
     scale: 1.05;
     transition: all ease-in-out 300ms;
 }
