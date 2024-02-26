@@ -7,6 +7,15 @@
     --shadow: 0,0,0;
 }
 
+[data-theme='dark'] {
+    --main-bg: 21, 42, 56;
+    --primary-color: 85,110,83;
+    --secondary-color: 41,67,92;
+    --additional-color: 41,67,92;
+    --text: 209, 212, 201;
+    --shadow: 209, 212, 201;
+}
+
 /* Reset some CSS styling */
 * {
     padding: 0;
@@ -19,7 +28,7 @@ a {
     color: rgb(var(--text));
 }
 
-body {
+.app {
     min-height: 100vh;
     position: relative;
     font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -33,11 +42,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 5rem 10%;
+    padding: 5rem 10%;
 }
 
 .searchSection {
-    margin: 12.5rem 10% 0 10%;
+    padding: 12.5rem 10% 0 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,6 +59,7 @@ body {
 }
 
 .search {
+    background-color: rgb(var(--text));
     width: 100%;
     border: .125rem solid rgba(var(--additional-color), .2);
     border-radius: 2.5rem;
@@ -65,10 +75,18 @@ body {
 }
 
 .categoryDropList {
+    cursor: pointer;
+    background-color: rgb(var(--text));
     border: .125rem solid rgba(var(--additional-color), .2);
-    padding: .7rem 3rem;
+    padding: .7rem .5rem ;
     border-radius: 2.5rem;
     color: rgb(var(--additional-color));
+    width: 15rem;
+}
+
+.option {
+    cursor: pointer;
+    text-align: left;
 }
 
 .notFound {

@@ -56,7 +56,7 @@
     text-wrap: nowrap;
     border: 0.125rem solid rgb(var(--additional-color));
     border-radius: 0.438rem;
-    background-color: white;
+    background-color: rgb(var(--text));
     color: rgb(var(--additional-color));
     font-size: 1.125rem;
     opacity: .7;
@@ -73,7 +73,7 @@
 .form a::after,
 footer li::after {
     content: '';
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(var(--text));
     display: block;
     width: 0;
     height: .150rem;
@@ -105,6 +105,19 @@ footer li:hover::after {
 .btn:hover {
     background: rgba(var(--additional-color), .8);
 }
+
+/* Theme toggle */
+.themeToggle {
+    color: rgb(var(--text));
+    background-color: rgb(var(--additional-color));
+    border: 1px solid rgb(var(--additional-color));
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    position: absolute;
+    right: 2.8rem;
+}
+
 
 
 /* footer styling */

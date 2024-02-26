@@ -9,6 +9,7 @@
 .wrapper {
     width: 26.25rem;
     border: .188rem solid rgba(var(--primary-color), .8);
+    background-color: rgb(var(--text));
     border-radius: .938rem;
     color: rgba(var(--primary-color), .8);
     padding: .938rem;

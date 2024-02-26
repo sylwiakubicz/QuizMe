@@ -27,12 +27,12 @@ function Home() {
                     <select id="category" name="category" className="categoryDropList" onChange={e => {setCategory(e.target.value)}
                     } 
                         value={category}>
-                        <option value="" defaultChecked>All</option>
-                        <option value="general">General knowledge</option>
-                        <option value="celebrity">Celebrity</option>
-                        <option value="personality">Personality</option>
-                        <option value="science">Science</option>
-                        <option value="geography">Geography</option>
+                        <option className="option" value="" defaultChecked>All</option>
+                        <option className="option" value="general">General knowledge</option>
+                        <option className="option" value="celebrity">Celebrity</option>
+                        <option className="option" value="personality">Personality</option>
+                        <option className="option" value="science">Science</option>
+                        <option className="option" value="geography">Geography</option>
                     </select>
             </div>
             

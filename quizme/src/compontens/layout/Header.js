@@ -7,7 +7,7 @@ import "../../styles/layout.css"
 
 
 
-const Header = () => {
+const Header = (props) => {
     const {changeCategory} = React.useContext(QuizContext)
     
     const [scrollPosition, setScrollPosition] = React.useState(0);
@@ -69,9 +69,10 @@ const Header = () => {
                                     </li>
                                 </Link>
                             </ul>
+                            
                         }
-
                 </div>
+                <button onClick={props.switchTheme} className="themeToggle"><i className={props.theme === 'dark' ? "fa-solid fa-moon" : "fa-regular fa-sun"}></i></button>
             </div>
         </nav>
     )

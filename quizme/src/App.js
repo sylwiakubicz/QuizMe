@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-
+import useLocalStorage from "use-local-storage"
 import {Routes, Route} from "react-router-dom";
 
 import Home from "./compontens/pages/Home"
@@ -14,9 +14,16 @@ import "./style.css"
 
 function App() {
 
+    const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light')
+
+    const switchTheme = () => {
+      const newTheme = theme === 'light' ? 'dark' : 'light'
+      setTheme(newTheme)
+    }
+
     return (
-      <div>
-        <Header />
+      <div data-theme={theme} className="app"> 
+        <Header switchTheme={switchTheme} theme={theme}/>
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/:id" element={<TakeTheQuiz />} />
