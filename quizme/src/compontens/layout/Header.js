@@ -48,7 +48,7 @@ const Header = (props) => {
                                     <Link to="#" className="nav--link">My Profile</Link>
                                 </li>
                                 <li className="nav--item">
-                                    <Link to="#" className="nav--link">My Quizes</Link>
+                                    <Link to="/MyQuizes" className="nav--link">My Quizes</Link>
                                 </li>
                                 <li className="nav--item">
                                     <Link to="/SignIn" className="nav--link" onClick={logout}>Logout</Link>

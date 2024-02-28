@@ -7,6 +7,7 @@ export const QuizContextProvider = ({children}) => {
 
 
     const [category, setCategory] = React.useState("")
+    const [allQuizes, setAllQuizes] = React.useState([])
     const [quizes, setQuizes] = React.useState([])
     const [filterQuizes, setFilterQuizes] = React.useState([])
     const [serachingText, setSearchingText] = React.useState("")
@@ -21,6 +22,7 @@ export const QuizContextProvider = ({children}) => {
                     withCredentials:true,
                 })
                 setQuizes(res.data)
+                setAllQuizes(res.data)
             } catch (err) {
                 if (!axios.isCancel(err)) {
                     console.log(err)
@@ -57,7 +59,7 @@ export const QuizContextProvider = ({children}) => {
     }, [serachingText, quizes])
 
     return (
-        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, setSearchingText, setCategory}}>
+        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, allQuizes, setSearchingText, setCategory}}>
             {children}
         </QuizContext.Provider>
     )

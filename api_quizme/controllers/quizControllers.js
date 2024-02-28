@@ -42,6 +42,33 @@ export const getQuiz = (req,res) => {
     })
 }
 
+export const getUserQuizes = (req,res) => {
+    const filter = req.query.filter
+    const user_id = req.query.user_id
+    let q = ""
+
+    switch (filter) {
+        case '':
+            q = "SELECT id AS quiz_id, title, image, category_id, user_id, stats, date FROM quizes WHERE user_id = ?"
+            break
+        case 'recent':
+            q = "SELECT id AS quiz_id, title, image, category_id, user_id, stats, date FROM quizes WHERE user_id = ? ORDER BY date DESC"
+            break
+        case 'popular':
+            q = "SELECT id AS quiz_id, title, image, category_id, user_id, stats, date FROM quizes WHERE user_id = ? ORDER BY stats DESC" 
+            break
+        default:
+            console.log(`filter is not allowed`);
+    }
+
+    db.query(q, [user_id], (err, data) => {
+        if (err) {
+            return res.status(500).send(err)
+        }
+        return res.status(200).json(data)
+    })
+}
+
 export const updateQuizStats = (req, res) => {
     const quizID = req.params.id
     const q = "UPDATE quizes SET stats = ? WHERE id = ?"

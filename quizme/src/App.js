@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import useLocalStorage from "use-local-storage"
 import {Routes, Route} from "react-router-dom";
 
@@ -9,6 +9,7 @@ import SignIn from "./compontens/pages/SignIn"
 import Header from "./compontens/layout/Header"
 import Footer from "./compontens/layout/Footer"
 import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
+import MyQuizes from "./compontens/pages/MyQuizes";
 
 import "./style.css"
 
@@ -26,6 +27,7 @@ function App() {
         <Header switchTheme={switchTheme} theme={theme}/>
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/MyQuizes" element={<MyQuizes />}/>
             <Route path="/:id" element={<TakeTheQuiz />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />

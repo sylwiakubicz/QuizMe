@@ -1,5 +1,5 @@
 import React from "react"
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 import { useLocation } from "react-router-dom"
 import { QuizCard } from "../QuizCard"
 
@@ -24,9 +24,7 @@ function Home() {
                     <input className="search" placeholder="Search..." onChange={e => {setSearchingText(e.target.value)}}></input>
                     <i className="fa-solid fa-magnifying-glass"></i>                    
                 </div>
-                    <select id="category" name="category" className="categoryDropList" onChange={e => {setCategory(e.target.value)}
-                    } 
-                        value={category}>
+                    <select id="category" name="category" className="categoryDropList" onChange={e => {setCategory(e.target.value)}} value={category}>
                         <option className="option" value="" defaultChecked>All</option>
                         <option className="option" value="general">General knowledge</option>
                         <option className="option" value="celebrity">Celebrity</option>
@@ -42,7 +40,11 @@ function Home() {
                         {filterQuizes.length > 0 && filterQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
                     </div> 
                     : 
-                    <div className="quizes notFound">Sorry, we couldn't find any quizes that meet your search criteria</div>
+                    <div className="quizNotFound">
+                        <div className=" text"> Could not find any quizzes</div>
+                        <i class="fa-solid fa-face-sad-tear text"></i>
+                    </div>
+
                 :
                 <div className="quizes">
                     {quizes.length > 0 && quizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
