@@ -45,7 +45,7 @@ const Header = (props) => {
                         {currentUser ?
                             <ul className="nav--list">
                                 <li className="nav--item">
-                                    <Link to="#" className="nav--link">My Profile</Link>
+                                    <Link to="/MyProfile" className="nav--link">My Profile</Link>
                                 </li>
                                 <li className="nav--item">
                                     <Link to="/MyQuizes" className="nav--link">My Quizes</Link>

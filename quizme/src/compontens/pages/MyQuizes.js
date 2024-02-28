@@ -2,6 +2,8 @@ import React from "react"
 import { AuthContext } from "../../context/authContext"
 import { QuizCard } from "../QuizCard"
 import axios from "axios";
+import {Link} from "react-router-dom"
+
 
 
 function MyQuizes() {
@@ -46,7 +48,7 @@ function MyQuizes() {
     
 
     return (
-        <div >
+        <div>
             {
                 myQuizes.length !== 0 ? 
                 <div>
@@ -65,7 +67,7 @@ function MyQuizes() {
                 : <div className="question--container quiz--infoCard myQuizes--container">
                     <p className="quiz--title">Create your first quiz</p>
                     <i className="fa-solid fa-question fa-rotate-180 quiz--title"></i>
-                    <button className="quiz--btn">Create a quiz</button>
+                    <Link to="#"><button className="quiz--btn">Create a quiz</button></Link>
                 </div>
             }
            

@@ -175,10 +175,13 @@ export const logout = (req, res) => {
     }).status(200).json("User has been logout")
 }
 
+
+export const deleteAccount = (req, res) => {
+    console.log("deleteUser")
+}
+
+
 export const changePassword = (req, res) => {
     console.log("changePassword")
 }
 
-export const deleteUser = (req, res) => {
-    console.log("deleteUser")
-}

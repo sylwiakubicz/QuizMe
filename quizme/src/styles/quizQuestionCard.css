@@ -13,10 +13,10 @@
 
 /* SECTION 1 */
 .quiz--infoCard {
-    border: .063rem solid rgba(var(--secondary-color), .1);
+    border: .003rem solid rgba(var(--secondary-color), .1);
     border-radius: 0 0 .625rem .625rem;
     padding: 2% 5%;
-    background-color: rgb(var(--text))
+    background-color: rgb(var(--text-light))
 }
 
 .quiz--infoCard::before {
@@ -68,7 +68,7 @@
     border: .063rem solid rgba(var(--secondary-color), .1);
     border-radius: .625rem ;
     padding-left:  1.25rem;
-    background-color: rgb(var(--text))
+    background-color: rgb(var(--text-light))
 }
 
 
@@ -102,7 +102,7 @@
     width: 1.688rem;
     border: .125rem solid rgba(var(--secondary-color), .1);
     border-radius: 50%;
-    background: rgb(var(--text));
+    background: rgb(var(--text-light));
     cursor: pointer;
 }
 
@@ -151,7 +151,7 @@
     border-radius: .5rem;
     padding: .938rem 3.75rem;
     font-size:  1.25rem;
-    color: rgb(var(--text));
+    color: rgb(var(--text-light));
 }
 
 .quiz--btn:hover {

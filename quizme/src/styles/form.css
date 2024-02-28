@@ -9,7 +9,7 @@
 .wrapper {
     width: 26.25rem;
     border: .188rem solid rgba(var(--primary-color), .8);
-    background-color: rgb(var(--text));
+    background-color: rgb(var(--light-bg));
     border-radius: .938rem;
     color: rgba(var(--primary-color), .8);
     padding: .938rem;
@@ -138,7 +138,7 @@
 .remember-forgot input {
     background-color: rgb(var(--primary-color));
     accent-color: rgb(var(--primary-color));
-    color: rgb(var(--text));
+    color: rgb(var(--text-light));
 }
 
 .register-or-login-link {
@@ -162,7 +162,7 @@
     padding: .625rem 1.875rem;
     width: 100%;
     font-size: 1.3rem;
-    color: rgb(var(--text));
+    color: rgb(var(--text-light));
     border: .063rem solid rgb(var(--primary-color));
     background-color: rgba(var(--primary-color), .8);
     border-radius: 1.25rem;

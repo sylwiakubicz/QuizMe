@@ -13,14 +13,19 @@ export const AuthContextProvider = ({children}) => {
             withCredentials: true
         })
         setCurrentUser(res.data)
-        console.log(res.data)
     }
 
-    const logout = async (inputs) => {
+    const logout = async () => {
         await axios.post("/auth/logout", {
             withCredentials: true
         })
         setCurrentUser(null)
+    }
+    
+    const deleteAccount = async (currentUser) => {
+        await axios.delete("/auth/deleteAccount", currentUser, {
+            withCredentials: true
+        })
     }
 
     React.useEffect(() => {
@@ -28,7 +33,7 @@ export const AuthContextProvider = ({children}) => {
     }, [currentUser])
 
     return (
-        <AuthContext.Provider value={{currentUser, login, logout}}>
+        <AuthContext.Provider value={{currentUser, login, logout, deleteAccount}}>
             {children}
         </AuthContext.Provider>
     )

@@ -10,6 +10,7 @@ import Header from "./compontens/layout/Header"
 import Footer from "./compontens/layout/Footer"
 import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
 import MyQuizes from "./compontens/pages/MyQuizes";
+import MyProfile from "./compontens/pages/MyProfile";
 
 import "./style.css"
 
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/MyQuizes" element={<MyQuizes />}/>
+            <Route path="/MyProfile" element={<MyProfile />}/>
             <Route path="/:id" element={<TakeTheQuiz />} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />

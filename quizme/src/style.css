@@ -3,7 +3,9 @@
     --primary-color: 31, 201, 130;
     --secondary-color: 54, 54, 54;
     --additional-color: 10, 63, 54;
-    --text: 255,255,255;
+    --text-light: 255,255,255;
+    --text-dark: 0,0,0;
+    --light-bg: 255,255,255;
     --shadow: 0,0,0;
 }
 
@@ -12,7 +14,9 @@
     --primary-color: 85,110,83;
     --secondary-color: 41,67,92;
     --additional-color: 41,67,92;
-    --text: 209, 212, 201;
+    --text-light: 209, 212, 201;
+    --text-dark: 209, 212, 201;
+    --light-bg: 209,212,201;
     --shadow: 209, 212, 201;
 }
 
@@ -25,7 +29,7 @@
 
 a {
     text-decoration: none;
-    color: rgb(var(--text));
+    color: rgb(var(--text-light));
 }
 
 .app {
@@ -59,7 +63,7 @@ a {
 }
 
 .search {
-    background-color: rgb(var(--text));
+    background-color: rgb(var(--light-bg));
     width: 100%;
     border: .125rem solid rgba(var(--additional-color), .2);
     border-radius: 2.5rem;
@@ -76,7 +80,7 @@ a {
 
 .categoryDropList {
     cursor: pointer;
-    background-color: rgb(var(--text));
+    background-color: rgb(var(--light-bg));
     border: .125rem solid rgba(var(--additional-color), .2);
     padding: .7rem .5rem ;
     border-radius: 2.5rem;
@@ -90,7 +94,7 @@ a {
 }
 
 .text {
-    color: rgb(var(--text));
+    color: rgb(var(--text-dark));
     font-size: 4rem;
     text-wrap: nowrap;
 }
@@ -107,6 +111,76 @@ a {
     justify-content: center;
     align-items: center;
     gap: 3rem;
-    background-color: rgb(var(--text));
+    background-color: rgb(var(--light-bg));
     height: 20rem;
+}
+
+.myaccount-container {
+    padding: 12.5rem 10% 0 10%;
+}
+
+.options, .settings-container{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: .3rem;
+    text-wrap: nowrap;
+}
+
+.settings-container {
+    border: 2px solid rgb(var(--primary-color));
+    border-radius: .8rem;
+    width: 100%;
+    background-color: rgb(var(--light-bg));
+    color: black;
+    padding: .5rem .8rem;
+}
+
+.option {
+    border: 2px solid rgb(var(--primary-color));
+    border-radius: .8rem;
+    font-size: 2rem;
+    list-style: none;
+    padding: .5rem .8rem;
+    background-color: rgb(var(--light-bg));
+}
+
+.option:hover{
+    background-color: rgba(230, 230, 230, .8);
+}
+
+.active, .active:hover {
+    background-color: rgb(var(--primary-color));
+    color: rgb(var(--text-light));
+    border: 2px solid rgb(var(--primary-color));
+}
+
+.account-wrapper {
+    display: flex;
+    gap: 5rem;
+}
+
+.notShow {
+    display: none;
+}
+
+.accountSetingsOption {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.accountSettingsInfo {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.delete-btn {
+    width: 15rem;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
 }
