@@ -99,7 +99,6 @@ footer li:hover::after {
     background: rgb(var(--additional-color));
     border-radius: 0.938rem;
     cursor: pointer;
-    
 }
 
 .btn:hover {

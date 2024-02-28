@@ -45,22 +45,30 @@ function MyQuizes() {
     }, [currentFilter])
     
 
-
-
     return (
-        <div>
-            <div className="searchSection">
-                <h1 className="text">Quizes by {currentUser.username}: </h1>
-                <select id="sort" name="sort" className="categoryDropList" onChange={(e) => setCurrentFiler(e.target.value)} value={currentFilter}>
-                    <option className="option" value="" defaultChecked>Show</option>
-                    <option className="option" value="recent">Most recent</option>
-                    <option className="option" value="popular">Most popular</option>
-                </select>
-            </div>
-            
-            <div className="quizes">
-                {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
-            </div> 
+        <div >
+            {
+                myQuizes.length !== 0 ? 
+                <div>
+                    <div className="searchSection">
+                        <h1 className="text">Quizes by {currentUser.username}: </h1>
+                        <select id="sort" name="sort" className="categoryDropList" onChange={(e) => setCurrentFiler(e.target.value)} value={currentFilter}>
+                            <option className="option" value="" defaultChecked>Show</option>
+                            <option className="option" value="recent">Most recent</option>
+                            <option className="option" value="popular">Most popular</option>
+                        </select>
+                    </div>
+                    <div className="quizes">
+                        {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
+                    </div> 
+                </div>
+                : <div className="question--container quiz--infoCard myQuizes--container">
+                    <p className="quiz--title">Create your first quiz</p>
+                    <i className="fa-solid fa-question fa-rotate-180 quiz--title"></i>
+                    <button className="quiz--btn">Create a quiz</button>
+                </div>
+            }
+           
         </div>
     )
 }
