@@ -25,7 +25,6 @@ export const AuthContextProvider = ({children}) => {
     }
     
     const deleteAccount = async () => {
-        console.log(currentUser.id)
         await axios.delete(`/auth/deleteAccount?user_id=${currentUser.id}`, {
             withCredentials: true
         })

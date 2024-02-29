@@ -33,7 +33,6 @@ export const QuizContextProvider = ({children}) => {
         fetchQuizes()
 
         return () => {
-            console.log("aborted")
             setQuizes([])
             controller.abort();
         }

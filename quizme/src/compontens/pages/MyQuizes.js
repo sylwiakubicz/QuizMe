@@ -39,7 +39,6 @@ function MyQuizes() {
         fetchQuizes()
 
         return () => {
-            console.log("aborted from")
             controller.abort();
         }
         

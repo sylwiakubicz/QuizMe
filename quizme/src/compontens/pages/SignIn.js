@@ -18,7 +18,6 @@ function SignIn() {
     const [error, setError] = React.useState("")
 
     const {currentUser, login} = React.useContext(AuthContext)
-    console.log(currentUser)
 
 
 

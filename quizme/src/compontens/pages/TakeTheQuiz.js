@@ -66,7 +66,6 @@ export default function TakeTheQuiz() {
                     }
                 } 
                 else if (res.data[0].score < score.current) {
-                console.log(res.data[0].score, score.current)
                     try{
                         await axios.put(`/quiz/${quizID}`, {
                             quizScore: score.current,

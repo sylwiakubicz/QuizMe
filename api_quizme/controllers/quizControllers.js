@@ -58,7 +58,7 @@ export const getUserQuizes = (req,res) => {
             q = "SELECT id AS quiz_id, title, image, category_id, user_id, stats, date FROM quizes WHERE user_id = ? ORDER BY stats DESC" 
             break
         default:
-            console.log(`filter is not allowed`);
+            return res.status(404).json("Filter is not allowed")
     }
 
     db.query(q, [user_id], (err, data) => {
@@ -88,7 +88,6 @@ export const getUserScore = (req, res) => {
         if (err) {
             return res.status(500).send(err)
         }
-        console.log(data)
         return res.status(200).json(data)
     })
 }
