@@ -4,9 +4,11 @@ import React from "react";
 export const AuthContext = React.createContext()
 
 export const AuthContextProvider = ({children}) => {
+
     const [currentUser, setCurrentUser] = React.useState(
         JSON.parse(localStorage.getItem("user")) || null
         )
+    
 
     const login = async (inputs) => {
         const res = await axios.post("/auth/login", inputs, {
@@ -22,10 +24,12 @@ export const AuthContextProvider = ({children}) => {
         setCurrentUser(null)
     }
     
-    const deleteAccount = async (currentUser) => {
-        await axios.delete("/auth/deleteAccount", currentUser, {
+    const deleteAccount = async () => {
+        console.log(currentUser.id)
+        await axios.delete(`/auth/deleteAccount?user_id=${currentUser.id}`, {
             withCredentials: true
         })
+        logout()
     }
 
     React.useEffect(() => {

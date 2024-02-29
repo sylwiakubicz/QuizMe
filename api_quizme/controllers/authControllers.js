@@ -177,7 +177,14 @@ export const logout = (req, res) => {
 
 
 export const deleteAccount = (req, res) => {
-    console.log("deleteUser")
+    const user_id = req.query.user_id
+    const q = "DELETE FROM users WHERE id=?"
+    db.query(q, user_id, (err, data) => {
+        if (err) {
+            return res.status(500).json(err)
+        }
+        return res.status(200).json("User deleted")
+    })
 }
 
 
