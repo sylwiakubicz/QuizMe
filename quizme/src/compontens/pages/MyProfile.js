@@ -22,12 +22,8 @@ function MyProfile() {
                 <div className={active === "changePassword" ? "settings-container" : "notShow"}>
                     <h1 className="accountSetingsOption">CHANGE PASSWORD</h1>
                 </div>
-                <div className={active === "deleteAccount" ? "settings-container" : "notShow"}>
-                    <h1 className="accountSetingsOption">DELETE ACCOUNT</h1>
-                    <p className="accountSettingsInfo">All your statistics, quiz, questions and result will be deleted. You can not undo this action.</p>
-                    {!show && <button className="quiz--btn delete-btn" onClick={() => setShow(true)}>DELETE</button>}
-                    {show && <DeleteAccount setShow={setShow}/>}
-                </div>
+                <DeleteAccount active={active} setShow={setShow} show={show}/>
+
             </div>
         </div>
     )

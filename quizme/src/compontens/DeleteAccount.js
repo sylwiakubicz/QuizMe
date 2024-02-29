@@ -14,10 +14,16 @@ function DeleteAccount(props) {
         navigate("/SignIn")
     }
     return (
-        <div className="buttons-container">
-            <button className="quiz--btn delete-btn" onClick={() => props.setShow(false)}>Cancel</button>
-            <button className="quiz--btn delete-btn" onClick={onDelete}>Delete</button>
+        <div className={props.active === "deleteAccount" ? "settings-container" : "notShow"}>
+            <h1 className="accountSetingsOption">DELETE ACCOUNT</h1>
+            <p className="accountSettingsInfo">All your statistics, quiz, questions and result will be deleted. You can not undo this action.</p>
+            {!props.show && <button className="quiz--btn delete-btn" onClick={() => props.setShow(true)}>DELETE</button>}
+            {props.show && <div className="buttons-container">
+                        <button className="quiz--btn delete-btn" onClick={() => props.setShow(false)}>Cancel</button>
+                        <button className="quiz--btn delete-btn" onClick={onDelete}>Delete</button>
+                    </div>}
         </div>
+        
     )
 }
 
