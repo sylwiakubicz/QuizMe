@@ -45,7 +45,7 @@ function SignIn() {
     
     return (
         <div className="form">
-            <div className="wrapper">
+            <div className="wrapper form-wrapper">
                 <form action="">
                     <h1>Sign In</h1>
                     <div className="input-box">

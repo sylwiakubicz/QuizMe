@@ -8,15 +8,18 @@
 
 .wrapper {
     width: 26.25rem;
-    border: .188rem solid rgba(var(--primary-color), .8);
     background-color: rgb(var(--light-bg));
     border-radius: .938rem;
     color: rgba(var(--primary-color), .8);
-    padding: .938rem;
     transition: color .5s ease-in-out;
 }
 
-.wrapper:hover {
+.form-wrapper {
+    padding: .938rem;
+    border: .188rem solid rgba(var(--primary-color), .8);
+}
+
+.form-wrapper:hover {
     border: .188rem solid rgba(var(--primary-color), 1);
     color: rgba(var(--primary-color), 1);
 }

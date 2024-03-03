@@ -24,6 +24,13 @@ export const AuthContextProvider = ({children}) => {
         setCurrentUser(null)
     }
     
+    const changePassword = async (inputs) => {
+        await axios.put(`/auth/changePassword?user_id=${currentUser.id}`, inputs, {
+            withCredentials: true
+        })
+        logout()
+    }
+
     const deleteAccount = async () => {
         await axios.delete(`/auth/deleteAccount?user_id=${currentUser.id}`, {
             withCredentials: true
@@ -36,7 +43,7 @@ export const AuthContextProvider = ({children}) => {
     }, [currentUser])
 
     return (
-        <AuthContext.Provider value={{currentUser, login, logout, deleteAccount}}>
+        <AuthContext.Provider value={{currentUser, login, logout, deleteAccount, changePassword}}>
             {children}
         </AuthContext.Provider>
     )

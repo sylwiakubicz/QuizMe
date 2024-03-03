@@ -26,7 +26,7 @@ function ContactUs() {
 
     return (
         <div class="form" id="contact-form">
-            <div class="wrapper">
+            <div class="wrapper form-wrapper">
                 <form >
                     <h1>Contact Us</h1>
                     <div class="input-box">

@@ -60,7 +60,7 @@ function SignUp() {
 
     return (
         <div className="form">
-            <div className="wrapper">
+            <div className="wrapper form-wrapper">
                 <form onSubmit={handleSubmit}>
                     <h1>Sign Up</h1>
                     <div className="input-box">

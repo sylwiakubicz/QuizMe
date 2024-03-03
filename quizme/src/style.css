@@ -140,12 +140,15 @@ a {
 .option {
     border: 2px solid rgb(var(--primary-color));
     border-radius: .8rem;
-    font-size: 2rem;
+    font-size: 1rem;
     list-style: none;
     padding: .5rem .8rem;
     background-color: rgb(var(--light-bg));
 }
 
+.option-bigger {
+    font-size: 2rem;
+}
 .option:hover{
     background-color: rgba(230, 230, 230, .8);
 }

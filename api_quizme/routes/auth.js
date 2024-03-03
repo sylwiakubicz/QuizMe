@@ -8,8 +8,7 @@ router.post("/verify", checkIfHuman)
 router.post("/login", login)
 router.post("/logout", logout)
 router.delete("/deleteAccount", deleteAccount)
-
-router.put("/:uid", changePassword)
+router.put("/changePassword", changePassword)
 
 
 export default router

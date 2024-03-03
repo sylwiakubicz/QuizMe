@@ -188,6 +188,46 @@ export const deleteAccount = (req, res) => {
 
 
 export const changePassword = (req, res) => {
-    console.log("changePassword")
+    const q = "SELECT * FROM users WHERE id = ?"
+    db.query(q, req.query.user_id, (err, data) => {
+        if (err) {
+            return res.status(500).send(err)
+        }
+
+        bcrypt.compare(req.body.oldPassword, data[0].password, function(err, result) {
+            if (result === false) {
+                return res.status(409).send("Wrong password")
+            } 
+        })
+
+        if(req.body.oldPassword === req.body.newPassword) {
+            return res.status(401).json("the new password must be different from the old one")
+        }
+
+        if (req.body.newPassword !== req.body.repeatedNewPassword) {
+            return res.status(401).json("New passwords do not match")
+        }
+
+        if (validatePassword(req.body.newPassword) !== "correct") {
+            return res.status(409).json(validatePassword(req.body.newPassword))
+        }
+
+
+        const salt = bcrypt.genSaltSync(10)
+        const hash = bcrypt.hashSync(req.body.newPassword, salt)
+                                                                                                                                
+        const q = "UPDATE users SET password = ? WHERE id = ?"
+        db.query(q, [hash, req.query.user_id], (err, data) => {
+            if (err) {
+                return res.status(500).send(err)
+            }
+            return res.status(200).send("Password updated")
+        })
+        return
+
+    })
+
+
+   
 }
 
