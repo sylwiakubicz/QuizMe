@@ -133,7 +133,6 @@ export function authenticateToken(req, res, next) {
 
 export const login = (req, res) => {
     // Check user
-
     var emailRegex = new RegExp("^(?=.[@])")
     const q = emailRegex.test(req.body.email) ? "SELECT * FROM users WHERE email = ?" : "SELECT * FROM users WHERE username = ?"
 
@@ -144,26 +143,29 @@ export const login = (req, res) => {
         if (data.length === 0) {
             return res.status(404).send("User does not exist")
         }
+
         // Check password
         bcrypt.compare(req.body.password, data[0].password, function(err, result) {
-            if (result === false) {
-                return res.status(409).send("Wrong password")
-            } 
+            if (result == false) {
+                return res.status(400).json("Wrong password!")
+            }
+
+            // session
+            const user = {
+                username: data[0].username,
+                email: data[0].email,
+                id: data[0].id
+            }
+
+            const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET, {expiresIn: 60})
+            res.cookie("accessToken", accessToken, {
+                httpOnly: true,
+                semeSite: "none",
+                secure: true
+            }).status(200).send(user)
         }) 
 
-        // session
-        const user = {
-            username: data[0].username,
-            email: req.body.email,
-            id: data[0].id
-        }
-
-        const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET, {expiresIn: 60})
-        res.cookie("accessToken", accessToken, {
-            httpOnly: true,
-            semeSite: "none",
-            secure: true
-        }).status(200).send(user)
+        
     })
         
 }
@@ -195,34 +197,31 @@ export const changePassword = (req, res) => {
         }
 
         bcrypt.compare(req.body.oldPassword, data[0].password, function(err, result) {
-            if (result === false) {
-                return res.status(409).send("Wrong password")
-            } 
-        })
+            if (!result) return res.status(400).json("Wrong password!")
 
-        if(req.body.oldPassword === req.body.newPassword) {
-            return res.status(401).json("the new password must be different from the old one")
-        }
-
-        if (req.body.newPassword !== req.body.repeatedNewPassword) {
-            return res.status(401).json("New passwords do not match")
-        }
-
-        if (validatePassword(req.body.newPassword) !== "correct") {
-            return res.status(409).json(validatePassword(req.body.newPassword))
-        }
-
-
-        const salt = bcrypt.genSaltSync(10)
-        const hash = bcrypt.hashSync(req.body.newPassword, salt)
-                                                                                                                                
-        const q = "UPDATE users SET password = ? WHERE id = ?"
-        db.query(q, [hash, req.query.user_id], (err, data) => {
-            if (err) {
-                return res.status(500).send(err)
+            if (req.body.newPassword !== req.body.repeatedNewPassword) {
+                return res.status(401).json("New passwords do not match")
             }
-            return res.status(200).send("Password updated")
-        })
+
+            if (validatePassword(req.body.newPassword) !== "correct") {
+                return res.status(409).json(validatePassword(req.body.newPassword))
+            }
+
+            if(req.body.oldPassword === req.body.newPassword) {
+                return res.status(401).json("the new password must be different from the old one")
+            }
+
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(req.body.newPassword, salt)
+                                                                                                                                    
+            const q = "UPDATE users SET password = ? WHERE id = ?"
+            db.query(q, [hash, req.query.user_id], (err, data) => {
+                if (err) {
+                    return res.status(500).send(err)
+                }
+                return res.status(200).send("Password updated")
+            })
+        })     
         return
 
     })

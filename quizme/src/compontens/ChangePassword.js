@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext"
 
 function ChangePassword(props) {
 
-    const {changePassword} = React.useContext(AuthContext)
+    const {changePassword, error} = React.useContext(AuthContext)
 
 
     const [inputs, setInputs] = React.useState({
@@ -66,7 +66,7 @@ function ChangePassword(props) {
                         required 
                         />
                 </div>
-                {/* {error && <p className="error">{error}</p>} */}
+                {error && <p className="error">{error}</p>}
 
                 <button className="btn" onClick={handleChangePassword}>Change Password</button>
             </form>

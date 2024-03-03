@@ -9,6 +9,8 @@ export const AuthContextProvider = ({children}) => {
         JSON.parse(localStorage.getItem("user")) || null
         )
     
+    const [error, setError] = React.useState("")
+
 
     const login = async (inputs) => {
         const res = await axios.post("/auth/login", inputs, {
@@ -25,10 +27,14 @@ export const AuthContextProvider = ({children}) => {
     }
     
     const changePassword = async (inputs) => {
-        await axios.put(`/auth/changePassword?user_id=${currentUser.id}`, inputs, {
+        try {await axios.put(`/auth/changePassword?user_id=${currentUser.id}`, inputs, {
             withCredentials: true
         })
-        logout()
+        logout() } 
+        catch (err) {
+            console.log(err)
+            setError(err.response.data)
+        }
     }
 
     const deleteAccount = async () => {
@@ -43,7 +49,7 @@ export const AuthContextProvider = ({children}) => {
     }, [currentUser])
 
     return (
-        <AuthContext.Provider value={{currentUser, login, logout, deleteAccount, changePassword}}>
+        <AuthContext.Provider value={{currentUser, error, login, logout, deleteAccount, changePassword}}>
             {children}
         </AuthContext.Provider>
     )

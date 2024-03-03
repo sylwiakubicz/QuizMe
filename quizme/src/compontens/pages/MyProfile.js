@@ -1,6 +1,7 @@
 import React from "react"
 import DeleteAccount from "../DeleteAccount"
 import ChangePassword from "../ChangePassword"
+import ChangeUserData from "../ChangeUserData"
 
 
 
@@ -18,11 +19,10 @@ function MyProfile() {
                     <li className={active === "changePassword" ? "option option-bigger active" : "option option-bigger"} onClick={() => setActive("changePassword")}>Change Password</li>
                     <li className={active === "deleteAccount" ? "option option-bigger active" : "option option-bigger"} onClick={() => setActive("deleteAccount")}>Delete Account</li>
                 </div>
-                <div className={active === "accountSettings" ? "settings-container" : "notShow"}>
-                    <h1 className="accountSetingsOption">ACCOUNT SETTINGS</h1>
-                </div>
+
                 <ChangePassword active={active}/>
                 <DeleteAccount active={active} setShow={setShow} show={show}/>
+                <ChangeUserData active={active}/>
             </div>
         </div>
     )
