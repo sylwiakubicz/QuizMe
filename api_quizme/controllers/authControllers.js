@@ -157,7 +157,7 @@ export const login = (req, res) => {
                 id: data[0].id
             }
 
-            const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET, {expiresIn: 60})
+            const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
                 semeSite: "none",
@@ -222,11 +222,16 @@ export const changePassword = (req, res) => {
                 return res.status(200).send("Password updated")
             })
         })     
-        return
-
+       return
     })
-
-
-   
 }
 
+export const updateUserData = (req, res) => {
+    const q = "UPDATE users SET username = ?, email = ? WHERE id = ?"
+    db.query(q, [req.body.username, req.body.email, req.body.userID], (err,data) =>{
+        if (err) {
+            return res.status(500).send(err)
+        }
+        return res.status(200).send("Data updated")
+    })
+}

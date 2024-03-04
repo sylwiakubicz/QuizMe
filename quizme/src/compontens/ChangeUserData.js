@@ -1,5 +1,6 @@
 import React from "react";
 import { AuthContext } from "../context/authContext"
+import axios from "axios"
 
 
 function ChangeUserData(props) {
@@ -9,6 +10,7 @@ function ChangeUserData(props) {
     const [inputs, setInputs] = React.useState({
         email: currentUser.email,
         username: currentUser.username,
+        userID: currentUser.id
     })
 
     const handleChange = (e) => {
@@ -20,9 +22,16 @@ function ChangeUserData(props) {
         })
     }
 
-    const handleSave = (e) => {
+    const handleSave = async (e) => {
         e.preventDefault()
-        console.log("Save")
+        if (currentUser.email !== inputs.email || currentUser.username !== inputs.username) {
+            console.log("zmiana")
+            try {await axios.put("/auth/updateuserdata", inputs, {
+                withCredentials:true,
+            })} catch (err){
+                console.log(err)
+            }
+        } 
     }
 
     return (
