@@ -50,7 +50,9 @@ function SignUp() {
                     })
                     navigate("/SignIn")
                 } catch (err) {
-                    setError(err.response.data)
+                    if(300 < err.response.status < 500) {
+                        setError(err.response.data)
+                    }
                 }
               } else {
                 alert("reCAPTCHA validation failed!");

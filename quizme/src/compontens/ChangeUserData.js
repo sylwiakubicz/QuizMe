@@ -42,6 +42,7 @@ function ChangeUserData(props) {
     return (
         <div className={props.active === "accountSettings" ? "settings-container" : "notShow"}>
             <h1 className="accountSetingsOption">ACCOUNT SETTINGS</h1>
+            <p>After some changes you will be asked to sign in again</p>
             <form className="wrapper">
                 <div className="input-box">
                     <input 

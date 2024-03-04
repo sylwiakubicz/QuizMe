@@ -35,6 +35,7 @@ function ChangePassword(props) {
     return (
         <div className={props.active === "changePassword" ? "settings-container" : "notShow"}>
             <h1 className="accountSetingsOption">CHANGE PASSWORD</h1>
+            <p>When you change your password you will be asked to sign in again</p>
             <form className="wrapper">
                 <div className="input-box">
                     <input 
