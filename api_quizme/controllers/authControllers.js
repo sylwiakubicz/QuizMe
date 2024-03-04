@@ -164,8 +164,6 @@ export const login = (req, res) => {
                 secure: true
             }).status(200).send(user)
         }) 
-
-        
     })
         
 }
