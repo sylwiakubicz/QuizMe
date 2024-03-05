@@ -1,11 +1,13 @@
 import React from "react"
 import "../../styles/form.css"
-
+import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
 
 function ContactUs() {
 
+    const navigate = useNavigate()
     const [contactFormData, setContanctFormData] = React.useState(
         {
             email: "",
@@ -24,12 +26,24 @@ function ContactUs() {
         })
     }
 
+    const sendMail = async () => {
+        try {
+            await axios.post("/mail/send", contactFormData, {
+                withCredentials: true
+            })
+            navigate("/success")
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     return (
-        <div class="form" id="contact-form">
-            <div class="wrapper form-wrapper">
+        <div className="form" id="contact-form">
+            <div className="wrapper form-wrapper">
                 <form >
                     <h1>Contact Us</h1>
-                    <div class="input-box">
+                    <div className="input-box">
                         <input 
                             type="email" 
                             name="email" 
@@ -38,9 +52,9 @@ function ContactUs() {
                             value={contactFormData.email}
                             required 
                         />
-                        <i class="fa-solid fa-user"></i>
+                        <i className="fa-solid fa-user"></i>
                     </div>
-                    <div class="input-box">
+                    <div className="input-box">
                         <input 
                             type="text" 
                             name="title" 
@@ -49,19 +63,23 @@ function ContactUs() {
                             value={contactFormData.title}
                             required 
                         />
-                        <i class="fa-solid fa-envelope"></i>
+                        <i className="fa-solid fa-envelope"></i>
                     </div>
-                    <div class="textarea-box">
+                    <div className="textarea-box">
                         <textarea 
                             form="contact-form" 
                             name="message" 
                             placeholder="Message..." 
-                            maxlength="3000" 
+                            maxLength="3000" 
                             onChange={handleChange}
                             value={contactFormData.message}
                             required></textarea>
                     </div>
-                    <button class="btn">Send Message</button>
+        
+                    <button className="btn" onClick={(e) => {
+                        e.preventDefault()
+                        sendMail()
+                        }}>Send Message</button>
                 </form>
             </div>
         </div>

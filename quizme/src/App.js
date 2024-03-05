@@ -11,6 +11,7 @@ import Footer from "./compontens/layout/Footer"
 import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
 import MyQuizes from "./compontens/pages/MyQuizes";
 import MyProfile from "./compontens/pages/MyProfile";
+import Success from "./compontens/Success"
 
 import "./style.css"
 
@@ -28,6 +29,7 @@ function App() {
         <Header switchTheme={switchTheme} theme={theme}/>
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/success" element={<Success/>}/>
             <Route path="/MyQuizes" element={<MyQuizes />}/>
             <Route path="/MyProfile" element={<MyProfile />}/>
             <Route path="/:id" element={<TakeTheQuiz />} />
