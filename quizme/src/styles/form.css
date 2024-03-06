@@ -194,10 +194,6 @@ textarea {
     overflow: hidden;
 }
 
-::-webkit-resizer {
-    border: .125rem solid rgba(var(--additional-color), .2);
-}
-
 .error {
     color: red;
     text-align: center;
