@@ -12,17 +12,22 @@ export const QuizContextProvider = ({children}) => {
     const [filterQuizes, setFilterQuizes] = React.useState([])
     const [serachingText, setSearchingText] = React.useState("")
 
+    const [isLoading, setIsLoading] = React.useState(false)
+
+
     React.useEffect(() => {
         const controller = new AbortController()
         const signal = controller.signal
 
         const fetchQuizes = async () => {
+            setIsLoading(true)
             try {
                 const res = await axios.get(`/quiz${category === "" ? "" : "?category=" + category}`, {signal}, {
                     withCredentials:true,
                 })
                 setQuizes(res.data)
                 setAllQuizes(res.data)
+                setIsLoading(false)
             } catch (err) {
                 if (!axios.isCancel(err)) {
                     console.log(err)
@@ -42,6 +47,7 @@ export const QuizContextProvider = ({children}) => {
     React.useEffect(() => {
         let temp = []
         if (serachingText) {
+            setIsLoading(true)
             for (let i = 0; i < quizes.length; i++) {
                 let currentQuizName = quizes[i].title.toString()
                     if (currentQuizName.toLowerCase().startsWith(serachingText.toLowerCase())) {
@@ -50,6 +56,7 @@ export const QuizContextProvider = ({children}) => {
             }
 
             setFilterQuizes(temp)
+            setIsLoading(false)
 
         } else {
             setFilterQuizes([])
@@ -58,7 +65,7 @@ export const QuizContextProvider = ({children}) => {
     }, [serachingText, quizes])
 
     return (
-        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, allQuizes, setSearchingText, setCategory}}>
+        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, allQuizes, isLoading, setSearchingText, setCategory}}>
             {children}
         </QuizContext.Provider>
     )

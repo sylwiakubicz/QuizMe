@@ -21,13 +21,17 @@ export default function TakeTheQuiz() {
     const [showScore, setShowScore] = useState(false)
     const score = useRef(0)
 
+    const [isLoading, setIsLoading] = React.useState(false)
+
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true)
             try {const res = await axios.get(`/quiz/${quizID}`, {
                 withCredentials:true,
             })
             setQuestions(res.data)
+            setIsLoading(false)
         } catch (err) {
             console.log(err)
         }}
@@ -123,28 +127,32 @@ export default function TakeTheQuiz() {
     }
     
     return (
-        <div>
-            {showScore  
-            ?  <div>
-                {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length}/>}
-            </div>
-            : (<div className="question--container"> 
-                {questions.length > 0 && (
-            <div>
-                <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length}/>
-                <div className="question--card">
-                    <h1 className="question--text">{questions[currentIndex].question}</h1>
-                    <form>
-                        {questions[currentIndex].answers.map((answer, answerIndex) => (
-                            <Answer key={answerIndex} answerText={Object.values(answer)[0]} answerIndex={answerIndex} onChangeAnswer={handleAnswerChange} checkedAnswer={currentAnswer} currentQuestionIndex={currentIndex}/>
-                        ))}                    
-                    </form>
+        <div> 
+            {isLoading ?
+                <div className="myaccount-container">
+                        <p className="text ">Loading...</p> 
                 </div>
-                {error && <div className="quiz--error">{error}</div>}
-                <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer, questions[currentIndex].quizStats)}>Next Question</button>
-            </div>)}
-            </div>
-            )}
-    </div>
+                :
+                showScore  ?  <div>
+                    {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length}/>}
+                </div>
+                : <div className="question--container"> 
+                    {questions.length > 0 && (
+                <div>
+                    <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length}/>
+                    <div className="question--card">
+                        <h1 className="question--text">{questions[currentIndex].question}</h1>
+                        <form>
+                            {questions[currentIndex].answers.map((answer, answerIndex) => (
+                                <Answer key={answerIndex} answerText={Object.values(answer)[0]} answerIndex={answerIndex} onChangeAnswer={handleAnswerChange} checkedAnswer={currentAnswer} currentQuestionIndex={currentIndex}/>
+                            ))}                    
+                        </form>
+                    </div>
+                    {error && <div className="quiz--error">{error}</div>}
+                    <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer, questions[currentIndex].quizStats)}>Next Question</button>
+                </div>)}
+                </div>
+            }
+       </div>
     )
 }

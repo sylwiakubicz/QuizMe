@@ -9,7 +9,7 @@ import { QuizContext } from "../../context/quizContext"
 
 function Home() {
 
-    const {category, quizes, filterQuizes, setSearchingText, serachingText, setCategory} = React.useContext(QuizContext)
+    const {category, quizes, filterQuizes, isLoading,  setSearchingText, serachingText, setCategory} = React.useContext(QuizContext)
     
     const cat = useLocation().search
     useEffect(() => {
@@ -34,7 +34,13 @@ function Home() {
                     </select>
             </div>
             
-            { serachingText ?
+
+            { isLoading ?                 
+                <div className="myaccount-container">
+                    <p className="text ">Loading...</p> 
+                </div>
+                :
+                serachingText ?
                 filterQuizes.length > 0 ? 
                     <div className="quizes">
                         {filterQuizes.length > 0 && filterQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id}/>))}    
@@ -42,7 +48,7 @@ function Home() {
                     : 
                     <div className="quizNotFound">
                         <div className=" text"> Could not find any quizzes</div>
-                        <i class="fa-solid fa-face-sad-tear text"></i>
+                        <i className="fa-solid fa-face-sad-tear text"></i>
                     </div>
 
                 :

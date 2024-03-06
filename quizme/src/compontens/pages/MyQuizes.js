@@ -12,6 +12,7 @@ function MyQuizes() {
 
     const [myQuizes, setMyQuizes] = React.useState([])
     const [currentFilter, setCurrentFiler] = React.useState("")
+    const [isLoading, setIsLoading] = React.useState(false)
 
     React.useEffect(() => {
 
@@ -24,11 +25,13 @@ function MyQuizes() {
         }
 
         const fetchQuizes = async () => {
+            setIsLoading(true)
             try {
                 const res = await axios.get(`/quiz/userquizes?user_id=${currentUser.id}&filter=${currentFilter}`, {signal}, {
                     withCredentials:true,
                 })
                 setMyQuizes(res.data)
+                setIsLoading(false)
             } catch (err) {
                 if (!axios.isCancel(err)) {
                     console.log(err)
@@ -48,7 +51,11 @@ function MyQuizes() {
 
     return (
         <div>
-            {
+            { isLoading ? 
+                <div className="myaccount-container">
+                    <p className="text ">Loading...</p> 
+                </div>
+                :
                 myQuizes.length !== 0 ? 
                 <div>
                     <div className="searchSection">
