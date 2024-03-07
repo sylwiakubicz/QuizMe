@@ -187,3 +187,19 @@ a {
     display: flex;
     justify-content: space-around;
 }
+
+.center-container {
+    display: flex;
+    align-items: center;
+}
+
+.paragraph {
+    font-size: 2rem;
+    text-wrap: wrap;
+    width: 42rem;
+    text-align: center;
+}
+
+.text-header {
+    font-size: 3rem;
+}
