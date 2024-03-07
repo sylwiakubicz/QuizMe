@@ -53,7 +53,7 @@ const Header = (props) => {
                                 <li className="nav--item">
                                     <Link to="/SignIn" className="nav--link" onClick={logout}>Logout</Link>
                                 </li>
-                                <Link to="#">
+                                <Link to="/createquiz">
                                 <li className="nav--item btn nav--link">
                                     Create a quiz
                                 </li></Link>
