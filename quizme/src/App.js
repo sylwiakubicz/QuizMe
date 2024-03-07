@@ -12,7 +12,7 @@ import TakeTheQuiz from "./compontens/pages/TakeTheQuiz";
 import MyQuizes from "./compontens/pages/MyQuizes";
 import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
-import CreateQuizStartPage from "./compontens/pages/CreateQuizStartPage";
+import CreateQuiz from "./compontens/pages/CreateQuiz";
 
 
 import "./style.css"
@@ -32,7 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/success" element={<Success/>}/>
-            <Route path="/createquiz" element={< CreateQuizStartPage/>} />
+            <Route path="/createquiz" element={< CreateQuiz/>} />
             <Route path="/MyQuizes" element={<MyQuizes />}/>
             <Route path="/MyProfile" element={<MyProfile />}/>
             <Route path="/:id" element={<TakeTheQuiz />} />

@@ -1,6 +1,7 @@
 import React from "react";
+import AddQuestion from "../AddQuestion";
 
-export default function CreateQuizStartPage() {
+export default function CreateQuiz() {
 
     const [active, setActive] = React.useState("")
     const [title, setTitle] = React.useState("")
@@ -8,7 +9,7 @@ export default function CreateQuizStartPage() {
 
     return(
         <div className="myaccount-container">
-            <h1 className="text">Create a quiz</h1>
+            {title && active ? <h1 className="text">{title}</h1> : <h1 className="text">Create a quiz</h1>}
             <div className="account-wrapper">
                 <div className="options">
                     <li className={active === "addQuestion" ? "option option-bigger active" : "option option-bigger"}>Add question</li>
@@ -40,10 +41,10 @@ export default function CreateQuizStartPage() {
                         }}>Continue</button>
                     </form>
                 </div>
-                {/* 
-                <AddQuestion active={active}/>
-                <SetPreferences active={active}/>
-                <Activate active={active}/> */}
+                
+                <AddQuestion active={active} titile={title}/>
+                {/* <SetPreferences active={active} titile={title}/>
+                <Activate active={active} titile={title}/> */}
             </div>
         </div>
     )
