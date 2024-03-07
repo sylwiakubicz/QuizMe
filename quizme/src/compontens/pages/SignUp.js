@@ -119,7 +119,7 @@ function SignUp() {
                     <button className="btn" >Sign Up</button>
                     <div className="register-or-login-link">
                         <p>Do you have an account? </p>
-                        <Link to="/SignIn">Sign In</Link>
+                        <Link to="/SignIn" className="bold">Sign In</Link>
                     </div>
                 </form>
             </div>

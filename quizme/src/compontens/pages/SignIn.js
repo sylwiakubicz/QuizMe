@@ -86,7 +86,7 @@ function SignIn() {
                     {error && <p className="error">{error}</p>}
                     <div className="register-or-login-link">
                         <p>Don't have an account? </p>
-                        <Link to="/SignUp">Sign Up</Link>
+                        <Link to="/SignUp" className="bold">Sign Up</Link>
                     </div>
                 </form>
             </div>
