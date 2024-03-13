@@ -207,3 +207,11 @@ textarea {
 .bold {
     font-weight: bold;
 }
+
+.addQuestion {
+    width: 100%;
+}
+
+.addQuestion .btn {
+    margin: 2rem 5rem;
+}

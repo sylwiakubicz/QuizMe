@@ -203,3 +203,12 @@ a {
 .text-header {
     font-size: 3rem;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.createQuestion{
+    width: 100%;
+}
+

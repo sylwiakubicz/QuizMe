@@ -1,0 +1,47 @@
+.addAnswer-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.question-input,
+.addAnswer-container input {
+    border: 2px solid rgb(var(--primary-color));
+    border-radius: 2.5rem 0 0 2.5rem;
+    width: 100%;
+    background: rgb(var(--light-bg));
+    height: 3.125rem;
+    padding-left: .8rem;
+}
+
+.question-input {
+    border-radius: 2.5rem;
+}
+
+.moreAnswers,
+.addAnswer-container button {
+    border: 2px solid rgb(var(--primary-color));
+    border-radius: 0 2.5rem 2.5rem 0;
+    width: 4.5rem;
+    height: 3.125rem;
+    cursor: pointer;
+    background: rgba(var(--primary-color));
+}
+
+.addAnswer-container button i {
+    font-size: 1.2rem;
+    color: rgb(var(--text-light));
+}
+
+.moreAnswers {
+    width: 100%;
+    border-radius: 2.5rem;
+    color: rgb(var(--text-light));
+    font-size: 2rem;
+}
+
+.moreAnswers:hover,
+.addAnswer-container button:hover {
+    background: rgba(var(--primary-color), .8);
+    border: 2px solid rgba(var(--primary-color), .5);
+}

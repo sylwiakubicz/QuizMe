@@ -1,10 +1,13 @@
 import React from "react";
 import AddQuestion from "../AddQuestion";
 
+import "../../styles/AddQuiz.css"
+
+
 export default function CreateQuiz() {
 
     const [active, setActive] = React.useState("")
-    const [title, setTitle] = React.useState("")
+    const [title, setTitle] = React.useState("test")
     const [error, setError] = React.useState("")
 
     return(

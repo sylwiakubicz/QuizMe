@@ -4,6 +4,7 @@ export default function Answer(props) {
 
     const handleChange = (event) => {
         props.onChangeAnswer(event.target.value)
+        console.log(event.target.value)
     }
 
     return (
