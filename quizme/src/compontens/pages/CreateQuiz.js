@@ -2,6 +2,7 @@ import React from "react";
 import AddQuestion from "../AddQuestion";
 
 import "../../styles/AddQuiz.css"
+import AddTitle from "../AddTitle";
 
 
 export default function CreateQuiz() {
@@ -19,32 +20,8 @@ export default function CreateQuiz() {
                     <li className={active === "setPreferences" ? "option option-bigger active" : "option option-bigger"}>Set preferences</li>
                     <li className={active === "activate" ? "option option-bigger active" : "option option-bigger"}>Acivate</li>
                 </div>
-                <div className={active === "" ? "settings-container center-container" : "notShow"}>
-                    <h1 className="text-header">Let's start!</h1>
-                    <p className="paragraph">Create your own quiz for free. Start by giving it a name. Don't worry, you can change this later.</p>
-                    <form className="wrapper">
-                        <div className="input-box">
-                            <input 
-                                type="text" 
-                                placeholder="Quiz title" 
-                                name="quiztitle"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                                />
-                        </div>
-                        {error ? <p className="error">{error}</p> : null}
-                        <button className="btn" onClick={(e) => {
-                            e.preventDefault()
-                            if (title === "") {
-                                setError("Field can not be empty")
-                            } else {
-                                setError("")
-                                setActive("addQuestion")
-                            }
-                        }}>Continue</button>
-                    </form>
-                </div>
                 
+                <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} />
                 <AddQuestion active={active} titile={title}/>
                 {/* <SetPreferences active={active} titile={title}/>
                 <Activate active={active} titile={title}/> */}

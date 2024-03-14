@@ -36,11 +36,18 @@
 .moreAnswers {
     width: 100%;
     border-radius: 2.5rem;
-    color: rgb(var(--text-light));
+    color: rgb(var(--primary-color));
     font-size: 2rem;
+    background: rgb(var(--light-bg));
+    margin-bottom: 2rem;
 }
 
-.moreAnswers:hover,
+.moreAnswers:hover {
+    background: rgba(var(--primary-color), .2);
+    border: 2px solid rgba(var(--primary-color), .5);
+}
+
+
 .addAnswer-container button:hover {
     background: rgba(var(--primary-color), .8);
     border: 2px solid rgba(var(--primary-color), .5);

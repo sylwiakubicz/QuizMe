@@ -11,11 +11,11 @@ export default function AddQuestion(props) {
             <input className="question-input" placeholder="Write a question"></input>
             <AddAnswer />
             <AddAnswer />
-            <AddAnswer />
-            <AddAnswer />
-            <AddAnswer />
             <button className="moreAnswers">+</button>
-
+            <div className="buttons-container">
+                <button className="quiz--btn delete-btn" >Cancel</button>
+                <button className="quiz--btn delete-btn" >Delete</button>
+            </div>
         </div>
     )
 }

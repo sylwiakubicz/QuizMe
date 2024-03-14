@@ -27,6 +27,10 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+}
+
 a {
     text-decoration: none;
     color: rgb(var(--text-light));
@@ -37,6 +41,7 @@ a {
     position: relative;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     background-color: rgb(var(--main-bg));
+    overflow-x: hidden;
 }
 
 
@@ -162,6 +167,7 @@ a {
 .account-wrapper {
     display: flex;
     gap: 5rem;
+    margin-bottom: 4rem;
 }
 
 .notShow {
