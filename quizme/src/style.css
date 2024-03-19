@@ -44,7 +44,9 @@ a {
     overflow-x: hidden;
 }
 
-
+.page {
+    min-height: calc(100vh - 3.875rem);
+}
 
 /* QUIZES */
 .quizes {
@@ -187,11 +189,12 @@ a {
 
 .delete-btn {
     width: 15rem;
+    justify-content: space-between;
 }
 
 .buttons-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .center-container {
@@ -218,3 +221,6 @@ a {
     width: 100%;
 }
 
+.size {
+    min-height: calc(100vh - 3.875rem);
+}

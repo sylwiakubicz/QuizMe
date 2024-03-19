@@ -1,3 +1,10 @@
+.question{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    width: 100%;
+}
+
 .addAnswer-container {
     display: flex;
     width: 100%;
@@ -12,6 +19,7 @@
     background: rgb(var(--light-bg));
     height: 3.125rem;
     padding-left: .8rem;
+    font-size: 1.1rem;
 }
 
 .question-input {
@@ -39,7 +47,7 @@
     color: rgb(var(--primary-color));
     font-size: 2rem;
     background: rgb(var(--light-bg));
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .moreAnswers:hover {
@@ -51,4 +59,22 @@
 .addAnswer-container button:hover {
     background: rgba(var(--primary-color), .8);
     border: 2px solid rgba(var(--primary-color), .5);
+}
+
+.createdQuestion{
+    position: relative;
+}
+
+.icons {
+    position: absolute;
+    right: 1.2rem;
+    top: 1.2rem;
+    width: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.correctAnswer {
+    font-weight: bold;
 }

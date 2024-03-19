@@ -11,7 +11,7 @@ function MyProfile() {
     const [show, setShow] = React.useState(false)
 
     return (
-        <div className="myaccount-container">
+        <div className="myaccount-container page">
             <h1 className="text">My Account</h1>
             <div className="account-wrapper">
                 <div className="options">

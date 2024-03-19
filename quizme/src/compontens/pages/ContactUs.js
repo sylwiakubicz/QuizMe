@@ -39,8 +39,8 @@ function ContactUs() {
 
 
     return (
-        <div className="form" id="contact-form">
-            <div className="wrapper form-wrapper">
+        <div className="size" id="contact-form">
+            <div className="wrapper form-wrapper form">
                 <form >
                     <h1>Contact Us</h1>
                     <div className="input-box">

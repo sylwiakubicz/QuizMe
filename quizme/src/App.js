@@ -29,10 +29,10 @@ function App() {
     return (
       <div data-theme={theme} className="app"> 
         <Header switchTheme={switchTheme} theme={theme}/>
-          <Routes>
+          <Routes >
             <Route path="/" element={<Home/>} />
-            <Route path="/success" element={<Success/>}/>
-            <Route path="/createquiz" element={< CreateQuiz/>} />
+            <Route path="/success" element={<Success />}/>
+            <Route path="/createquiz" element={< CreateQuiz />} />
             <Route path="/MyQuizes" element={<MyQuizes />}/>
             <Route path="/MyProfile" element={<MyProfile />}/>
             <Route path="/:id" element={<TakeTheQuiz />} />

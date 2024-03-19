@@ -3,11 +3,12 @@ import AddQuestion from "../AddQuestion";
 
 import "../../styles/AddQuiz.css"
 import AddTitle from "../AddTitle";
+import CreatedQuestions from "../CreatedQuestions";
 
 
 export default function CreateQuiz() {
 
-    const [active, setActive] = React.useState("")
+    const [active, setActive] = React.useState("addQuestion")
     const [title, setTitle] = React.useState("test")
     const [error, setError] = React.useState("")
 
@@ -21,8 +22,8 @@ export default function CreateQuiz() {
                     <li className={active === "activate" ? "option option-bigger active" : "option option-bigger"}>Acivate</li>
                 </div>
                 
-                <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} />
-                <AddQuestion active={active} titile={title}/>
+                <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} setTitle={setTitle}/>
+                <AddQuestion active={active} titile={title} setError={setError} setActive={setActive} error={error}/>
                 {/* <SetPreferences active={active} titile={title}/>
                 <Activate active={active} titile={title}/> */}
             </div>

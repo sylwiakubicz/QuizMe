@@ -50,7 +50,7 @@ function MyQuizes() {
     
 
     return (
-        <div>
+        <div className="size">
             { isLoading ? 
                 <div className="myaccount-container">
                     <p className="text ">Loading...</p> 
