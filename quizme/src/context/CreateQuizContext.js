@@ -1,54 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 
 export const CreateQuizContext = React.createContext()
 
 export const CreateQuizContextProvider = ({children}) => {
 
-    const [questions, setQuestions] = React.useState(
-        [
-            {
+    const [questions, setQuestions] = useState([
+        {
+            id: "",
             question: "",
             answers: [],
-            correctAnswer: ""
-            }
+        }
     ])
 
-    const [answers, setAnswers] = React.useState(
-        [
-            {answer1: ""},
-            {answer2: ""},
-        ]
-    )
+    const [question, setQuestion] = useState('');
+    const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
 
-    const onAddBtnClick = e => {
-        if (answers.length >= 5) return
-        const answerKey = `answer${answers.length + 1}`;
-        setAnswers(answers.concat([{[answerKey]: ""}]));
+    const handleQuestionChange = (e) => {
+        setQuestion(e.target.value);
     };
 
+    const handleAnswerChange = (index, text) => {
+        const newAnswers = [...answers];
+        newAnswers[index].text = text;
+        setAnswers(newAnswers);
+    };
 
-    const handleAnswerChange = (index, newValue) => {
-        setAnswers(oldValues => oldValues.map((item, i) => {
-            const answerKey = `answer${i + 1}`; // Generowanie klucza na podstawie indeksu
-            if (i === index) {
-                return { [answerKey]: newValue };
-            } else {
-                return item;
-            }
-        }))
-    }
+    const addAnswer = () => {
+        setAnswers([...answers, { text: '', isCorrect: false }]);
+    };
 
+    const toggleCorrect = (index) => {
+        const newAnswers = answers.map((answer, i) => ({
+            ...answer,
+            isCorrect: i === index ? true : false,
+        }));
+        setAnswers(newAnswers);
+        console.log(answers)
+    };
+    
 
     const onDelBtnClick = (index) => {
         console.log(index)
         setAnswers(oldValues => {
           return oldValues.filter((_, i) => i !== index)
-        }) 
+        })
     }
     
     return (
-        <CreateQuizContext.Provider value={{ onAddBtnClick, onDelBtnClick, handleAnswerChange, answers, questions}}>
+        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, answers, question}}>
             {children}
         </CreateQuizContext.Provider>
     )

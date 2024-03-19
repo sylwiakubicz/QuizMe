@@ -1,24 +1,24 @@
 import React from "react";
 
-export default function Answer(props) {
+export default function Answer({onChangeAnswer, answerText, answerIndex, checkedAnswer}) {
 
     const handleChange = (event) => {
-        props.onChangeAnswer(event.target.value)
+        onChangeAnswer(event.target.value)
         console.log(event.target.value)
     }
 
     return (
         <div>
-            {props.answerText !== null && (
-            <label className="answers--container">{props.answerText}
+            {answerText !== null && (
+            <label className="answers--container">{answerText}
                 <input 
                     name="answers"
-                    key={props.answerIndex}
+                    key={answerIndex}
                     type="radio"
-                    id={props.answerText}
-                    value={props.answerText}
+                    id={answerText}
+                    value={answerText}
                     onChange={handleChange}
-                    checked={props.checkedAnswer === props.answerText ? true : false}
+                    checked={checkedAnswer === answerText ? true : false}
                 />
                 <span className="radioBtn"></span>
             </label>
