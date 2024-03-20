@@ -5,13 +5,7 @@ export const CreateQuizContext = React.createContext()
 
 export const CreateQuizContextProvider = ({children}) => {
 
-    const [questions, setQuestions] = useState([
-        {
-            id: "",
-            question: "",
-            answers: [],
-        }
-    ])
+    const [questions, setQuestions] = useState([])
 
     const [question, setQuestion] = useState('');
     const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
@@ -47,8 +41,17 @@ export const CreateQuizContextProvider = ({children}) => {
         })
     }
     
+    const handleQuestionSave = (questionText, answers) => {
+        const currentQuestion = [{
+            id: questions.length,
+            question: questionText,
+            answers: answers,
+        }]
+        setQuestions(prev => prev.concat(currentQuestion))
+    }
+
     return (
-        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, answers, question}}>
+        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, answers, question, questions}}>
             {children}
         </CreateQuizContext.Provider>
     )

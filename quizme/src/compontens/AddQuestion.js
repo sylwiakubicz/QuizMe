@@ -1,27 +1,21 @@
 import React from "react";
 import AddQuestionCard from "./AddQuestionCard";
+import CreatedQuestionCard from "./CreatedQuestionCard";
+import { CreateQuizContext } from "../context/CreateQuizContext";
+
 
 
 
 export default function AddQuestion(props) {
+    const {questions} = React.useContext(CreateQuizContext)
 
-    
     return (
         <div className="question">
            <AddQuestionCard active={props.active}/>
-
-            <div className={props.active === "addQuestion" ? "settings-container createdQuestion" : "notShow"}>
-                <div className="icons">
-                    <i className="fa-solid fa-up-down"></i>
-                    <i className="fa-solid fa-pen-to-square"></i>
-                    <i className="fa-solid fa-trash"></i>
-                </div>
-                <h2>Treść pytania</h2>
-                <p className="correctAnswer">Odp 1</p>
-                <p className="wrongAnswer">Odp 2</p>
-                <p className="wrongAnswer">Odp 3</p>
-                <p className="wrongAnswer">Odp 4</p>
-            </div>
+            
+            {
+                questions.map((q, q_index) => <CreatedQuestionCard key={q_index} active={props.active} questionText={q.question} answers={q.answers}/>)
+            }
 
             <div className="buttons-container settings-container">
                 <button className="quiz--btn delete-btn" >Previous</button>

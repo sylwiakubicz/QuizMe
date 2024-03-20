@@ -3,7 +3,6 @@ import AddQuestion from "../AddQuestion";
 
 import "../../styles/AddQuiz.css"
 import AddTitle from "../AddTitle";
-import CreatedQuestions from "../CreatedQuestions";
 
 
 export default function CreateQuiz() {

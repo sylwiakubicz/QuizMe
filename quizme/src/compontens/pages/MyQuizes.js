@@ -19,11 +19,6 @@ function MyQuizes() {
         const controller = new AbortController()
         const signal = controller.signal
 
-        const params = {
-            user_id: currentUser.user_id,
-            filter: currentFilter
-        }
-
         const fetchQuizes = async () => {
             setIsLoading(true)
             try {

@@ -3,8 +3,16 @@ import { CreateQuizContext } from "../context/CreateQuizContext";
 import AddAnswer from "../compontens/AddAnswer"
 
 export default function AddQuestionCard({active}) {
-    const {toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, answers, question} = React.useContext(CreateQuizContext)
+    const {toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, answers, question} = React.useContext(CreateQuizContext)
     
+    const handleSave = () => {
+        handleQuestionSave(question,answers)
+    }
+
+    const handleNextQuestion = () => {
+        handleQuestionSave(question, answers)
+    }
+
     return (
     <div className={active === "addQuestion" ? "settings-container" : "notShow"}>
         <div className="question">
@@ -34,8 +42,8 @@ export default function AddQuestionCard({active}) {
             <button className="moreAnswers" onClick={addAnswer}>+</button>
             
             <div className="buttons-container">
-                <button className="quiz--btn delete-btn">Save</button>
-                <button className="quiz--btn delete-btn">Next question</button>
+                <button className="quiz--btn delete-btn" onClick={handleSave}>Save</button>
+                <button className="quiz--btn delete-btn" onClick={handleNextQuestion}>Next question</button>
             </div>
 
         </div>
