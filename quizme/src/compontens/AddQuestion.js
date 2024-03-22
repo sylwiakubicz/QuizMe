@@ -7,14 +7,14 @@ import { CreateQuizContext } from "../context/CreateQuizContext";
 
 
 export default function AddQuestion(props) {
-    const {questions} = React.useContext(CreateQuizContext)
+    const {questions, deleteQuestion, editQuestion} = React.useContext(CreateQuizContext)
 
     return (
         <div className="question">
            <AddQuestionCard active={props.active}/>
             
             {
-                questions.map((q, q_index) => <CreatedQuestionCard key={q_index} active={props.active} questionText={q.question} answers={q.answers}/>)
+                questions.map((q, q_index) => <CreatedQuestionCard key={q_index} active={props.active} questionText={q.questionText} answers={q.answers} onDelete={() => deleteQuestion(q_index)} onEdit={() => editQuestion(q_index)}/>)
             }
 
             <div className="buttons-container settings-container">

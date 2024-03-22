@@ -3,14 +3,15 @@ import { CreateQuizContext } from "../context/CreateQuizContext";
 import AddAnswer from "../compontens/AddAnswer"
 
 export default function AddQuestionCard({active}) {
-    const {toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, answers, question} = React.useContext(CreateQuizContext)
+    const {toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, answers, currentQuestion} = React.useContext(CreateQuizContext)
     
     const handleSave = () => {
-        handleQuestionSave(question,answers)
+        handleQuestionSave()
     }
 
     const handleNextQuestion = () => {
-        handleQuestionSave(question, answers)
+        handleQuestionSave()
+        handleAddNextQuestion()
     }
 
     return (
@@ -20,7 +21,7 @@ export default function AddQuestionCard({active}) {
             <input 
                 className="question-input" 
                 placeholder="Write a question"
-                value={question}
+                value={currentQuestion.questionText}
                 onChange={handleQuestionChange}
             ></input>
             
