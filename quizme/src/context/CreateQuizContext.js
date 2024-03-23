@@ -8,7 +8,7 @@ export const CreateQuizContextProvider = ({children}) => {
     const [questions, setQuestions] = useState(JSON.parse(window.localStorage.getItem('questions')) || [])   
     const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
     const [currentQuestion, setCurrentQuestion] = useState({
-        id: 0,
+        id: 1,
         questionText: "",
         answers: answers,
     })
@@ -34,7 +34,6 @@ export const CreateQuizContextProvider = ({children}) => {
 
 
 
-
     const handleQuestionChange = (e) => {
         setCurrentQuestion(prev => {
             return (
@@ -47,7 +46,6 @@ export const CreateQuizContextProvider = ({children}) => {
     };
 
     useEffect(() => {
-        console.log("Error state changed to:", error);
     }, [error]);
 
 
@@ -112,14 +110,12 @@ export const CreateQuizContextProvider = ({children}) => {
         if(isError) {
             return
         }
-        console.log("not errors")
 
         if (isEdit.current) {
             saveEditedQuestion(currentQuestion.id)
             return true
         }
-
-        setQuestions(prev => [...prev, {...currentQuestion, id: prev.length}])
+        setQuestions(prev => [...prev, {...currentQuestion, id: prev.length + 1}])
         return true
     }
 
@@ -128,10 +124,11 @@ export const CreateQuizContextProvider = ({children}) => {
     }
 
     const handleAddNextQuestion = () => {
+        const newId = questions.length + 1;
         const initialAnswers = [{ text: '', isCorrect: false }, { text: '', isCorrect: false }]
         setAnswers(initialAnswers)
         setCurrentQuestion({
-            id: questions.length,
+            id: newId,
             questionText: "",
             answers: initialAnswers,
         })
@@ -139,18 +136,20 @@ export const CreateQuizContextProvider = ({children}) => {
     }
 
     const deleteQuestion = (index) => {
-        setQuestions(oldValues => {
-            return oldValues.filter((_, i) => i !== index)
-          })
-          saveInLocalStorage(questions)
-    }
+        setQuestions(currentQuestions => {
+            const updatedQuestions = currentQuestions.filter((_, i) => i !== index)
+                .map((question, newIndex) => ({ ...question, id: newIndex + 1 })); 
+            saveInLocalStorage(updatedQuestions);
+            return updatedQuestions;
+    })}
 
     const editQuestion = (index) => {
+        const questionId = questions[index].id;
         isEdit.current = true
         setAnswers(questions[index].answers)
 
         setCurrentQuestion({
-            id: questions[index].id,
+            id: questionId,
             questionText: questions[index].questionText,
             answers: questions[index].answers,
         })
@@ -194,6 +193,7 @@ export const CreateQuizContextProvider = ({children}) => {
                 editQuestion, 
                 deleteQuestion, 
                 handleSaveBtn, 
+                setQuestions,
                 answers, 
                 questions, 
                 currentQuestion, 
