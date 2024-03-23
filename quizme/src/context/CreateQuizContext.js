@@ -12,6 +12,7 @@ export const CreateQuizContextProvider = ({children}) => {
         questionText: "",
         answers: answers,
     })
+    const isEdit = React.useRef(false)
 
     useEffect(() => {
         setCurrentQuestion(prev => {
@@ -74,47 +75,51 @@ export const CreateQuizContextProvider = ({children}) => {
     }
     
 
+    // const validateQuestion = () => {
+
+    // }
 
     const handleQuestionSave = () => {
         if (currentQuestion.questionText === "") {
-            console.log("Ad question text")
             return
         }
 
         let selectedAnswer = false
         for (let i = 0; i < answers.length; i++ ) {
             if (answers[i].text === "" ){
-                console.log("Answers cant be empty")
                 return
             }
-            console.log(answers[i].isCorrect)
             if (answers[i].isCorrect === true) {
-                console.log("her")
                 selectedAnswer = true
             }
         }
 
         if (!selectedAnswer) {
-            console.log("Check proper answer")
             return
         }
 
-        if (saveEditedQuestion(currentQuestion.id)) {
+        if (isEdit.current) {
+            saveEditedQuestion(currentQuestion.id)
             return
         }
 
         setQuestions(prev => [...prev, {...currentQuestion, id: prev.length}])
     }
 
+    const handleSaveBtn = () => {
+        isEdit.current = true
+    }
+
     const handleAddNextQuestion = () => {
         const initialAnswers = [{ text: '', isCorrect: false }, { text: '', isCorrect: false }]
         setAnswers(initialAnswers)
         setCurrentQuestion({
-                id: questions.length,
-                questionText: "",
-                answers: initialAnswers,
-            }
-    )}
+            id: questions.length,
+            questionText: "",
+            answers: initialAnswers,
+        })
+        isEdit.current = false
+    }
 
     const deleteQuestion = (index) => {
         setQuestions(oldValues => {
@@ -124,6 +129,7 @@ export const CreateQuizContextProvider = ({children}) => {
     }
 
     const editQuestion = (index) => {
+        isEdit.current = true
         setAnswers(questions[index].answers)
 
         setCurrentQuestion({
@@ -134,12 +140,16 @@ export const CreateQuizContextProvider = ({children}) => {
     }
 
     const saveEditedQuestion = (id) => {
-        for (let i = 0; i < questions.length; i++) {
-            if (questions[i].id === id) {
-                questions.splice(i, 1, currentQuestion)
-                return true
-            }
-        }
+        setQuestions(prevQuestions => {
+            const updatedQuestions = prevQuestions.map(question => {
+                if (question.id === id) {
+                    return { ...currentQuestion };
+
+                }
+                return question;
+            });
+            return updatedQuestions;
+        })
     }
 
 
@@ -155,7 +165,7 @@ export const CreateQuizContextProvider = ({children}) => {
 
 
     return (
-        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, editQuestion, deleteQuestion, answers, questions, currentQuestion}}>
+        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, editQuestion, deleteQuestion, handleSaveBtn, answers, questions, currentQuestion}}>
             {children}
         </CreateQuizContext.Provider>
     )
