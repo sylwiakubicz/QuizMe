@@ -12,7 +12,10 @@ export const CreateQuizContextProvider = ({children}) => {
         questionText: "",
         answers: answers,
     })
+    const [error, setError] = useState("")
+
     const isEdit = React.useRef(false)
+    
 
     useEffect(() => {
         setCurrentQuestion(prev => {
@@ -43,7 +46,9 @@ export const CreateQuizContextProvider = ({children}) => {
         })
     };
 
-
+    useEffect(() => {
+        console.log("Error state changed to:", error);
+    }, [error]);
 
 
     const handleAnswerChange = (index, text) => {
@@ -75,19 +80,17 @@ export const CreateQuizContextProvider = ({children}) => {
     }
     
 
-    // const validateQuestion = () => {
-
-    // }
-
-    const handleQuestionSave = () => {
+    const validateQuestion = () => {
         if (currentQuestion.questionText === "") {
-            return
+            setError("The question content field cannot be empty")
+            return true
         }
 
         let selectedAnswer = false
         for (let i = 0; i < answers.length; i++ ) {
             if (answers[i].text === "" ){
-                return
+                setError("The answer field cannot be empty")
+                return true
             }
             if (answers[i].isCorrect === true) {
                 selectedAnswer = true
@@ -95,15 +98,29 @@ export const CreateQuizContextProvider = ({children}) => {
         }
 
         if (!selectedAnswer) {
+            setError("Choose which answer is correct")
+            return true
+        }
+        setError("")
+        return false
+
+    }
+
+    const handleQuestionSave = () => {
+        const isError = validateQuestion();
+        
+        if(isError) {
             return
         }
+        console.log("not errors")
 
         if (isEdit.current) {
             saveEditedQuestion(currentQuestion.id)
-            return
+            return true
         }
 
         setQuestions(prev => [...prev, {...currentQuestion, id: prev.length}])
+        return true
     }
 
     const handleSaveBtn = () => {
@@ -165,7 +182,23 @@ export const CreateQuizContextProvider = ({children}) => {
 
 
     return (
-        <CreateQuizContext.Provider value={{toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, editQuestion, deleteQuestion, handleSaveBtn, answers, questions, currentQuestion}}>
+        <CreateQuizContext.Provider value={
+            {
+                toggleCorrect, 
+                onDelBtnClick, 
+                handleAnswerChange,
+                addAnswer, 
+                handleQuestionChange, 
+                handleQuestionSave, 
+                handleAddNextQuestion, 
+                editQuestion, 
+                deleteQuestion, 
+                handleSaveBtn, 
+                answers, 
+                questions, 
+                currentQuestion, 
+                error
+            }}>
             {children}
         </CreateQuizContext.Provider>
     )
