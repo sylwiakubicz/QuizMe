@@ -4,6 +4,10 @@ import Question from "./Question"
 import QuizQuestionInfo from "./QuizQuestionInfo"
 
 
+function deleteFromLocalStorage() {
+    localStorage.removeItem("active");
+}
+// deleteFromLocalStorage()
 
 
 export default function Activate(props) {
