@@ -34,7 +34,7 @@ export default function CreateQuiz() {
                 <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} setTitle={setTitle}/>
                 <AddQuestion active={active} titile={title} setActive={setActive} />
                 <SetPreferences active={active} titile={title} setActive={setActive}/>
-                <Activate active={active} titile={title}/>
+                <Activate active={active} titile={title} setActive={setActive}/>
             </div>
         </div>
     )

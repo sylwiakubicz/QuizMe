@@ -7,7 +7,7 @@ import QuizQuestionInfo from "./QuizQuestionInfo"
 function deleteFromLocalStorage() {
     localStorage.removeItem("active");
 }
-// deleteFromLocalStorage()
+
 
 
 export default function Activate(props) {
@@ -29,7 +29,16 @@ export default function Activate(props) {
                         /> )
                 }
             </div>}
-            <button className="quiz--btn">Submit</button>
+            <div className="buttons-container">
+                <button className="quiz--btn delete-btn" onClick={(e) => {
+                    e.preventDefault()
+                    props.setActive("setPreferences")
+                    }}>Previous</button>
+                <button className="quiz--btn delete-btn" onClick={(e) => {
+                    e.preventDefault()
+                    deleteFromLocalStorage()
+                    }}>Submit</button>
+            </div>
             </div>
         </div>
     )
