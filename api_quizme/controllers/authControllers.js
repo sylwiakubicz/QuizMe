@@ -7,7 +7,7 @@ import config from "../config/index.js"
 
 const SITE_SECRET = config.reCaptcha.REACT_APP_SECRET_KEY
 
-const getCurrentTime = () => {
+export const getCurrentTime = () => {
     var now     = new Date(); 
         var year    = now.getFullYear();
         var month   = now.getMonth()+1; 

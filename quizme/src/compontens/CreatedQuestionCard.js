@@ -4,7 +4,7 @@ import React from "react"
 
 export default function CreatedQuestionCard({id, onEdit, onDelete, questionText, answers, active}) {
 
-    const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id})
+    const {attributes, listeners, setNodeRef, transform} = useSortable({id})
 
     const style ={
         transform: CSS.Transform.toString(transform),
