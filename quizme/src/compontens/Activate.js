@@ -11,18 +11,22 @@ export default function Activate(props) {
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
     
     return (
-        <div className={props.active === "activate" ? "settings-container" : "notShow"}>
+        <div>
+            <div className={props.active === "activate" ? "settings-container" : "notShow"}>
             {questions.length > 0 && 
-            <div >
+            <div>
                 <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length} category={"knowledge"}/>
                 {questions.map((question, questionIndex) =>
                     <Question 
+                        key={questionIndex}
                         quizText={question.questionText}
                         answers={question.answers}
                         fromActivate={true}
                         /> )
                 }
-            </div>}                
+            </div>}
+            <button className="quiz--btn">Submit</button>
+            </div>
         </div>
     )
 }

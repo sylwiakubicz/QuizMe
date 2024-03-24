@@ -11,15 +11,27 @@ export default function Answer({fromActivate, onChangeAnswer, answerText, answer
         <div>
             {answerText !== null && (
             <label className="answers--container">{answerText}
+            {fromActivate ?
                 <input 
                     name="answers"
                     key={answerIndex}
                     type="radio"
                     id={answerText}
                     value={answerText}
-                    onChange={fromActivate ? "" : handleChange}
-                    checked={fromActivate ? checkedAnswer : (checkedAnswer === answerText ? true : false)}
+                    checked={checkedAnswer}
+                    readOnly
                 />
+                : 
+                <input 
+                    name="answers"
+                    key={answerIndex}
+                    type="radio"
+                    id={answerText}
+                    value={answerText}
+                    onChange={handleChange}
+                    checked={checkedAnswer === answerText ? true : false}
+                />}
+                
                 <span className="radioBtn"></span>
             </label>
         )}
