@@ -78,3 +78,15 @@
 .correctAnswer {
     font-weight: bold;
 }
+
+.categoryDropListCreateQuiz {
+    height: 3.625rem;
+}
+
+.padding-top {
+    padding-top: 1.5rem;
+}
+
+.space {
+    padding: .5rem;
+}
