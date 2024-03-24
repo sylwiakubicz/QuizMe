@@ -20,7 +20,7 @@ export default function AddQuestionCard({active}) {
     }
 
     return (
-    <div className={active === "addQuestion" ? "settings-container" : "notShow"}>
+    <div className="settings-container">
         <div className="question">
             <h1 className="text-header text-center">Add question</h1>
             <input 
