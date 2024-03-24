@@ -68,7 +68,7 @@ function MyQuizes() {
                 : <div className="question--container quiz--infoCard myQuizes--container">
                     <p className="quiz--title">Create your first quiz</p>
                     <i className="fa-solid fa-question fa-rotate-180 quiz--title"></i>
-                    <Link to="#"><button className="quiz--btn">Create a quiz</button></Link>
+                    <Link to="/createquiz"><button className="quiz--btn">Create a quiz</button></Link>
                 </div>
             }
            
