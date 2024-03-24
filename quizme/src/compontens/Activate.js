@@ -2,7 +2,8 @@ import React from "react";
 import { CreateQuizContext } from "../context/CreateQuizContext";
 import Question from "./Question"
 import QuizQuestionInfo from "./QuizQuestionInfo"
-
+import {AuthContext} from "../context/authContext"
+import axios from "axios";
 
 function deleteFromLocalStorage() {
     localStorage.removeItem("active");
@@ -11,8 +12,32 @@ function deleteFromLocalStorage() {
 
 
 export default function Activate(props) {
+
+    const {currentUser} = React.useContext(AuthContext)
+
     const {questions} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
+
+    const handleSubmit = async () => {
+        const quizData = {
+            title: quizTitle,
+            image: "",
+            category: JSON.parse(window.localStorage.getItem('category')),
+            user_id: currentUser.id,
+            questions: questions,
+        }
+
+        try {
+            const res = await axios.post(`/quiz`, {quizData}, {
+                withCredentials:true,
+            })
+            console.log(res)
+
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
     
     return (
         <div>
@@ -36,7 +61,7 @@ export default function Activate(props) {
                     }}>Previous</button>
                 <button className="quiz--btn delete-btn" onClick={(e) => {
                     e.preventDefault()
-                    deleteFromLocalStorage()
+                    handleSubmit()
                     }}>Submit</button>
             </div>
             </div>

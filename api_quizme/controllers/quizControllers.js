@@ -119,8 +119,23 @@ export const updateUserScore = (req, res) => {
     })
 }
 
+// {
+//     title: 'Test',
+//     image: '',
+//     category: 'None',
+//     user_id: 23,
+//     questions: [
+//       { id: 1, questionText: 'te', answers: [Array] },
+//       { id: 2, questionText: 'test', answers: [Array] },
+//       { id: 3, questionText: 'tset', answers: [Array] },
+//       { id: 4, questionText: 'rewr', answers: [Array] }
+//     ]
+//   }
+
+
 export const addQuiz = (req,res) => {
     console.log("addQuiz")
+    console.log(req.body.quizData)
 }
 
 export const deleteQuiz = (req,res) => {

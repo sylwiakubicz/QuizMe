@@ -72,7 +72,7 @@ const Header = (props) => {
                             
                         }
                 </div>
-                <button onClick={props.switchTheme} className="themeToggle"><i className={props.theme === 'dark' ? "fa-solid fa-moon" : "fa-regular fa-sun"}></i></button>
+                <button onClick={props.switchTheme} className="themeToggle"><i className={props.theme === 'dark' ? "fa-solid fa-moon" : "fa-solid fa-sun"}></i></button>
             </div>
         </nav>
     )

@@ -21,6 +21,8 @@ export default function CreateQuiz() {
         localStorage.setItem('active', JSON.stringify(active));
     }, [active]);
 
+    
+
     return(
         <div className="myaccount-container page">
             {title && active ? <h1 className="text">{title}</h1> : <h1 className="text">Create a quiz</h1>}
@@ -30,7 +32,6 @@ export default function CreateQuiz() {
                     <li className={active === "setPreferences" ? "option option-bigger active" : "option option-bigger"}>Set preferences</li>
                     <li className={active === "activate" ? "option option-bigger active" : "option option-bigger"}>Acivate</li>
                 </div>
-                
                 <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} setTitle={setTitle}/>
                 <AddQuestion active={active} titile={title} setActive={setActive} />
                 <SetPreferences active={active} titile={title} setActive={setActive} title={title} setTitle={setTitle}/>
