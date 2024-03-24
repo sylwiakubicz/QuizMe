@@ -14,7 +14,7 @@ export default function QuizQuestionInfo(props) {
                 <h1 className="quiz--title">{props.quizTitle}</h1>
                 <img className="quiz--img" src={img} alt=""></img>
             </div>
-            {currentUser && 
+            {currentUser && !props.fromActivate && 
             <>
                 <hr className="quiz--line"/>
                 <div className="quiz--userInfo">
@@ -22,6 +22,17 @@ export default function QuizQuestionInfo(props) {
                     <p>Your best score: {2}/{props.numberOfQuestions}</p>
                 </div>
             </>
+            }
+
+            { props.fromActivate &&
+                <>
+                    <hr className="quiz--line"/>
+                    <div className="quiz--userInfo">
+                        <p>Category: {props.category}</p>
+                        <p>Numer of questions: {props.numberOfQuestions}</p>
+                    </div>
+                 </>
+
             }
 
         </div>

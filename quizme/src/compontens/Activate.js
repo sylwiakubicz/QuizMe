@@ -13,8 +13,8 @@ export default function Activate(props) {
     return (
         <div className={props.active === "activate" ? "settings-container" : "notShow"}>
             {questions.length > 0 && 
-            <div>
-                <QuizQuestionInfo quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length}/>
+            <div >
+                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length} category={"knowledge"}/>
                 {questions.map((question, questionIndex) =>
                     <Question 
                         quizText={question.questionText}
