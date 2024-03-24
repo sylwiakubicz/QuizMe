@@ -14,7 +14,7 @@ export default function CreateQuiz() {
     const [error, setError] = React.useState("")
 
     return(
-        <div className="myaccount-container">
+        <div className="myaccount-container page">
             {title && active ? <h1 className="text">{title}</h1> : <h1 className="text">Create a quiz</h1>}
             <div className="account-wrapper">
                 <div className="options">
