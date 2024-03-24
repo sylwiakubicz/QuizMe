@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef, useContext } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import axios from "axios"
 import "../../styles/quizQuestionCard.css"
-import Answer from "../Answer"
-import QuizQuestionInfo from "../QuizInfo"
+import Question from "../Question"
 import QuizScoreCard from "../QuizScoreCard"
+import QuizQuestionInfo from "../QuizQuestionInfo"
+
 import {AuthContext} from "../../context/authContext"
 
 
@@ -137,20 +138,22 @@ export default function TakeTheQuiz() {
                     {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length}/>}
                 </div>
                 : <div className="question--container"> 
+
                     {questions.length > 0 && (
-                <div>
-                    <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length}/>
-                    <div className="question--card">
-                        <h1 className="question--text">{questions[currentIndex].question}</h1>
-                        <form>
-                            {questions[currentIndex].answers.map((answer, answerIndex) => (
-                                <Answer key={answerIndex} answerText={Object.values(answer)[0]} answerIndex={answerIndex} onChangeAnswer={handleAnswerChange} checkedAnswer={currentAnswer} currentQuestionIndex={currentIndex}/>
-                            ))}                    
-                        </form>
-                    </div>
+                        <div >
+                            <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length}/>
+                            <Question 
+                                quizText={questions[currentIndex].question}
+                                answers={questions[currentIndex].answers}
+                                checkedAnswer={currentAnswer}
+                                currentQuestionIndex={currentIndex}
+                                onChangeAnswer={handleAnswerChange}
+                                fromActivate={false}
+                                />
+                        </div>
+                        )}
                     {error && <div className="quiz--error">{error}</div>}
                     <button className="quiz--btn" onClick={() => handleNextQuestion(questions[currentIndex].correctAnswer, questions[currentIndex].quizStats)}>Next Question</button>
-                </div>)}
                 </div>
             }
        </div>

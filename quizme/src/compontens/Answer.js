@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Answer({onChangeAnswer, answerText, answerIndex, checkedAnswer}) {
+export default function Answer({fromActivate, onChangeAnswer, answerText, answerIndex, checkedAnswer}) {
 
     const handleChange = (event) => {
         onChangeAnswer(event.target.value)
@@ -17,8 +17,8 @@ export default function Answer({onChangeAnswer, answerText, answerIndex, checked
                     type="radio"
                     id={answerText}
                     value={answerText}
-                    onChange={handleChange}
-                    checked={checkedAnswer === answerText ? true : false}
+                    onChange={fromActivate ? "" : handleChange}
+                    checked={fromActivate ? checkedAnswer : (checkedAnswer === answerText ? true : false)}
                 />
                 <span className="radioBtn"></span>
             </label>
