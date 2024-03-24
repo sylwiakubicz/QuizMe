@@ -3,12 +3,14 @@ import AddQuestion from "../AddQuestion";
 
 import "../../styles/AddQuiz.css"
 import AddTitle from "../AddTitle";
+import SetPreferences from "../SetPreferences";
+import Activate from "../Activate"
 
 
 export default function CreateQuiz() {
 
-    const [active, setActive] = React.useState("addQuestion")
-    const [title, setTitle] = React.useState("test")
+    const [active, setActive] = React.useState("")
+    const [title, setTitle] = React.useState("")
     const [error, setError] = React.useState("")
 
     return(
@@ -22,9 +24,9 @@ export default function CreateQuiz() {
                 </div>
                 
                 <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} setTitle={setTitle}/>
-                <AddQuestion active={active} titile={title} setError={setError} setActive={setActive} error={error}/>
-                {/* <SetPreferences active={active} titile={title}/>
-                <Activate active={active} titile={title}/> */}
+                <AddQuestion active={active} titile={title} setActive={setActive} />
+                <SetPreferences active={active} titile={title} setActive={setActive}/>
+                <Activate active={active} titile={title}/>
             </div>
         </div>
     )

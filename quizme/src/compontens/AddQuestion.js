@@ -25,7 +25,7 @@ export default function AddQuestion(props) {
     }
 
     return (
-        <div className="question">
+        <div className={props.active === "addQuestion" ? "question" : "notShow"}>
         <AddQuestionCard active={props.active}/>
             
         <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
@@ -37,8 +37,14 @@ export default function AddQuestion(props) {
         </DndContext>
 
             <div className="buttons-container settings-container">
-                <button className="quiz--btn delete-btn" >Previous</button>
-                <button className="quiz--btn delete-btn" >Continue</button>
+                <button className="quiz--btn delete-btn" onClick={(e) => {
+                    e.preventDefault()
+                    props.setActive("")
+                    }}>Previous</button>
+                <button className="quiz--btn delete-btn" onClick={(e) => {
+                    e.preventDefault()
+                    props.setActive("setPreferences")
+                    }}>Continue</button>
             </div>
         </div>
     )
