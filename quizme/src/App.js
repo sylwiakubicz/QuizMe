@@ -14,7 +14,6 @@ import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
 import CreateQuiz from "./compontens/pages/CreateQuiz";
 
-
 import "./style.css"
 
 function App() {

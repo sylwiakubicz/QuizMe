@@ -1,0 +1,30 @@
+.modal {
+    height: 15rem; 
+    position: absolute;
+    top: 3rem;
+    left: 40%;
+    transform: translateX(-50%, -50%);
+    background-color: rgb(var(--light-bg));
+    z-index: 100;
+    border: 2px solid rgb(var(--primary-color));
+    border-radius: .938rem;
+    padding: .6rem;
+    font-size: 1.5rem;
+    color: rgb(var(--text-dark))
+}
+
+.modal .wrapper {
+    padding-top: .5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal .wrapper .btn {
+    padding: .5rem;
+    width: 9.375rem;
+}
+
+.modal-text {
+    padding-top: 1.5rem;
+}
+
