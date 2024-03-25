@@ -64,8 +64,19 @@ export const QuizContextProvider = ({children}) => {
 
     }, [serachingText, quizes])
 
+
+    const deleteQuiz = async (id) => {
+        console.log("deletet")
+        try {
+            await axios.delete(`/quiz/${id}`, {
+                withCredentials:true,
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
-        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, allQuizes, isLoading, setSearchingText, setCategory}}>
+        <QuizContext.Provider value={{category, quizes, filterQuizes, serachingText, allQuizes, isLoading, deleteQuiz, setSearchingText, setCategory}}>
             {children}
         </QuizContext.Provider>
     )
