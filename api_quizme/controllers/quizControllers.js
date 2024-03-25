@@ -211,8 +211,6 @@ export const addQuiz = (req,res) => {
 }
 
 export const deleteQuiz = (req,res) => {
-    console.log("deleteQuiz")
-    console.log(req.params.id)
     const q = "DELETE FROM quizes WHERE id=?"
     db.query(q, req.params.id, (err,data)=> {
         if(err) {
