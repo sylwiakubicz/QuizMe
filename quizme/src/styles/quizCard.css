@@ -35,3 +35,14 @@
     transition: all ease-in-out 300ms;
 }
 
+
+.quizCard-icons {
+    position: absolute;
+    bottom: 1rem;
+    right: .625rem;
+    color: rgb(var(--text-dark));
+}
+
+.quizCard-icon {
+    padding-left: .5rem;
+}

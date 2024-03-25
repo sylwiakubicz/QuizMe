@@ -17,7 +17,8 @@ export default function Activate(props) {
         localStorage.removeItem("quizTitle");
         localStorage.removeItem("category");
     }
-    deleteFromLocalStorage()
+
+    
     const {currentUser} = React.useContext(AuthContext)
 
     const {questions} = React.useContext(CreateQuizContext)
