@@ -5,14 +5,19 @@ import QuizQuestionInfo from "./QuizQuestionInfo"
 import {AuthContext} from "../context/authContext"
 import axios from "axios";
 
-function deleteFromLocalStorage() {
-    localStorage.removeItem("active");
-}
+
 
 
 
 export default function Activate(props) {
 
+    function deleteFromLocalStorage() {
+        localStorage.removeItem("active");
+        localStorage.removeItem("questions");
+        localStorage.removeItem("quizTitle");
+        localStorage.removeItem("category");
+    }
+    deleteFromLocalStorage()
     const {currentUser} = React.useContext(AuthContext)
 
     const {questions} = React.useContext(CreateQuizContext)
@@ -28,10 +33,10 @@ export default function Activate(props) {
         }
 
         try {
-            const res = await axios.post(`/quiz`, {quizData}, {
+            await axios.post(`/quiz`, {quizData}, {
                 withCredentials:true,
             })
-            console.log(res)
+            deleteFromLocalStorage()           
 
         } catch (err) {
             console.log(err)

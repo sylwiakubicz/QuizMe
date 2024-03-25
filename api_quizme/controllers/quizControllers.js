@@ -120,29 +120,6 @@ export const updateUserScore = (req, res) => {
     })
 }
 
-// {
-//     title: 'Test',
-//     image: '',
-//     category: 'None',
-//     user_id: 23,
-//     questions: [
-//       { id: 1, questionText: 'te', answers: [Array] },
-//       { id: 2, questionText: 'test', answers: [Array] },
-//       { id: 3, questionText: 'tset', answers: [Array] },
-//       { id: 4, questionText: 'rewr', answers: [Array] }
-//     ]
-//   }
-
-// {
-//     id: 4,
-//     questionText: 'rewr',
-//     answers: [
-//       { text: 'rew', isCorrect: false },
-//       { text: 'rewrwe', isCorrect: true }
-//     ]
-//   }
-
-
 function transformData(questionText, answers) {
     const result = {
       questionText: questionText,
@@ -171,16 +148,6 @@ function transformData(questionText, answers) {
   
     return result;
 }
-
-// {
-//     questionText: 'rewr',
-//     answer1: 'rew',
-//     answer2: 'rewrwe',
-//     answer3: null,
-//     answer4: null,
-//     answer5: null,
-//     correctAnswer: 'rewrwe'
-//   }
 
 export const addQuiz = (req,res) => {
     const questionData = req.body.quizData.questions
