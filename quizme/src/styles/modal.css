@@ -4,17 +4,17 @@
     --bs-border-color: #495057;
     --bs-modal-zindex: 1055;
     --bs-modal-width: 500px;
-    --bs-modal-padding: 1rem;
+    --bs-modal-padding: 1.3rem;
     --bs-modal-border-width: var(--bs-border-width);
     --bs-modal-border-radius: var(--bs-border-radius-lg);
     --bs-modal-header-padding-x: 1rem;
     --bs-modal-header-padding-y: 1rem;
     --bs-modal-header-padding: 1rem 1rem;
-    --bs-modal-header-border-color: var(--bs-border-color);
+    --bs-modal-header-border-color: rgb(180, 177, 177);
     --bs-modal-header-border-width: var(--bs-border-width);
-    --bs-modal-title-line-height: 1.5;
+    --bs-modal-title-line-height: .8;
     --bs-modal-footer-gap: 0.5rem;
-    --bs-modal-footer-border-color: var(--bs-border-color);
+    --bs-modal-footer-border-color: rgb(206, 202, 202);
     --bs-modal-footer-border-width: var(--bs-border-width);
     position: fixed;
     top: 0;
@@ -26,6 +26,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     outline: 0;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
   }
 
 .modal-dialog {
@@ -67,7 +68,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.5);
+    padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * 0.9);
     border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color);
     border-bottom-right-radius: var(--bs-modal-inner-border-radius);
     border-bottom-left-radius: var(--bs-modal-inner-border-radius);
@@ -140,7 +141,7 @@
     width: 100%;
     pointer-events: auto;
     background-color: rgb(var(--light-bg));
-    border: 2px solid rgb(var(--secondary-color));
+    border: 1px solid rgb(180, 177, 177);
     border-radius: var(--bs-modal-border-radius);
 }
 

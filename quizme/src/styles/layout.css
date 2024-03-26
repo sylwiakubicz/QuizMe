@@ -97,7 +97,7 @@ footer li:hover::after {
 /* Button styling */
 .btn {
     background: rgb(var(--additional-color));
-    border-radius: 0.938rem;
+    border-radius: 0.55rem;
     cursor: pointer;
     color: rgb(var(--text-light));
 }
