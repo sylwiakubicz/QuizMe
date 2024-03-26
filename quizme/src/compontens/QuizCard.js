@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 export function QuizCard(props) {
 
     const {currentUser} = React.useContext(AuthContext)
-    const {deleteQuiz} = React.useContext(QuizContext)
+    const {deleteQuiz, setEditExistingQuiz} = React.useContext(QuizContext)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -20,6 +20,10 @@ export function QuizCard(props) {
     const navigate = useNavigate()
 
     const message = `Your quiz "${props.title}" will be deleted permamently`
+
+    const handleEdit = () =>{
+        setEditExistingQuiz(true)
+    }
 
     return (
 <>           
@@ -35,7 +39,7 @@ export function QuizCard(props) {
             </Link>
                 {props.user_id === currentUser.id && 
                 <div className="quizCard-icons">
-                    <i className="fa-solid fa-pen-to-square quizCard-icon"></i>
+                    <i className="fa-solid fa-pen-to-square quizCard-icon" onClick={handleEdit}></i>
                     <i className="fa-solid fa-trash quizCard-icon" onClick = {handleShow}></i>
                 </div>}
         </div>  
