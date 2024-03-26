@@ -13,6 +13,7 @@ export const CreateQuizContextProvider = ({children}) => {
         answers: answers,
     })
     const [error, setError] = useState("")
+    const [editExistingQuiz, setEditExistingQuiz] = useState(false)
 
     const isEdit = React.useRef(false)
     
@@ -189,10 +190,12 @@ export const CreateQuizContextProvider = ({children}) => {
                 deleteQuestion, 
                 handleSaveBtn, 
                 setQuestions,
+                setEditExistingQuiz,
                 answers, 
                 questions, 
                 currentQuestion, 
-                error
+                error,
+                editExistingQuiz
             }}>
             {children}
         </CreateQuizContext.Provider>

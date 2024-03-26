@@ -21,7 +21,7 @@ export default function Activate(props) {
     
     const {currentUser} = React.useContext(AuthContext)
 
-    const {questions} = React.useContext(CreateQuizContext)
+    const {questions, editExistingQuiz, setEditExistingQuiz} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
     const handleSubmit = async () => {
@@ -32,17 +32,20 @@ export default function Activate(props) {
             user_id: currentUser.id,
             questions: questions,
         }
-
-        try {
-            await axios.post(`/quiz`, {quizData}, {
-                withCredentials:true,
-            })
-            deleteFromLocalStorage()           
-
-        } catch (err) {
-            console.log(err)
+        if (editExistingQuiz) {
+            console.log("editing")
+            setEditExistingQuiz(false)
+        } else {
+            try {
+                await axios.post(`/quiz`, {quizData}, {
+                    withCredentials:true,
+                })
+                deleteFromLocalStorage()           
+    
+            } catch (err) {
+                console.log(err)
+            }
         }
-
     }
     
     return (
