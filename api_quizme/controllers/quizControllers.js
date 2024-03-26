@@ -27,6 +27,7 @@ export const getQuiz = (req,res) => {
                 quiz_id: item.quiz_id,
                 quizTitle: item.quizTitle,
                 question: item.question,
+                question_id: item.question_id,
                 quizImage: item.quizImage,
                 answers: [
                     { answer1: item.answer1 },
