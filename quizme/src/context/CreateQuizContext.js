@@ -174,11 +174,6 @@ export const CreateQuizContextProvider = ({children}) => {
         localStorage.setItem('questions', JSON.stringify(questions));
     }
 
-    function deleteFromLocalStorage() {
-        localStorage.removeItem("questions");
-    }
-    // deleteFromLocalStorage()
-
 
     return (
         <CreateQuizContext.Provider value={
