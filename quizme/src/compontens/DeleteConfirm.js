@@ -24,7 +24,7 @@ function DeleteConfirm(props) {
           <Modal.Title>Are you sure?</Modal.Title>
         </Modal.Header>
         <Modal.Body >
-        Your quiz "{props.quizTitle}" will be deleted permamently
+        {props.message}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.handleClose} >

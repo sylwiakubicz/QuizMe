@@ -19,6 +19,8 @@ export function QuizCard(props) {
     const handleShow = () => setShow(true);
     const navigate = useNavigate()
 
+    const message = `Your quiz "${props.title}" will be deleted permamently`
+
     return (
 <>           
         <div className="quizCard" >
@@ -45,7 +47,7 @@ export function QuizCard(props) {
                     navigate(0)
                     handleClose()
                 }} 
-                quizTitle={props.title} 
+                message={message}
             />
 </> 
     )
