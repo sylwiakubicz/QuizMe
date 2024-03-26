@@ -1,6 +1,9 @@
 import React from "react";
+import { CreateQuizContext } from "../context/CreateQuizContext";
 
 export default function AddTitle(props) {
+
+    const {title, setTitle} = React.useContext(CreateQuizContext)
 
     return (
         <div className={props.active === "" ? "settings-container center-container" : "notShow"}>
@@ -12,8 +15,8 @@ export default function AddTitle(props) {
                         type="text" 
                         placeholder="Quiz title" 
                         name="quiztitle"
-                        value={props.title}
-                        onChange={(e) => props.setTitle(e.target.value)}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
                 {props.error ? <p className="error">{props.error}</p> : null}

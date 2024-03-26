@@ -7,6 +7,8 @@ export const CreateQuizContextProvider = ({children}) => {
 
     const [questions, setQuestions] = useState(JSON.parse(window.localStorage.getItem('questions')) || [])   
     const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
+    const [category, setCategory] = React.useState("None")
+    const [title, setTitle] = React.useState(JSON.parse(window.localStorage.getItem('quizTitle')) || "")
     const [currentQuestion, setCurrentQuestion] = useState({
         id: 1,
         questionText: "",
@@ -33,7 +35,14 @@ export const CreateQuizContextProvider = ({children}) => {
         localStorage.setItem('questions', JSON.stringify(questions));
     }, [questions]);
 
-
+    
+    useEffect(() => {
+        localStorage.setItem('category', JSON.stringify(category));
+    }, [category]);
+    
+    useEffect(() => {
+        localStorage.setItem('quizTitle', JSON.stringify(title));
+    }, [title]);
 
     const handleQuestionChange = (e) => {
         setCurrentQuestion(prev => {
@@ -45,9 +54,6 @@ export const CreateQuizContextProvider = ({children}) => {
             )
         })
     };
-
-    useEffect(() => {
-    }, [error]);
 
 
     const handleAnswerChange = (index, text) => {
@@ -191,11 +197,15 @@ export const CreateQuizContextProvider = ({children}) => {
                 handleSaveBtn, 
                 setQuestions,
                 setEditExistingQuiz,
+                setCategory,
+                setTitle,
+                category,
                 answers, 
                 questions, 
                 currentQuestion, 
                 error,
-                editExistingQuiz
+                editExistingQuiz,
+                title
             }}>
             {children}
         </CreateQuizContext.Provider>

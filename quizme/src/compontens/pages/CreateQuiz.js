@@ -5,23 +5,19 @@ import "../../styles/AddQuiz.css"
 import AddTitle from "../AddTitle";
 import SetPreferences from "../SetPreferences";
 import Activate from "../Activate"
+import { CreateQuizContext } from "../../context/CreateQuizContext";
 
 
 export default function CreateQuiz() {
 
-    const [active, setActive] = React.useState(JSON.parse(window.localStorage.getItem('active')) || "")
-    const [title, setTitle] = React.useState(JSON.parse(window.localStorage.getItem('quizTitle')) || "")
-    const [error, setError] = React.useState("")
+    const {title, setTitle} = React.useContext(CreateQuizContext)
 
-    useEffect(() => {
-        localStorage.setItem('quizTitle', JSON.stringify(title));
-    }, [title]);
+    const [active, setActive] = React.useState(JSON.parse(window.localStorage.getItem('active')) || "")
+    const [error, setError] = React.useState("")
 
     useEffect(() => {
         localStorage.setItem('active', JSON.stringify(active));
     }, [active]);
-
-    
 
     return(
         <div className="myaccount-container page">
@@ -33,9 +29,9 @@ export default function CreateQuiz() {
                     <li className={active === "activate" ? "option option-bigger active" : "option option-bigger"}>Acivate</li>
                 </div>
                 <AddTitle active={active} title={title} setError={setError} setActive={setActive} error={error} setTitle={setTitle}/>
-                <AddQuestion active={active} titile={title} setActive={setActive} />
-                <SetPreferences active={active} titile={title} setActive={setActive} title={title} setTitle={setTitle}/>
-                <Activate active={active} titile={title} setActive={setActive}/>
+                <AddQuestion active={active} setActive={setActive} />
+                <SetPreferences active={active} setActive={setActive}/>
+                <Activate active={active} setActive={setActive}/>
             </div>
         </div>
     )

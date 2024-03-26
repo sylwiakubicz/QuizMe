@@ -1,14 +1,11 @@
 import React, {useEffect} from "react";
+import { CreateQuizContext } from "../context/CreateQuizContext";
 
 
 export default function SetPreferences(props) {
 
     
-    const [category, setCategory] = React.useState("None")
-    
-    useEffect(() => {
-        localStorage.setItem('category', JSON.stringify(category));
-    }, [category]);
+    const {category, setCategory, title, setTitle} = React.useContext(CreateQuizContext)
 
     return (
         <div className={props.active === "setPreferences" ? "settings-container" : "notShow"}>
@@ -29,8 +26,8 @@ export default function SetPreferences(props) {
                     type="text" 
                     placeholder="Quiz title" 
                     name="quiztitle"
-                    value={props.title}
-                    onChange={(e) => props.setTitle(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
 
