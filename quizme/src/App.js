@@ -13,17 +13,14 @@ import MyQuizes from "./compontens/pages/MyQuizes";
 import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
 import CreateQuiz from "./compontens/pages/CreateQuiz";
+import { ThemeContext } from './context/themeContext';
+
 
 import "./style.css"
 
 function App() {
+  const {theme, switchTheme} = React.useContext(ThemeContext)
 
-    const [theme, setTheme] = useLocalStorage('theme' ? 'dark' : 'light')
-
-    const switchTheme = () => {
-      const newTheme = theme === 'light' ? 'dark' : 'light'
-      setTheme(newTheme)
-    }
 
     return (
       <div data-theme={theme} className="app"> 
