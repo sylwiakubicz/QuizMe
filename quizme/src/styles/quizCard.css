@@ -14,6 +14,7 @@
 .quizImg {
     height: 25rem;
     border-radius: .88rem;
+    width: 100%;
 }
 
 .quizTitle {
