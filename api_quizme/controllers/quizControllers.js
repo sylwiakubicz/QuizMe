@@ -96,6 +96,7 @@ export const getUserScore = (req, res) => {
 }
 
 export const setUserScore = (req, res) => {
+    console.log("z dupy zaczynamy tą funkcję")
     const values = [
         req.body.userID,
         req.params.id,
@@ -152,16 +153,20 @@ function transformData(questionText, answers) {
 }
 
 export const addQuiz = (req,res) => {
-    const questionData = req.body.quizData.questions
+    console.log("Starting addQuiz function")
     const quizData = req.body.quizData
+    console.log("Received quizData:", quizData);
     const date = getCurrentTime()
+    console.log("Current time:", date);
 
     const getcategoryid = "SELECT id FROM categories WHERE category=?"
     db.query(getcategoryid, quizData.category, (err, data) => {
         if (err) {
+            console.error("Error fetching category id:", err);
             return res.status(500).send(err)
         }
         const category_id = data[0].id 
+        console.log("Category ID:", category_id)
 
         const inserQuizData = "INSERT INTO quizes (title, image, category_id, user_id, date) VALUES (?)"
         const values = [
@@ -171,44 +176,62 @@ export const addQuiz = (req,res) => {
             quizData.user_id,
             date
         ]
+        console.log("Inserting quiz with values:", values); 
 
         db.query(inserQuizData, [values], (err, data) => {
             if (err) {
+                console.error("Error inserting quiz data:", err);
                 return res.status(500).send(err)
             }
-            res.status(200)
+            console.log("Quiz data inserted successfully"); 
+            return res.status(200).send("Quiz added successfully")
         })
+        return res.status(200)
+    })
+}
 
+export const addQuestions = (req, res) => {
+    console.log("Starting addQuestions function"); 
+    const questionData = req.body.quizData.questions
+    const quizData = req.body.quizData
+    console.log("Received questions data:", questionData); 
 
-        const getQuizId = "SELECT id FROM quizes WHERE title = ? AND user_id = ?"
-        const inserQuestionData = "INSERT INTO questions (quiz_id, question, answer1, answer2, answer3, answer4, answer5, correctAnswer) VALUES (?)"
-        db.query(getQuizId, [quizData.title, quizData.user_id] , (err, data) => {
-            if (err) {
-                return res.status(500).send(err)
-            }
-            const quiz_id = data[0].id
+    const getQuizId = "SELECT id FROM quizes WHERE title = ? AND user_id = ?"
+    const inserQuestionData = "INSERT INTO questions (quiz_id, question, answer1, answer2, answer3, answer4, answer5, correctAnswer) VALUES (?)"
+    db.query(getQuizId, [quizData.title, quizData.user_id] , (err, data) => {
+        if (err) {
+            console.error("Error fetching quiz id:", err);
+            return res.status(500).send(err)
+        }
+        const quiz_id = data[0].id
+        console.log("Quiz ID:", quiz_id);
 
-            for (let i = 0; i < questionData.length; i++) {
+        for (let i = 0; i < questionData.length; i++) {
+            console.log(`Processing question ${i + 1}:`)
 
-                const transformedData = transformData(questionData[i].questionText, questionData[i].answers)
-                const values = [
-                    quiz_id,
-                    transformedData.questionText,
-                    transformedData.answer1,
-                    transformedData.answer2,
-                    transformedData.answer3,
-                    transformedData.answer4,
-                    transformedData.answer5,
-                    transformedData.correctAnswer
-                ]
-                db.query(inserQuestionData, [values], (err, data) => {
-                    if (err) {
-                        return res.status(500).send(err)
-                    }
-                    return res.status(200)
-                })
-            }
-        })
+            const transformedData = transformData(questionData[i].questionText, questionData[i].answers)
+            console.log("Transformed question data:", transformedData)
+            const values = [
+                quiz_id,
+                transformedData.questionText,
+                transformedData.answer1,
+                transformedData.answer2,
+                transformedData.answer3,
+                transformedData.answer4,
+                transformedData.answer5,
+                transformedData.correctAnswer
+            ]
+            
+            db.query(inserQuestionData, [values], (err, data) => {
+                if (err) {
+                    console.error(`Error inserting question ${index + 1}:`, err); 
+                    return res.status(500).send(err)
+                }
+                console.log(`Question ${i + 1} inserted successfully`);
+            })
+        }
+        console.log("all questions added")
+        return res.status(200).send("Questions added successfully")
     })
 }
 
