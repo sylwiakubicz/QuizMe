@@ -90,3 +90,7 @@
 .space {
     padding: .5rem;
 }
+
+.createdQuestionText {
+text-wrap: wrap;
+}

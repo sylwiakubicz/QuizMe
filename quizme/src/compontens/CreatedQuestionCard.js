@@ -17,7 +17,7 @@ export default function CreatedQuestionCard({id, onEdit, onDelete, questionText,
                     <i className="fa-solid fa-pen-to-square" onClick={onEdit}></i>
                     <i className="fa-solid fa-trash" onClick={onDelete}></i>
                 </div>
-                <h2>{questionText}</h2>
+                <h2 className="createdQuestionText">{questionText}</h2>
                 {
                     answers.map((answer, a_index) => <p key={a_index} className={answer.isCorrect ? "correctAnswer" : ""}>{a_index + 1 + ". " + answer.text}</p>)
                 }
