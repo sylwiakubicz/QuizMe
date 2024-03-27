@@ -45,7 +45,7 @@ export function QuizCard(props) {
             ]})
             setTitle(res.data[0].quizTitle)
             setCategory(res.data[0].category)
-            
+            navigate("/createquiz")
         })
     } catch (err) {
         console.log(err)
