@@ -50,7 +50,7 @@ export const CreateQuizContextProvider = ({children}) => {
         localStorage.removeItem("quizTitle");
         localStorage.removeItem("category");
     }
-
+    
     const handledelete = () => {
         console.log("handledelete")
         deleteFromLocalStorage()

@@ -3,10 +3,15 @@ import { AuthContext } from "../../context/authContext"
 import { QuizCard } from "../QuizCard"
 import axios from "axios";
 import {Link} from "react-router-dom"
+import {CreateQuizContext} from "../../context/CreateQuizContext"
+
 
 
 
 function MyQuizes() {
+    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
+
+    deleteFromLocalStorage()
 
     const {currentUser} = React.useContext(AuthContext)
 

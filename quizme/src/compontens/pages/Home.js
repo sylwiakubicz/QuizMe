@@ -4,10 +4,14 @@ import { useLocation } from "react-router-dom"
 import { QuizCard } from "../QuizCard"
 
 import { QuizContext } from "../../context/quizContext"
+import {CreateQuizContext} from "../../context/CreateQuizContext"
 
 
 
 function Home() {
+    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
+
+    deleteFromLocalStorage()
 
     const {category, quizes, filterQuizes, isLoading,  setSearchingText, serachingText, setCategory} = React.useContext(QuizContext)
     

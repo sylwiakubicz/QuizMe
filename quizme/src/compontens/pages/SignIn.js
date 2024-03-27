@@ -1,11 +1,16 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import { AuthContext } from "../../context/authContext"
+import {CreateQuizContext} from "../../context/CreateQuizContext"
+
 import "../../styles/form.css"
 
 
 
 function SignIn() {
+    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
+
+    deleteFromLocalStorage()
 
     const navigate = useNavigate()
     const [signInData, setSignInData] = React.useState(

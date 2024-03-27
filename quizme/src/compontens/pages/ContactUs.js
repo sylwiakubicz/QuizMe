@@ -2,10 +2,14 @@ import React from "react"
 import "../../styles/form.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import {CreateQuizContext} from "../../context/CreateQuizContext"
 
 
 
 function ContactUs() {
+    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
+
+    deleteFromLocalStorage()
 
     const navigate = useNavigate()
     const [contactFormData, setContanctFormData] = React.useState(

@@ -5,12 +5,18 @@ import "../../styles/quizQuestionCard.css"
 import Question from "../Question"
 import QuizScoreCard from "../QuizScoreCard"
 import QuizQuestionInfo from "../QuizQuestionInfo"
+import {CreateQuizContext} from "../../context/CreateQuizContext"
+
 
 import {AuthContext} from "../../context/authContext"
 
 
 
 export default function TakeTheQuiz() {
+    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
+
+    deleteFromLocalStorage()
+
     const navigate = useNavigate()
     const quizID = useLocation().pathname.split("/")[1]
     const {currentUser, logout} = useContext(AuthContext)
