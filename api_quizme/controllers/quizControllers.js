@@ -15,7 +15,7 @@ export const getQuizes = (req,res) => {
 
 export const getQuiz = (req,res) => {
     const quizID  = req.params.id
-    const q = "SELECT questions.id AS question_id, quizes.id AS quiz_id, quizes.title AS quizTitle, quizes.image AS quizImage, stats, question, answer1, answer2, answer3, answer4, answer5, correctAnswer FROM questions INNER JOIN quizes ON questions.quiz_id = quizes.id WHERE quizes.id = ?"
+    const q = "SELECT questions.id AS question_id, quizes.id AS quiz_id, quizes.title AS quizTitle, quizes.image AS quizImage, stats, question, answer1, answer2, answer3, answer4, answer5, correctAnswer, categories.category AS category FROM questions INNER JOIN quizes ON questions.quiz_id = quizes.id INNER JOIN categories ON quizes.category_id = categories.id WHERE quizes.id = ?"
     db.query(q, [quizID], (err, data) => {
         if (err) {
             return res.status(500).send(err)
@@ -37,7 +37,8 @@ export const getQuiz = (req,res) => {
                     { answer5: item.answer5 },
                 ],
                 correctAnswer: item.correctAnswer,
-                quizStats: item.stats
+                quizStats: item.stats,
+                category: item.category
             };
         });
         return res.status(200).json(formatedData)

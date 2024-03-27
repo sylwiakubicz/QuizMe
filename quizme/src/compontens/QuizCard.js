@@ -7,13 +7,15 @@ import {QuizContext} from "../context/quizContext"
 import DeleteConfirm from "./DeleteConfirm"
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
+import { CreateQuizContext } from "../context/CreateQuizContext"
 
 
 
 export function QuizCard(props) {
 
     const {currentUser} = React.useContext(AuthContext)
-    const {deleteQuiz, setEditExistingQuiz, setQuestions} = React.useContext(QuizContext)
+    const {deleteQuiz} = React.useContext(QuizContext)
+    const {setEditExistingQuiz, questions, setQuestions, setTitle, setCategory} = React.useContext(CreateQuizContext)
 
     const message = `Your quiz "${props.title}" will be deleted permamently`
     const [show, setShow] = useState(false);
@@ -26,7 +28,25 @@ export function QuizCard(props) {
         try {const res = await axios.get(`/quiz/${quiz_id}`, {
             withCredentials:true,
         })
-        setQuestions(res.data)
+
+        res.data.map(item => {
+            setQuestions(prev => {return [
+                ...prev,
+                {
+                    id: item.question_id,
+                    questionText: item.question,
+                    answers: item.answers.map(answer => {return [
+                        {
+                            text: Object.values(answer)[0],
+                            isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
+                        }
+                    ]})
+                }
+            ]})
+            setTitle(res.data[0].quizTitle)
+            setCategory(res.data[0].category)
+            
+        })
     } catch (err) {
         console.log(err)
     }}
@@ -34,6 +54,7 @@ export function QuizCard(props) {
     const handleEdit = (quiz_id) =>{
         setEditExistingQuiz(true)
         fetchData(quiz_id)
+        console.log(questions)
     }
 
     return (

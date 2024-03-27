@@ -8,7 +8,7 @@ export const CreateQuizContextProvider = ({children}) => {
     const [questions, setQuestions] = useState(JSON.parse(window.localStorage.getItem('questions')) || [])   
     const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
     const [category, setCategory] = React.useState("None")
-    const [title, setTitle] = React.useState(JSON.parse(window.localStorage.getItem('quizTitle')) || "")
+    const [title, setTitle] = React.useState("")
     const [currentQuestion, setCurrentQuestion] = useState({
         id: 1,
         questionText: "",

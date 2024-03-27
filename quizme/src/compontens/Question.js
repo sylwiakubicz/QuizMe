@@ -1,7 +1,7 @@
 import React from "react";
 import Answer from "./Answer"
 
-export default function Question({fromActivate, quizTitle, quizImage, numberOfQuestions, quizText, answers, checkedAnswer, currentQuestionIndex, onChangeAnswer}) {
+export default function Question({fromActivate, quizText, answers, checkedAnswer, currentQuestionIndex, onChangeAnswer}) {
 
     return (
             <div className="question--card">
