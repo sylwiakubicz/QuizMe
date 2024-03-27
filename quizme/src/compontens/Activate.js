@@ -4,24 +4,18 @@ import Question from "./Question"
 import QuizQuestionInfo from "./QuizQuestionInfo"
 import {AuthContext} from "../context/authContext"
 import axios from "axios";
+import { useNavigate} from "react-router-dom"
 
 
 
 
 
 export default function Activate(props) {
-
-    function deleteFromLocalStorage() {
-        localStorage.removeItem("active");
-        localStorage.removeItem("questions");
-        localStorage.removeItem("quizTitle");
-        localStorage.removeItem("category");
-    }
-
-    
+    const navigate = useNavigate()
+   
     const {currentUser} = React.useContext(AuthContext)
 
-    const {questions, editExistingQuiz, setEditExistingQuiz} = React.useContext(CreateQuizContext)
+    const {questions, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
     const handleSubmit = async () => {
@@ -40,8 +34,19 @@ export default function Activate(props) {
                 await axios.post(`/quiz`, {quizData}, {
                     withCredentials:true,
                 })
-                deleteFromLocalStorage()           
-    
+                console.log("add quiz done")    
+
+            } catch (err) {
+                console.log(err)
+            }
+
+            try {
+                await axios.post(`/quiz/questions`, {quizData}, {
+                    withCredentials:true,
+                })  
+                console.log("add questions done")
+                handledelete()
+                navigate("/MyQuizes")
             } catch (err) {
                 console.log(err)
             }
