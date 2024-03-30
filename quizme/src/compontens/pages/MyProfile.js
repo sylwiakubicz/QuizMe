@@ -2,15 +2,11 @@ import React from "react"
 import DeleteAccount from "../DeleteAccount"
 import ChangePassword from "../ChangePassword"
 import ChangeUserData from "../ChangeUserData"
-import {CreateQuizContext} from "../../context/CreateQuizContext"
 
 
 
 
 function MyProfile() {
-    const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
-
-    deleteFromLocalStorage()
     const [active, setActive] = React.useState("accountSettings")
     const [show, setShow] = React.useState(false)
 

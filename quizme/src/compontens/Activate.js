@@ -15,7 +15,7 @@ export default function Activate(props) {
    
     const {currentUser} = React.useContext(AuthContext)
 
-    const {questions, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
+    const {questions, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
     const handleSubmit = async () => {
@@ -58,7 +58,7 @@ export default function Activate(props) {
             <div className={props.active === "activate" ? "settings-container" : "notShow"}>
             {questions.length > 0 && 
             <div>
-                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length} category={"knowledge"}/>
+                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length} category={category}/>
                 {questions.map((question, questionIndex) =>
                     <Question 
                         key={questionIndex}

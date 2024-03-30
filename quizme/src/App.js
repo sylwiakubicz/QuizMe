@@ -1,6 +1,5 @@
 import React from "react"
-import useLocalStorage from "use-local-storage"
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, useLocation} from "react-router-dom";
 
 import Home from "./compontens/pages/Home"
 import ContactUs from "./compontens/pages/ContactUs"
@@ -14,13 +13,21 @@ import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
 import CreateQuiz from "./compontens/pages/CreateQuiz";
 import { ThemeContext } from './context/themeContext';
+import {CreateQuizContext} from "./context/CreateQuizContext"
 
 
 import "./style.css"
 
 function App() {
   const {theme, switchTheme} = React.useContext(ThemeContext)
+  const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
 
+
+  console.log(useLocation().pathname)
+  if (useLocation().pathname != "/createquiz") {
+    console.log("delete")
+    deleteFromLocalStorage()
+  }
 
     return (
       <div data-theme={theme} className="app"> 
