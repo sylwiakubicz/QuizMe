@@ -42,7 +42,7 @@ function MyQuizes() {
         }
         
     
-    }, [currentFilter])
+    }, [currentFilter, currentUser.id])
     
 
     return (
