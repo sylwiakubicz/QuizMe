@@ -14,7 +14,7 @@ function Home() {
     const cat = useLocation().search
     useEffect(() => {
         setCategory(cat === "" ? "" : cat.split("=")[1])
-    }, [cat]) 
+    }, [cat, setCategory]) 
 
 
     return (
