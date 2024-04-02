@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import {Routes, Route, useLocation} from "react-router-dom";
 
 import Home from "./compontens/pages/Home"
@@ -22,12 +22,15 @@ function App() {
   const {theme, switchTheme} = React.useContext(ThemeContext)
   const {deleteFromLocalStorage} = React.useContext(CreateQuizContext)
 
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname !== "/createquiz") {
+      console.log("delete")
+      deleteFromLocalStorage()
+    }
+}, [location]);
 
-  console.log(useLocation().pathname)
-  if (useLocation().pathname != "/createquiz") {
-    console.log("delete")
-    deleteFromLocalStorage()
-  }
+
 
     return (
       <div data-theme={theme} className="app"> 
