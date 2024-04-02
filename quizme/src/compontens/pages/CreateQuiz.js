@@ -6,7 +6,6 @@ import AddTitle from "../AddTitle";
 import SetPreferences from "../SetPreferences";
 import Activate from "../Activate"
 import { CreateQuizContext } from "../../context/CreateQuizContext";
-import {useNavigate} from "react-router-dom"
 
 export default function CreateQuiz() {
 
