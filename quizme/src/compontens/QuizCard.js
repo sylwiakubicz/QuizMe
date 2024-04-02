@@ -31,6 +31,15 @@ export function QuizCard(props) {
             });
     
             res.data.forEach(item => { // Use forEach for side effects
+                const toAdd= {
+                    id: item.question_id,
+                    questionText: item.question,
+                    answers: item.answers.map(answer => [{
+                        text: Object.values(answer)[0],
+                        isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
+                    }])
+                }
+                console.log(toAdd)
                 setQuestions(prev => [
                     ...prev,
                     {
@@ -41,11 +50,11 @@ export function QuizCard(props) {
                             isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
                         }])
                     }
-                ]);
-                setTitle(res.data[0].quizTitle);
-                setCategory(res.data[0].category);
-                navigate("/createquiz");
+                ])
             });
+            setTitle(res.data[0].quizTitle);
+            setCategory(res.data[0].category);
+            navigate("/createquiz");
         } catch (err) {
             console.log(err);
         }
@@ -54,7 +63,6 @@ export function QuizCard(props) {
     const handleEdit = (quiz_id) =>{
         setEditExistingQuiz(true)
         fetchData(quiz_id)
-        console.log(questions)
     }
 
     return (

@@ -24,6 +24,8 @@ export default function AddQuestion(props) {
         })
     }
 
+questions.forEach(item => item.answers.forEach(a => console.log(a)))
+
     return (
         <div className={props.active === "addQuestion" ? "question" : "notShow"}>
         <AddQuestionCard active={props.active}/>
