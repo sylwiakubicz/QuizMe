@@ -25,32 +25,32 @@ export function QuizCard(props) {
     const navigate = useNavigate()
 
     const fetchData = async (quiz_id) => {
-        try {const res = await axios.get(`/quiz/${quiz_id}`, {
-            withCredentials:true,
-        })
-
-        res.data.map(item => {
-            setQuestions(prev => {return [
-                ...prev,
-                {
-                    id: item.question_id,
-                    questionText: item.question,
-                    answers: item.answers.map(answer => {return [
-                        {
+        try {
+            const res = await axios.get(`/quiz/${quiz_id}`, {
+                withCredentials: true,
+            });
+    
+            res.data.forEach(item => { // Use forEach for side effects
+                setQuestions(prev => [
+                    ...prev,
+                    {
+                        id: item.question_id,
+                        questionText: item.question,
+                        answers: item.answers.map(answer => [{
                             text: Object.values(answer)[0],
                             isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
-                        }
-                    ]})
-                }
-            ]})
-            setTitle(res.data[0].quizTitle)
-            setCategory(res.data[0].category)
-            navigate("/createquiz")
-        })
-    } catch (err) {
-        console.log(err)
-    }}
-
+                        }])
+                    }
+                ]);
+                setTitle(res.data[0].quizTitle);
+                setCategory(res.data[0].category);
+                navigate("/createquiz");
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+    
     const handleEdit = (quiz_id) =>{
         setEditExistingQuiz(true)
         fetchData(quiz_id)
@@ -69,7 +69,7 @@ export function QuizCard(props) {
                 <h2 className="quizTitle">{props.title}</h2>
                 <p className="quizStats"><i className="fa-solid fa-chart-simple"></i> {props.stats}</p>
             </Link>
-                {props.user_id === currentUser.id && 
+                {props.user_id === currentUser?.id && 
                 <div className="quizCard-icons">
                     <i className="fa-solid fa-pen-to-square quizCard-icon" onClick={() => handleEdit(props.id)}></i>
                     <i className="fa-solid fa-trash quizCard-icon" onClick = {handleShow}></i>
