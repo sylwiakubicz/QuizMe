@@ -139,7 +139,9 @@ export const CreateQuizContextProvider = ({children}) => {
             saveEditedQuestion(currentQuestion.id)
             return true
         }
+
         setQuestions(prev => [...prev, {...currentQuestion, id: prev.length + 1}])
+        handleSaveBtn()
         return true
     }
 
@@ -227,7 +229,8 @@ export const CreateQuizContextProvider = ({children}) => {
                 currentQuestion, 
                 error,
                 editExistingQuiz,
-                title
+                title,
+                isEdit
             }}>
             {children}
         </CreateQuizContext.Provider>

@@ -2,8 +2,8 @@ import React from "react";
 import { CreateQuizContext } from "../context/CreateQuizContext";
 import AddAnswer from "../compontens/AddAnswer"
 
-export default function AddQuestionCard({active}) {
-    const {toggleCorrect, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, handleSaveBtn, answers, currentQuestion, error} = React.useContext(CreateQuizContext)
+export default function AddQuestionCard() {
+    const {toggleCorrect, isEdit, onDelBtnClick, handleAnswerChange, addAnswer, handleQuestionChange, handleQuestionSave, handleAddNextQuestion, handleSaveBtn, answers, currentQuestion, error} = React.useContext(CreateQuizContext)
     
     const handleSave = () => {
         const letsContinue = handleQuestionSave()
@@ -13,8 +13,10 @@ export default function AddQuestionCard({active}) {
     }
 
     const handleNextQuestion = () => {
-        const letsContinue = handleQuestionSave()
-        if (letsContinue) {
+        if (isEdit.current) {
+            handleAddNextQuestion()
+        } else {
+            handleQuestionSave()
             handleAddNextQuestion()
         }
     }
