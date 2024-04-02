@@ -22,7 +22,7 @@ export default function CreatedQuestionCard({id, onEdit, onDelete, questionText,
                 </div>
                 <h2 className="createdQuestionText">{questionText}</h2>
                 {editExistingQuiz ? 
-                    answers.map((answer, a_index) => <p key={a_index} className={answer.isCorrect ? "correctAnswer" : ""}>{a_index + 1 + ". " + answer.text}</p>)
+                    answers.map((answer, a_index) => <p key={a_index} className={answer[0].isCorrect ? "correctAnswer" : ""}>{a_index + 1 + ". " + answer[0].text}</p>)
                 :
                     answers.map((answer, a_index) => <p key={a_index} className={answer.isCorrect ? "correctAnswer" : ""}>{a_index + 1 + ". " + answer.text}</p>)     
                 }
