@@ -6,7 +6,7 @@ export const CreateQuizContextProvider = ({children}) => {
 
     const [questions, setQuestions] = useState(JSON.parse(window.localStorage.getItem('questions')) || [])   
     const [answers, setAnswers] = useState([{ text: '', isCorrect: false }, { text: '', isCorrect: false }]);
-    const [category, setCategory] = React.useState("None")
+    const [category, setCategory] = React.useState(JSON.parse(window.localStorage.getItem('category')) || "None")
     const [title, setTitle] = React.useState(JSON.parse(window.localStorage.getItem('quizTitle')) || "")
     const [currentQuestion, setCurrentQuestion] = useState({
         id: 1,
@@ -41,13 +41,17 @@ export const CreateQuizContextProvider = ({children}) => {
     useEffect(() => {
         localStorage.setItem('quizTitle', JSON.stringify(title));
     }, [title]);
-        
+      
+    
     function deleteFromLocalStorage() {
-        console.log("handelDeletefromls")
         localStorage.removeItem("active");
         localStorage.removeItem("questions");
         localStorage.removeItem("quizTitle");
         localStorage.removeItem("category");
+
+        setQuestions([])
+        setTitle("")
+        setCategory("None")
     }
     
     const handledelete = () => {
