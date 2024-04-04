@@ -15,7 +15,7 @@ export function QuizCard(props) {
 
     const {currentUser} = React.useContext(AuthContext)
     const {deleteQuiz} = React.useContext(QuizContext)
-    const {setEditExistingQuiz, questions, setQuestions, setTitle, setCategory} = React.useContext(CreateQuizContext)
+    const {setEditExistingQuiz, setQuestions, setTitle, setCategory, quizID} = React.useContext(CreateQuizContext)
 
     const message = `Your quiz "${props.title}" will be deleted permamently`
     const [show, setShow] = useState(false);
@@ -43,6 +43,7 @@ export function QuizCard(props) {
                     }
                 ])
             });
+            quizID.current = quiz_id
             setTitle(res.data[0].quizTitle);
             setCategory(res.data[0].category);
             navigate("/createquiz");

@@ -227,7 +227,41 @@ export const deleteQuiz = (req,res) => {
     })
 }
 
-export const updateQuiz = (req,res) => {
-    console.log("updateQuiz")
-}
+const getCategoryId = (category) => {
+    return new Promise((resolve, reject) => {
+        const getCategoryIdQuery = "SELECT id FROM categories WHERE category = ?";
+        db.query(getCategoryIdQuery, [category], (err, data) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(data[0].id);
+            }
+        });
+    });
+};
+
+export const updateQuiz = async (req, res) => {
+    try {
+        const category_id = await getCategoryId(req.body.quizData.category);
+        const date = getCurrentTime();
+        const q = "UPDATE quizes SET title = ?, category_id = ?, image = ?, date = ? WHERE id = ?";
+        const updatedValues = [
+            req.body.quizData.title,
+            category_id,
+            req.body.quizData.image,
+            date,
+            req.body.quizData.quiz_id
+        ];
+
+        db.query(q, updatedValues, (err, data) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            return res.status(200).send("Quiz updated");
+        });
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+};
+
 

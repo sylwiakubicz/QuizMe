@@ -17,6 +17,7 @@ export const CreateQuizContextProvider = ({children}) => {
     const [editExistingQuiz, setEditExistingQuiz] = useState(false)
 
     const isEdit = React.useRef(false)
+    const quizID = React.useRef(0)
 
     useEffect(() => {
         setCurrentQuestion(prev => {
@@ -230,7 +231,8 @@ export const CreateQuizContextProvider = ({children}) => {
                 error,
                 editExistingQuiz,
                 title,
-                isEdit
+                isEdit,
+                quizID
             }}>
             {children}
         </CreateQuizContext.Provider>

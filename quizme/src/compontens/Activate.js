@@ -4,7 +4,7 @@ import Question from "./Question"
 import QuizQuestionInfo from "./QuizQuestionInfo"
 import {AuthContext} from "../context/authContext"
 import axios from "axios";
-import { useNavigate} from "react-router-dom"
+import { useNavigate, useLocation} from "react-router-dom"
 
 
 
@@ -15,19 +15,27 @@ export default function Activate(props) {
    
     const {currentUser} = React.useContext(AuthContext)
 
-    const {questions, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
+    const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
     const handleSubmit = async () => {
         const quizData = {
-            title: quizTitle,
+            title: JSON.parse(window.localStorage.getItem('quizTitle')),
             image: "",
             category: JSON.parse(window.localStorage.getItem('category')),
             user_id: currentUser.id,
             questions: questions,
+            quiz_id: quizID.current
         }
         if (editExistingQuiz) {
             console.log("editing")
+            try {
+                await axios.put(`/quiz/1`, {quizData}, {
+                    withCredentials:true,
+                })  
+            } catch (err) {
+                console.log(err)
+            }
             setEditExistingQuiz(false)
         } else {
             try {
