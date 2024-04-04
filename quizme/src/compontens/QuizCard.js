@@ -30,16 +30,7 @@ export function QuizCard(props) {
                 withCredentials: true,
             });
     
-            res.data.forEach(item => { // Use forEach for side effects
-                const toAdd= {
-                    id: item.question_id,
-                    questionText: item.question,
-                    answers: item.answers.map(answer => [{
-                        text: Object.values(answer)[0],
-                        isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
-                    }])
-                }
-                console.log(toAdd)
+            res.data.forEach(item => { 
                 setQuestions(prev => [
                     ...prev,
                     {
