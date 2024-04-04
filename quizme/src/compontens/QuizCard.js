@@ -45,10 +45,10 @@ export function QuizCard(props) {
                     {
                         id: item.question_id,
                         questionText: item.question,
-                        answers: item.answers.map(answer => [{
+                        answers: item.answers.map(answer => { return ({
                             text: Object.values(answer)[0],
                             isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
-                        }])
+                        })})
                     }
                 ])
             });
