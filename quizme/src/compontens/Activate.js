@@ -34,6 +34,7 @@ export default function Activate(props) {
             } catch (err) {
                 console.log(err)
             }
+
             setEditExistingQuiz(false)
     }
 
@@ -47,7 +48,7 @@ export default function Activate(props) {
             quiz_id: quizID.current
         }
         if (editExistingQuiz) {
-            handleSubmitForEditQuiz(quizData)
+            await handleSubmitForEditQuiz(quizData)
         } else {
             try {
                 await axios.post(`/quiz`, {quizData}, {
@@ -60,6 +61,7 @@ export default function Activate(props) {
         } 
 
         try {
+            console.log("add queswtion")
             await axios.post(`/quiz/questions`, {quizData}, {
                 withCredentials:true,
             })  
