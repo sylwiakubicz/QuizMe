@@ -19,7 +19,6 @@ export default function Activate(props) {
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
     const handleSubmitForEditQuiz = async (quizData) => {
-        console.log("editing")
             try {
                 await axios.put(`/quiz/update`, {quizData}, {
                     withCredentials:true,
@@ -54,22 +53,20 @@ export default function Activate(props) {
                 await axios.post(`/quiz`, {quizData}, {
                     withCredentials:true,
                 })
-                console.log("add quiz done")    
 
             } catch (err) {
                 console.log(err)
             }
+        } 
 
-            try {
-                await axios.post(`/quiz/questions`, {quizData}, {
-                    withCredentials:true,
-                })  
-                console.log("add questions done")
-                handledelete()
-                navigate("/MyQuizes")
-            } catch (err) {
-                console.log(err)
-            }
+        try {
+            await axios.post(`/quiz/questions`, {quizData}, {
+                withCredentials:true,
+            })  
+            handledelete()
+            navigate("/MyQuizes")
+        } catch (err) {
+            console.log(err)
         }
     }
     
