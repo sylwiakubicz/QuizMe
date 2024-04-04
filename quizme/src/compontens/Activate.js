@@ -18,6 +18,26 @@ export default function Activate(props) {
     const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
 
+    const handleSubmitForEditQuiz = async (quizData) => {
+        console.log("editing")
+            try {
+                await axios.put(`/quiz/update`, {quizData}, {
+                    withCredentials:true,
+                })  
+            } catch (err) {
+                console.log(err)
+            }
+
+            try {
+                await axios.delete(`/quiz/questions/${quizID.current}`, {quizData}, {
+                    withCredentials:true,
+                })  
+            } catch (err) {
+                console.log(err)
+            }
+            setEditExistingQuiz(false)
+    }
+
     const handleSubmit = async () => {
         const quizData = {
             title: JSON.parse(window.localStorage.getItem('quizTitle')),
@@ -28,15 +48,7 @@ export default function Activate(props) {
             quiz_id: quizID.current
         }
         if (editExistingQuiz) {
-            console.log("editing")
-            try {
-                await axios.put(`/quiz/1`, {quizData}, {
-                    withCredentials:true,
-                })  
-            } catch (err) {
-                console.log(err)
-            }
-            setEditExistingQuiz(false)
+            handleSubmitForEditQuiz(quizData)
         } else {
             try {
                 await axios.post(`/quiz`, {quizData}, {

@@ -1,13 +1,14 @@
 import express from "express"
-import {getQuizes, getUserQuizes, getQuiz, updateQuiz, addQuiz, deleteQuiz, updateQuizStats, getUserScore, setUserScore, updateUserScore, addQuestions} from "../controllers/quizControllers.js"
+import {getQuizes, getUserQuizes, getQuiz, updateQuiz, addQuiz, deleteQuiz, updateQuizStats, getUserScore, setUserScore, updateUserScore, addQuestions, deleteQuestions} from "../controllers/quizControllers.js"
 import {authenticateToken} from "../controllers/authControllers.js"
 
 const router = express.Router()
 
-router.put("/:id", updateQuiz)
+router.put("/update", updateQuiz)
 router.post("/", addQuiz)
 router.post("/questions", addQuestions)
 router.delete("/:id", deleteQuiz)
+router.delete("/questions/:id", deleteQuestions)
 
 router.get("/", getQuizes)
 router.get('/userquizes', getUserQuizes)

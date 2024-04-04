@@ -264,4 +264,14 @@ export const updateQuiz = async (req, res) => {
     }
 };
 
+export const deleteQuestions = (req,res) => {
+    const q = "DELETE FROM questions WHERE quiz_id = ?"
+    db.query(q, req.params.id, (err, data) => {
+        if (err) {
+            return res.status(500).send(err)
+        }
+        return res.status(200).send("Questions deleted")
+    })
+}
+
 
