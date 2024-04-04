@@ -64,7 +64,7 @@ export default function TakeTheQuiz() {
                 })
                 if (res.data.length === 0) {
                     try {
-                        await axios.post(`/quiz/${quizID}`, {
+                        await axios.post(`/quiz/user/${quizID}`, {
                             quizScore: score.current,
                             userID: userID,
                         })
@@ -74,7 +74,7 @@ export default function TakeTheQuiz() {
                 } 
                 else if (res.data[0].score < score.current) {
                     try{
-                        await axios.put(`/quiz/${quizID}`, {
+                        await axios.put(`/quiz/user/${quizID}`, {
                             quizScore: score.current,
                             userID: userID
                         })

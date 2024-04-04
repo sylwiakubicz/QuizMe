@@ -14,8 +14,8 @@ router.get('/userquizes', getUserQuizes)
 
 router.get('/:id',getQuiz)
 router.get('/:id/score', getUserScore)
-router.post('/:id', setUserScore)
-router.put('/:id', updateUserScore)
+router.post('/user/:id', setUserScore)
+router.put('/user/:id', updateUserScore)
 router.put('/:id/stats', updateQuizStats)
 
 export default router
