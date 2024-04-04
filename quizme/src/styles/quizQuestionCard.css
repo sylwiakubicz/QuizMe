@@ -75,6 +75,7 @@
 .question--text {
     font-size: 1.875rem;
     padding:  1.25rem 0;
+    text-wrap: wrap;
 }
 
 /* Custom radio button */
