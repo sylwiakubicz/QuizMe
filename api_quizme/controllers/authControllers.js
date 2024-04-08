@@ -67,6 +67,18 @@ const generateCode = () => {
     let code = (Math.random() + 1).toString(36).substring(7);
     return code
 }
+
+const sendVericiationEmail = async (verificationCode, userEmail) => {
+    try {
+        const values = {
+            verificationCode: verificationCode,
+            mail: userEmail
+        }
+        await axios.post("http://localhost:12345/api/mail/send/veryficationMail", values)
+    } catch (error) {
+        console.log(error)
+    }
+}
   
 export const register = (req, res) => {
     // Check existing users
@@ -123,6 +135,8 @@ export const register = (req, res) => {
                 if (err) {
                     return res.status(500).json(err)
                 }
+                // send verification email
+                sendVericiationEmail(verificationCode, req.body.email)
                 return res.status(200).json("User created successfuly.")
             })
         })

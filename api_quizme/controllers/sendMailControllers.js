@@ -45,12 +45,14 @@ export const sendMail = (req, res) => {
 }
 
 export const sendVerificationMail = (req, res) => {
-    const verificationCode = "gbgfndjks"
+    console.log(req.body.mail)
+    console.log(req.body.verificationCode)
+    const verificationCode = req.body.verificationCode
     const template = verifyEmailTemplate(verificationCode)
     const msgToUser = {
         from: "quizme657@gmail.com",
-        to: "quizme657@gmail.com",
-        // to: req.body.email,
+        // to: "quizme657@gmail.com",
+        to: req.body.mail,
         subject: "Verify your account",
         text: "",
         html: template
@@ -64,4 +66,4 @@ export const sendVerificationMail = (req, res) => {
     })
 }
 
-sendVerificationMail()
+// sendVerificationMail()
