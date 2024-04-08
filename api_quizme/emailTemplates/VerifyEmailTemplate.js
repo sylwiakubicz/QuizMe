@@ -1,6 +1,6 @@
 const verifyEmailTemplate = (verificationCode) => {
     
-`<html>
+return `<html>
     <head>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/d49fca0d9e.js" crossorigin="anonymous"></script>
@@ -58,4 +58,4 @@ const verifyEmailTemplate = (verificationCode) => {
 }
 
 
-export {newsLetterEmail, welcomeEmail}
+export {verifyEmailTemplate}
