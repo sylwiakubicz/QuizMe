@@ -45,7 +45,8 @@ export const sendMail = (req, res) => {
 }
 
 export const sendVerificationMail = (req, res) => {
-    const template = verifyEmailTemplate()
+    const verificationCode = "gbgfndjks"
+    const template = verifyEmailTemplate(verificationCode)
     const msgToUser = {
         from: "quizme657@gmail.com",
         to: "quizme657@gmail.com",
