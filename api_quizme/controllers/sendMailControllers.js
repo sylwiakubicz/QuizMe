@@ -45,8 +45,6 @@ export const sendMail = (req, res) => {
 }
 
 export const sendVerificationMail = (req, res) => {
-    console.log(req.body.mail)
-    console.log(req.body.verificationCode)
     const verificationCode = req.body.verificationCode
     const template = verifyEmailTemplate(verificationCode)
     const msgToUser = {
