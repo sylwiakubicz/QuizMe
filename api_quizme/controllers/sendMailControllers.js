@@ -51,7 +51,6 @@ export const sendVerificationMail = (req, res) => {
     const template = verifyEmailTemplate(verificationCode)
     const msgToUser = {
         from: "quizme657@gmail.com",
-        // to: "quizme657@gmail.com",
         to: req.body.mail,
         subject: "Verify your account",
         text: "",
@@ -65,5 +64,3 @@ export const sendVerificationMail = (req, res) => {
         return res.status(200).json("Message sent!")
     })
 }
-
-// sendVerificationMail()
