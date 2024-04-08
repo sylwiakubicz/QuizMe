@@ -68,7 +68,7 @@ const generateCode = () => {
     return code
 }
 
-const sendVericiationEmail = async (verificationCode, userEmail) => {
+export const sendVerificationEmail = async (verificationCode, userEmail) => {
     try {
         const values = {
             verificationCode: verificationCode,
@@ -136,7 +136,7 @@ export const register = (req, res) => {
                     return res.status(500).json(err)
                 }
                 // send verification email
-                sendVericiationEmail(verificationCode, req.body.email)
+                sendVerificationEmail(verificationCode, req.body.email)
                 return res.status(200).json("User created successfuly.")
             })
         })
