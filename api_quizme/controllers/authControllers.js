@@ -62,6 +62,11 @@ export const checkIfHuman = async (req, res) => {
     );
     res.send(data);
 }
+
+const generateCode = () => {
+    let code = (Math.random() + 1).toString(36).substring(7);
+    return code
+}
   
 export const register = (req, res) => {
     // Check existing users
@@ -98,6 +103,9 @@ export const register = (req, res) => {
             const salt = bcrypt.genSaltSync(10)
             const hash = bcrypt.hashSync(req.body.password, salt)
             
+            const verificationCode = generateCode()
+            const verify = false
+
             // Add user
             const registerTime = getCurrentTime()
             const values = [
@@ -105,9 +113,11 @@ export const register = (req, res) => {
                 req.body.email,
                 hash,
                 registerTime,
+                verify,
+                verificationCode
             ]
 
-            const q = "INSERT INTO users (username, email, password, register_date) VALUES (?)"
+            const q = "INSERT INTO users (username, email, password, register_date, verify, verification_code) VALUES (?)"
 
             db.query(q, [values], (err, data) => {
                 if (err) {
