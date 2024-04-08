@@ -1,15 +1,15 @@
 import config from "../config/index.js"
 import nodemailer from "nodemailer"
 
-export const sendMail = (req, res) => {
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "quizme657@gmail.com",
-            pass: config.nodemailer.pass
-        }
-    })
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "quizme657@gmail.com",
+        pass: config.nodemailer.pass
+    }
+})
 
+export const sendMail = (req, res) => {
     const msg = {
         from: req.body.email,
         to: "quizme657@gmail.com",
@@ -39,6 +39,23 @@ export const sendMail = (req, res) => {
                 console.log(error)
             }
         })
+        return res.status(200).json("Message sent!")
+    })
+}
+
+export const sendVerificationMail = (req, res) => {
+    const msgToUser = {
+        from: "quizme657@gmail.com",
+        to: req.body.email,
+        subject: "Verify your account",
+        text: "",
+        html: "" // tutaj będzie przekierowanie do komponentu z templatką i ta templatka będzie przyjmować param w postaci kodu weryfikacyjnego
+    }
+
+    transporter.sendMail(msgToUser, (error, info) => {
+        if (error) {
+            console.log(error)
+        }
         return res.status(200).json("Message sent!")
     })
 }
