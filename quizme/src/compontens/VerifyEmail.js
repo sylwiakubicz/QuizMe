@@ -1,6 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
-
+import axios from "axios"
 
 export default function VerifyEmail() {
 
@@ -10,9 +10,15 @@ export default function VerifyEmail() {
         setVerficationCode(e.target.value)
     }
 
-    const handleVerify = async () => {
+    const handleVerify = async (verification) => {
         try {
-            
+            const verifyData = {
+                email: localStorage.getItem("useremail_or_username"),
+                verificationCode: verificationCode
+            }
+            await axios.post("/auth/verify/email", verifyData, {
+                withCredentials: true
+            } )
         } catch (error) {
             console.log(error)
         }
@@ -38,7 +44,7 @@ export default function VerifyEmail() {
                     </div>    
                     <button className="btn" onClick={(e) => {
                         e.preventDefault()
-                        console.log(verificationCode)
+                        handleVerify(verificationCode)
                         }}>Verify</button>
                 </form>
             </div>
