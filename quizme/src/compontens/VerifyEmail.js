@@ -1,26 +1,32 @@
 import React from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 
 export default function VerifyEmail() {
 
+    const navigate = useNavigate()
     const [verificationCode, setVerficationCode] = React.useState("")
+    const [error, setError] = React.useState("")
 
     const handleChange = (e) => {
         setVerficationCode(e.target.value)
     }
 
-    const handleVerify = async (verification) => {
+    const handleVerify = async () => {
+        setError("")
         try {
             const verifyData = {
-                email: localStorage.getItem("useremail_or_username"),
+                email: JSON.parse(localStorage.getItem("useremail_or_username")),
                 verificationCode: verificationCode
             }
             await axios.post("/auth/verify/email", verifyData, {
                 withCredentials: true
-            } )
+            })
+            console.log("ndcsjkcla")
+            navigate("/SignIn")
+
         } catch (error) {
-            console.log(error)
+            setError(error.response.data)
         }
     }
 
@@ -39,12 +45,14 @@ export default function VerifyEmail() {
                             required 
                         />
                     </div>    
+                    {error && <p className="error">{error}</p>}
+
                     <div className="register-or-login-link">
                         <Link className="verify--send_again">Send new verification code</Link>
                     </div>    
                     <button className="btn" onClick={(e) => {
                         e.preventDefault()
-                        handleVerify(verificationCode)
+                        handleVerify()
                         }}>Verify</button>
                 </form>
             </div>
