@@ -174,11 +174,16 @@ export const login = (req, res) => {
                 return res.status(400).json("Wrong password!")
             }
 
+            if (data[0].verify === 0) {
+                console.log("verify account")
+                return res.status(400).json("Verify your email to sign in")
+            }
+
             // session
             const user = {
                 username: data[0].username,
                 email: data[0].email,
-                id: data[0].id
+                id: data[0].id,
             }
 
             const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
@@ -188,8 +193,7 @@ export const login = (req, res) => {
                 secure: true
             }).status(200).send(user)
         }) 
-    })
-        
+    })  
 }
 
 export const logout = (req, res) => {
