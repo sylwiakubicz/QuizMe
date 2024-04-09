@@ -12,6 +12,8 @@ import MyQuizes from "./compontens/pages/MyQuizes";
 import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
 import CreateQuiz from "./compontens/pages/CreateQuiz";
+import VerifyEmail from "./compontens/VerifyEmail";
+
 import { ThemeContext } from './context/themeContext';
 import {CreateQuizContext} from "./context/CreateQuizContext"
 
@@ -45,6 +47,7 @@ function App() {
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/verifyemail" element={<VerifyEmail/>} />
           </Routes>
           <Footer />
       </div >

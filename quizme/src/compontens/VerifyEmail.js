@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 
 export default function VerifyEmail() {
@@ -23,8 +24,10 @@ export default function VerifyEmail() {
                             value={verificationCode}
                             required 
                         />
-                        <i className="fa-solid fa-user"></i>
-                    </div>        
+                    </div>    
+                    <div className="register-or-login-link">
+                        <Link className="verify--send_again">Send new verification code</Link>
+                    </div>    
                     <button className="btn" onClick={(e) => {
                         e.preventDefault()
                         console.log(verificationCode)

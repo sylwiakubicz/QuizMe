@@ -38,6 +38,10 @@ function SignIn() {
             await login(signInData)
             navigate("/")
         }catch (err) {
+            if (err.response.data) {
+                localStorage.setItem("useremail_or_username", JSON.stringify(signInData.email))
+                navigate("/verifyemail")
+            }
             setError(err.response.data)
         }
     }
@@ -80,7 +84,9 @@ function SignIn() {
                             />
                             <span className="checkmark"></span>
                         </label>
+                        <div className="register-or-login-link">
                         <Link>Forgot password?</Link>
+                        </div>
                     </div>
                     <button className="btn" onClick={handleSubmit}>Sign In</button>
                     {error && <p className="error">{error}</p>}
