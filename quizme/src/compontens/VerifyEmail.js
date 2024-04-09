@@ -10,6 +10,14 @@ export default function VerifyEmail() {
         setVerficationCode(e.target.value)
     }
 
+    const handleVerify = async () => {
+        try {
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div className="size" id="contact-form">
             <div className="wrapper form-wrapper form">

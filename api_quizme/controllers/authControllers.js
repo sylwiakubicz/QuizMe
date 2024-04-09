@@ -155,6 +155,10 @@ export function authenticateToken(req, res, next) {
     })
 }
 
+export const verifyEmail = (req,res) => {
+    console.log("")
+}
+
 export const login = (req, res) => {
     // Check user
     var emailRegex = new RegExp("^(?=.[@])")
@@ -175,7 +179,6 @@ export const login = (req, res) => {
             }
 
             if (data[0].verify === 0) {
-                console.log("verify account")
                 return res.status(400).json("Verify your email to sign in")
             }
 
