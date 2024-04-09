@@ -157,7 +157,8 @@ export function authenticateToken(req, res, next) {
 
 export const verifyEmail = (req,res) => {
     var emailRegex = new RegExp("^(?=.[@])")
-    const q = emailRegex.test(req.body.email) ? "SELECT verification_code FROM users WHERE email = ?" : "SELECT verification_code FROM users WHERE username = ?"
+    const email = emailRegex.test(req.body.email)
+    const q = email ? "SELECT verification_code FROM users WHERE email = ?" : "SELECT verification_code FROM users WHERE username = ?"
     db.query(q, req.body.email, (err, data) => {
         if(err) {
             return res.status(500).json(err)
@@ -166,8 +167,13 @@ export const verifyEmail = (req,res) => {
             return res.status(400).send("Wrong verification code")
         }
         else {
-            console.log("match")
-            return res.status(200).send("Email verified")
+            const q = email ? "UPDATE users SET verify = 1, verification_code = NULL WHERE email = ?" : "UPDATE users SET verify = 1, verification_code = NULL WHERE username = ?"
+            db.query(q, req.body.email, (err, data) => {
+                if (err) {
+                    return res.status(400).json(err)
+                }
+                return res.status(200).send("Email verified")
+            })
         }
     })
 }
