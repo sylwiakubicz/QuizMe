@@ -22,11 +22,25 @@ export default function VerifyEmail() {
             await axios.post("/auth/verify/email", verifyData, {
                 withCredentials: true
             })
-            console.log("ndcsjkcla")
             navigate("/SignIn")
 
         } catch (error) {
             setError(error.response.data)
+        }
+    }
+
+    const sendNewCode = async () => {
+        const verifyData = {
+            email: JSON.parse(localStorage.getItem("useremail_or_username")),
+        }
+        console.log(verifyData)
+        try {
+            await axios.post("/mail/send/verificationMail/new", verifyData, {
+                withCredentials: true
+            })
+            console.log("finshed")
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -48,7 +62,7 @@ export default function VerifyEmail() {
                     {error && <p className="error">{error}</p>}
 
                     <div className="register-or-login-link">
-                        <Link className="verify--send_again">Send new verification code</Link>
+                        <Link className="verify--send_again" onClick={sendNewCode}>Send new verification code</Link>
                     </div>    
                     <button className="btn" onClick={(e) => {
                         e.preventDefault()

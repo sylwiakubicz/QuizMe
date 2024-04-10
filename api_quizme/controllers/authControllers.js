@@ -79,7 +79,38 @@ export const sendVerificationEmail = async (verificationCode, userEmail) => {
         console.log(error)
     }
 }
-  
+
+export const sendNewVerificationEmail = (req, res) => {
+    const newCode = generateCode()
+    const emailOrUsername = req.body.email
+    
+    var emailRegex = new RegExp("^(?=.[@])");
+    const isEmail = emailRegex.test(emailOrUsername); 
+    const q = isEmail ? "UPDATE users SET verification_code = ? WHERE email = ?" : "UPDATE users SET verification_code = ? WHERE username = ?";
+
+    db.query(q, [newCode, emailOrUsername], (err, data) => {
+        if (err) {
+            return res.status(400).json(err)
+        }
+        if (!isEmail) {
+            const q = "SELECT email FROM users WHERE username = ?"
+            db.query(q, emailOrUsername, (err, data) => {
+                if (err) {
+                    return res.status(400).json(err)
+                } 
+                const userEmail = data[0].email
+                sendVerificationEmail(newCode, userEmail)
+                return res.status(200).json("Email sent")
+            })
+        }
+        else {
+            sendVerificationEmail(newCode, userEmail)
+            return res.status(200).json("Email sent")
+        }
+    })
+};
+
+
 export const register = (req, res) => {
     // Check existing users
     const q = "SELECT * FROM users WHERE email = ?"

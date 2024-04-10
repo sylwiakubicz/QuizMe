@@ -38,9 +38,10 @@ function SignIn() {
             await login(signInData)
             navigate("/")
         }catch (err) {
-            if (err.response.data) {
+            console.log(err.response.data)
+            if (err.response.data === "Verify your email to sign in") {
                 localStorage.setItem("useremail_or_username", JSON.stringify(signInData.email))
-                navigate("/verifyemail")
+                setTimeout(() => navigate("/verifyemail"), 1000)
             }
             setError(err.response.data)
         }

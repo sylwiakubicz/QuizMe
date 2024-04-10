@@ -48,7 +48,7 @@ function SignUp() {
                     await axios.post("/auth/register", signUpData, {
                         withCredentials: true
                     })
-                    navigate("/SignIn")
+                    navigate("/verifyemail")
                 } catch (err) {
                     if(300 < err.response.status < 500) {
                         setError(err.response.data)
