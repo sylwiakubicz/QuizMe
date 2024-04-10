@@ -48,6 +48,7 @@ function SignUp() {
                     await axios.post("/auth/register", signUpData, {
                         withCredentials: true
                     })
+                    localStorage.setItem("useremail_or_username", JSON.stringify(signUpData.email))
                     navigate("/verifyemail")
                 } catch (err) {
                     if(300 < err.response.status < 500) {

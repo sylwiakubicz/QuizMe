@@ -19,6 +19,7 @@ export default function VerifyEmail() {
                 email: JSON.parse(localStorage.getItem("useremail_or_username")),
                 verificationCode: verificationCode
             }
+            console.log(verificationCode)
             await axios.post("/auth/verify/email", verifyData, {
                 withCredentials: true
             })

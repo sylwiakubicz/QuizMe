@@ -75,6 +75,7 @@ export const sendVerificationEmail = async (verificationCode, userEmail) => {
             mail: userEmail
         }
         await axios.post("http://localhost:12345/api/mail/send/veryficationMail", values)
+        console.log("poprawnie")
     } catch (error) {
         console.log(error)
     }
@@ -83,9 +84,10 @@ export const sendVerificationEmail = async (verificationCode, userEmail) => {
 export const sendNewVerificationEmail = (req, res) => {
     const newCode = generateCode()
     const emailOrUsername = req.body.email
-    
-    var emailRegex = new RegExp("^(?=.[@])");
+    console.log(emailOrUsername)
+    var emailRegex = new RegExp("^(?=.*[@])");
     const isEmail = emailRegex.test(emailOrUsername); 
+    console.log(isEmail)
     const q = isEmail ? "UPDATE users SET verification_code = ? WHERE email = ?" : "UPDATE users SET verification_code = ? WHERE username = ?";
 
     db.query(q, [newCode, emailOrUsername], (err, data) => {
@@ -93,18 +95,21 @@ export const sendNewVerificationEmail = (req, res) => {
             return res.status(400).json(err)
         }
         if (!isEmail) {
+            console.log("send")
             const q = "SELECT email FROM users WHERE username = ?"
             db.query(q, emailOrUsername, (err, data) => {
                 if (err) {
                     return res.status(400).json(err)
                 } 
+                console.log("send 2")
+                console.log(data)
                 const userEmail = data[0].email
                 sendVerificationEmail(newCode, userEmail)
                 return res.status(200).json("Email sent")
             })
         }
         else {
-            sendVerificationEmail(newCode, userEmail)
+            sendVerificationEmail(newCode, emailOrUsername)
             return res.status(200).json("Email sent")
         }
     })
@@ -187,7 +192,7 @@ export function authenticateToken(req, res, next) {
 }
 
 export const verifyEmail = (req,res) => {
-    var emailRegex = new RegExp("^(?=.[@])")
+    var emailRegex = new RegExp("^(?=.*[@])")
     const email = emailRegex.test(req.body.email)
     const q = email ? "SELECT verification_code FROM users WHERE email = ?" : "SELECT verification_code FROM users WHERE username = ?"
     db.query(q, req.body.email, (err, data) => {
@@ -211,7 +216,7 @@ export const verifyEmail = (req,res) => {
 
 export const login = (req, res) => {
     // Check user
-    var emailRegex = new RegExp("^(?=.[@])")
+    var emailRegex = new RegExp("^(?=.*[@])")
     const q = emailRegex.test(req.body.email) ? "SELECT * FROM users WHERE email = ?" : "SELECT * FROM users WHERE username = ?"
 
     db.query(q, req.body.email, (err, data) => {
