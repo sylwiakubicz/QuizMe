@@ -49,7 +49,7 @@ export default function VerifyEmail() {
         <div className="size" id="contact-form">
             <div className="wrapper form-wrapper form">
                 <form >
-                    <h1>Verify your adress e-mail</h1>
+                    <p className="infoForUser">We have sent a code to your email <strong>{JSON.parse(localStorage.getItem("useremail_or_username"))}</strong></p>
                     <div className="input-box">
                         <input 
                             type="text" 
