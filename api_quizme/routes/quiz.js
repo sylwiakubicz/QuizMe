@@ -1,6 +1,5 @@
 import express from "express"
 import {getQuizes, getUserQuizes, getQuiz, updateQuiz, addQuiz, deleteQuiz, updateQuizStats, getUserScore, setUserScore, updateUserScore, addQuestions, deleteQuestions} from "../controllers/quizControllers.js"
-import {authenticateToken} from "../controllers/authControllers.js"
 
 const router = express.Router()
 

@@ -179,17 +179,6 @@ export const register = (req, res) => {
     })
 }
 
-export function authenticateToken(req, res, next) {
-    const token = req.cookies.accessToken
-
-    if(token == null) return res.status(401).send("Token missing")
-
-    jwt.verify(token, config.jwt.ACCESS_TOKEN_SECRET, (err, user) => {
-        if (err) return res.status(403).send("Token is not valid")
-        req.user = user
-        next()
-    })
-}
 
 export const verifyEmail = (req,res) => {
     var emailRegex = new RegExp("^(?=.*[@])")
@@ -247,7 +236,7 @@ export const login = (req, res) => {
             const accessToken = jwt.sign(user, config.jwt.ACCESS_TOKEN_SECRET)
             res.cookie("accessToken", accessToken, {
                 httpOnly: true,
-                semeSite: "none",
+                sameSite: "none",
                 secure: true
             }).status(200).send(user)
         }) 
