@@ -94,3 +94,26 @@
 .createdQuestionText {
 text-wrap: wrap;
 }
+
+.continueBtn {
+    position: relative;
+}
+.continueBtn:disabled::before {
+    display: none;
+    content: "Add at least two question";
+    position: absolute;
+    top: -2.7rem;
+    right: 0;
+    padding: .25rem;
+    text-wrap: nowrap;
+    border: 0.125rem solid rgb(var(--additional-color));
+    border-radius: 0.438rem;
+    background-color: rgb(var(--light-bg));
+    color: black;
+    font-size: 1.125rem;
+    opacity: .7;
+}
+
+.continueBtn:disabled:hover::before {
+    display: block;
+}

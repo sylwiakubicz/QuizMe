@@ -43,7 +43,7 @@ questions.forEach(item => item.answers.forEach(a => console.log(a)))
                     e.preventDefault()
                     props.setActive("")
                     }}>Previous</button>
-                <button className="quiz--btn delete-btn" onClick={(e) => {
+                <button disabled={questions.length < 2} className="quiz--btn delete-btn continueBtn" onClick={(e) => {
                     e.preventDefault()
                     props.setActive("setPreferences")
                     }}>Continue</button>
