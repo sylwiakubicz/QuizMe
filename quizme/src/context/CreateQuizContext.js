@@ -133,7 +133,7 @@ export const CreateQuizContextProvider = ({children}) => {
         const isError = validateQuestion();
         
         if(isError) {
-            return
+            return false
         }
 
         if (isEdit.current) {

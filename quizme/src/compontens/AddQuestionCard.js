@@ -10,14 +10,18 @@ export default function AddQuestionCard() {
         if (letsContinue) {
             handleSaveBtn()
         }
+        console.log(isEdit.current + " handleSave")
     }
 
     const handleNextQuestion = () => {
+        console.log(isEdit.current + " handleNextQuestion")
         if (isEdit.current) {
             handleAddNextQuestion()
         } else {
-            handleQuestionSave()
+            if (handleQuestionSave()) 
+        {
             handleAddNextQuestion()
+        }
         }
     }
 
