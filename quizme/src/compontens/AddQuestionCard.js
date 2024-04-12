@@ -51,7 +51,7 @@ export default function AddQuestionCard() {
                 ))
             }
             
-            <button className="moreAnswers" onClick={addAnswer}>+</button>
+            <button disabled={answers.length === 5} className="moreAnswers" onClick={addAnswer}>+</button>
             {error && <p className="error">{error}</p>}
             
             <div className="buttons-container">

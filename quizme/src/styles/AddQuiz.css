@@ -98,6 +98,7 @@ text-wrap: wrap;
 .continueBtn {
     position: relative;
 }
+
 .continueBtn:disabled::before {
     display: none;
     content: "Add at least two question";
@@ -115,5 +116,30 @@ text-wrap: wrap;
 }
 
 .continueBtn:disabled:hover::before {
+    display: block;
+}
+
+
+.moreAnswers {
+    position: relative;
+}
+
+.moreAnswers:disabled::before {
+    display: none;
+    content: "You can not add more than 5 answers";
+    position: absolute;
+    bottom: -2.7rem;
+    right: 0;
+    padding: .25rem;
+    text-wrap: nowrap;
+    border: 0.125rem solid rgb(var(--additional-color));
+    border-radius: 0.438rem;
+    background-color: rgb(var(--light-bg));
+    color: black;
+    font-size: 1.125rem;
+    opacity: .7;
+}
+
+.moreAnswers:disabled:hover::before {
     display: block;
 }
