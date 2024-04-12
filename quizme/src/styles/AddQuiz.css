@@ -14,6 +14,7 @@
 .question-input,
 .addAnswer-container input {
     border: 2px solid rgb(var(--primary-color));
+    border-radius: 2.5rem 0 0 2.5rem;
     width: 100%;
     background: rgb(var(--light-bg));
     height: 3.125rem;
@@ -21,9 +22,14 @@
     font-size: 1.1rem;
 }
 
+.question-input {
+    border-radius: 2.5rem;
+}
+
 .moreAnswers,
 .addAnswer-container button {
     border: 2px solid rgb(var(--primary-color));
+    border-radius: 0 2.5rem 2.5rem 0;
     width: 4.5rem;
     height: 3.125rem;
     cursor: pointer;
@@ -37,6 +43,7 @@
 
 .moreAnswers {
     width: 100%;
+    border-radius: 2.5rem;
     color: rgb(var(--primary-color));
     font-size: 2rem;
     background: rgb(var(--light-bg));
