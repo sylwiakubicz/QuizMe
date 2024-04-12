@@ -30,6 +30,7 @@ export default function VerifyEmail() {
             await axios.post("/auth/verify/email", verifyData, {
                 withCredentials: true
             })
+            localStorage.removeItem("useremail_or_username")
             navigate("/SignIn")
 
             } catch (error) {

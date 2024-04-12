@@ -70,6 +70,9 @@ export default function Activate(props) {
         } catch (err) {
             console.log(err)
         }
+        localStorage.removeItem('quizTitle')
+        localStorage.removeItem('category')
+        localStorage.removeItem('quizTitle')
     }
     
     return (
