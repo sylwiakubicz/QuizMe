@@ -200,6 +200,11 @@ export const CreateQuizContextProvider = ({children}) => {
         })
     }
 
+    const filterAnswers = () => {
+        const updatedAnswers = answers.filter((answer) => answer.text !== null )
+        console.log("filter null " + updatedAnswers)
+        setAnswers(updatedAnswers)
+    }
 
     function saveInLocalStorage(questions) {
         localStorage.setItem('questions', JSON.stringify(questions));
@@ -224,6 +229,7 @@ export const CreateQuizContextProvider = ({children}) => {
                 setTitle,
                 deleteFromLocalStorage,
                 handledelete,
+                filterAnswers,
                 category,
                 answers, 
                 questions, 

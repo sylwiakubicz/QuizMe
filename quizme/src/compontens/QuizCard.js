@@ -15,7 +15,7 @@ export function QuizCard(props) {
 
     const {currentUser} = React.useContext(AuthContext)
     const {deleteQuiz} = React.useContext(QuizContext)
-    const {setEditExistingQuiz, setQuestions, setTitle, setCategory, quizID} = React.useContext(CreateQuizContext)
+    const {setEditExistingQuiz, setQuestions, setTitle, setCategory, quizID, filterAnswers} = React.useContext(CreateQuizContext)
 
     const message = `Your quiz "${props.title}" will be deleted permamently`
     const [show, setShow] = useState(false);
@@ -31,18 +31,29 @@ export function QuizCard(props) {
             });
     
             res.data.forEach(item => { 
+                const questionAnswers = item.answers.map(answer => {
+                    const answerText = Object.values(answer)[0];
+                    if (answerText !== null) {
+                        return {
+                            text: answerText,
+                            isCorrect: answerText === item.correctAnswer ? true : false
+                        };
+                    } else {
+                        return null;
+                    }
+                });
+            
                 setQuestions(prev => [
                     ...prev,
                     {
                         id: item.question_id,
                         questionText: item.question,
-                        answers: item.answers.map(answer => { return ({
-                            text: Object.values(answer)[0],
-                            isCorrect: Object.values(answer)[0] === item.correctAnswer ? true : false
-                        })})
+                        answers: questionAnswers.filter(answer => answer !== null)
                     }
-                ])
+                ]);
             });
+
+
             quizID.current = quiz_id
             setTitle(res.data[0].quizTitle);
             setCategory(res.data[0].category);
@@ -55,6 +66,7 @@ export function QuizCard(props) {
     const handleEdit = (quiz_id) =>{
         setEditExistingQuiz(true)
         fetchData(quiz_id)
+        filterAnswers()
     }
 
     return (
