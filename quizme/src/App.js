@@ -13,6 +13,7 @@ import MyProfile from "./compontens/pages/MyProfile";
 import Success from "./compontens/Success"
 import CreateQuiz from "./compontens/pages/CreateQuiz";
 import VerifyEmail from "./compontens/VerifyEmail";
+import ResetPassword from "./compontens/ResetPassword";
 
 import { ThemeContext } from './context/themeContext';
 import {CreateQuizContext} from "./context/CreateQuizContext"
@@ -48,6 +49,7 @@ function App() {
             <Route path="/SignIn" element={<SignIn />} />
             <Route path="/SignUp" element={<SignUp />} />
             <Route path="/verifyemail" element={<VerifyEmail/>} />
+            <Route path="/resetpassword" element={<ResetPassword/>}/>
           </Routes>
           <Footer />
       </div >
