@@ -26,10 +26,12 @@ function ChangePassword(props) {
     }
 
 
-    const handleChangePassword = (e) => {
+    const handleChangePassword = async (e) => {
         e.preventDefault()
-        changePassword(inputs)
-        navigate("/SignIn")
+        const error = await changePassword(inputs);
+        if (!error) {
+            navigate("/SignIn");
+        }
     }
 
     return (

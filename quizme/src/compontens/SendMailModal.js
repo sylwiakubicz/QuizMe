@@ -3,42 +3,32 @@ import Modal from 'react-bootstrap/Modal';
 import React from 'react';
 import { ThemeContext } from '../context/themeContext';
 import { AuthContext } from '../context/authContext';
-import axios from "axios"
 
 
 import "../styles/modal.css"
+import { useNavigate } from 'react-router-dom';
 
 
 
 function SendMailModal(props) {
 
+    const navigate = useNavigate()
     const {theme} = React.useContext(ThemeContext)
-    const {setVerifyEmailCode} = React.useContext(AuthContext)
-    const [email, setEmail] = React.useState("")
-    const [error, setError] = React.useState("")
+    const {email, setEmail, error, setError, sendResetEmailCode} = React.useContext(AuthContext)
 
-    const generateCode = () => {
-        let code = (Math.random() + 1).toString(36).substring(7);
-        return code
-    }
 
     const handleSendCode = async () => {
-        const code = generateCode()
-        setVerifyEmailCode(code)
-        console.log(code)
-        
-        try {
-            console.log(email)
-            await axios.post()
-            console.log("sent")
-        } catch (error) {
-            setError(error.response.data)
+        const isSent = sendResetEmailCode()
+        if (isSent) {
+            navigate("/verifyemail")
         }
-
     }
 
     const handleChange = (e) => {
         setEmail(e.target.value)
+        if (error !== "") {
+            setError("")
+        }
     }
 
   return (
@@ -64,6 +54,7 @@ function SendMailModal(props) {
                 required 
             />
         </div>
+        {error && <p className="error">{error}</p>}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.handleClose} >

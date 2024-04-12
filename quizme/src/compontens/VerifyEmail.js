@@ -1,20 +1,27 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import { AuthContext } from "../context/authContext"
 
 export default function VerifyEmail() {
 
     const navigate = useNavigate()
+    const {resetPass, sendResetEmailCode, compareCodes, error, setError} = React.useContext(AuthContext)
     const [verificationCode, setVerficationCode] = React.useState("")
-    const [error, setError] = React.useState("")
 
     const handleChange = (e) => {
         setVerficationCode(e.target.value)
     }
 
     const handleVerify = async () => {
-        setError("")
-        try {
+        console.log(resetPass)
+        if (resetPass) {
+            if (compareCodes(verificationCode)) {
+                navigate("/resetpassword")
+            }
+            
+        } else {
+            try {
             const verifyData = {
                 email: JSON.parse(localStorage.getItem("useremail_or_username")),
                 verificationCode: verificationCode
@@ -25,24 +32,32 @@ export default function VerifyEmail() {
             })
             navigate("/SignIn")
 
-        } catch (error) {
-            setError(error.response.data)
+            } catch (error) {
+                setError(error.response.data)
+            }
         }
+        
     }
 
     const sendNewCode = async () => {
-        const verifyData = {
+        if (resetPass) {
+            sendResetEmailCode()
+        }
+        else {
+            const verifyData = {
             email: JSON.parse(localStorage.getItem("useremail_or_username")),
+            }
+            console.log(verifyData)
+            try {
+                await axios.post("/auth/send/verificationMail/new", verifyData, {
+                    withCredentials: true
+                })
+                console.log("finshed")
+            } catch (error) {
+                console.log(error)
+            }
         }
-        console.log(verifyData)
-        try {
-            await axios.post("/mail/send/verificationMail/new", verifyData, {
-                withCredentials: true
-            })
-            console.log("finshed")
-        } catch (error) {
-            console.log(error)
-        }
+        
     }
 
     return (

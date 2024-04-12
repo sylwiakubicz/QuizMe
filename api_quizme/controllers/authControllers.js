@@ -274,40 +274,74 @@ export const deleteAccount = (req, res) => {
 
 
 export const changePassword = (req, res) => {
-    const q = "SELECT * FROM users WHERE id = ?"
-    db.query(q, req.query.user_id, (err, data) => {
-        if (err) {
-            return res.status(500).send(err)
+    console.log(req.body.oldPassword)
+    if (req.body.oldPassword) {
+        console.log("Change pass")
+        const q = "SELECT * FROM users WHERE id = ?"
+        db.query(q, req.query.user_id, (err, data) => {
+            if (err) {
+                return res.status(500).send(err)
+            }
+    
+            bcrypt.compare(req.body.oldPassword, data[0].password, function(err, result) {
+                if (!result) return res.status(400).json("Wrong password!")
+    
+    
+    
+                if (req.body.newPassword !== req.body.repeatedNewPassword) {
+                    return res.status(401).json("New passwords do not match")
+                }
+    
+                if (validatePassword(req.body.newPassword) !== "correct") {
+                    return res.status(409).json(validatePassword(req.body.newPassword))
+                }
+    
+                if(req.body.oldPassword === req.body.newPassword) {
+                    return res.status(401).json("the new password must be different from the old one")
+                }
+    
+                const salt = bcrypt.genSaltSync(10)
+                const hash = bcrypt.hashSync(req.body.newPassword, salt)
+                                                                                                                                        
+                const q = "UPDATE users SET password = ? WHERE id = ?"
+                db.query(q, [hash, req.query.user_id], (err, data) => {
+                    if (err) {
+                        return res.status(500).send(err)
+                    }
+                    return res.status(200).send("Password updated")
+                })
+    
+                
+            })     
+           return
+        })
+    } else {
+        console.log("reset password")
+        console.log(req.body.newPassword)
+        console.log(req.body.repeatedNewPassword)
+        if (req.body.newPassword !== req.body.repeatedNewPassword) {
+            console.log("err 1")
+            return res.status(401).json("New passwords do not match")
         }
 
-        bcrypt.compare(req.body.oldPassword, data[0].password, function(err, result) {
-            if (!result) return res.status(400).json("Wrong password!")
+        if (validatePassword(req.body.newPassword) !== "correct") {
+            console.log("err 2")
+            return res.status(409).json(validatePassword(req.body.newPassword))
+        }
 
-            if (req.body.newPassword !== req.body.repeatedNewPassword) {
-                return res.status(401).json("New passwords do not match")
+        const salt = bcrypt.genSaltSync(10)
+        const hash = bcrypt.hashSync(req.body.newPassword, salt)
+                                                                                                                                
+        const q = "UPDATE users SET password = ? WHERE email = ?"
+        db.query(q, [hash, req.body.email], (err, data) => {
+            if (err) {
+                return res.status(500).send(err)
             }
-
-            if (validatePassword(req.body.newPassword) !== "correct") {
-                return res.status(409).json(validatePassword(req.body.newPassword))
-            }
-
-            if(req.body.oldPassword === req.body.newPassword) {
-                return res.status(401).json("the new password must be different from the old one")
-            }
-
-            const salt = bcrypt.genSaltSync(10)
-            const hash = bcrypt.hashSync(req.body.newPassword, salt)
-                                                                                                                                    
-            const q = "UPDATE users SET password = ? WHERE id = ?"
-            db.query(q, [hash, req.query.user_id], (err, data) => {
-                if (err) {
-                    return res.status(500).send(err)
-                }
-                return res.status(200).send("Password updated")
-            })
-        })     
-       return
-    })
+            return res.status(200).send("Password updated")
+        })
+    }
+    
+    
 }
 
 export const updateUserData = (req, res) => {

@@ -10,12 +10,51 @@ export const AuthContextProvider = ({children}) => {
         )
     
     const [error, setError] = React.useState("")
-    
+    const [email, setEmail] = React.useState("")
+    const [resetPass, setResetPass] = React.useState(false)
 
-    //
-    const [verifyEmailCode, setVerifyEmailCode] = React.useState("")
-    //
 
+    const verifyEmailCode = React.useRef("")
+    const generateCode = () => {
+        let code = (Math.random() + 1).toString(36).substring(7);
+        verifyEmailCode.current = code
+    }
+
+    const sendResetEmailCode = async () => {
+        setResetPass(true)
+        if (email === "") {
+            setError("Field can not be empty")
+            return
+        }
+
+        generateCode()
+
+        const resetPassData = {
+            verificationCode: verifyEmailCode.current,
+            email: email
+        }
+
+        try {
+            await axios.post("/mail/send/resetpasswordMail/code", resetPassData, {
+                withCredentials: true
+            })
+            console.log("sent")
+            return true
+        } catch (error) {
+            setError(error.response.data)
+            return false
+        }
+    }
+
+    const compareCodes = (code) => {
+        if (code === verifyEmailCode.current) {
+            return true
+        }
+        else {
+            setError("Wrong or expired verification code")
+            return false
+        }
+    }
 
     const login = async (inputs) => {
         const res = await axios.post("/auth/login", inputs, {
@@ -32,13 +71,17 @@ export const AuthContextProvider = ({children}) => {
     }
     
     const changePassword = async (inputs) => {
-        try {await axios.put(`/auth/changePassword?user_id=${currentUser.id}`, inputs, {
+        try {
+            await axios.put(`/auth/changePassword?user_id=${currentUser?.id}`, inputs, {
             withCredentials: true
         })
-        logout() } 
+        logout() 
+        return null
+    } 
         catch (err) {
             console.log(err)
             setError(err.response.data)
+            return "error"
         }
     }
 
@@ -54,7 +97,7 @@ export const AuthContextProvider = ({children}) => {
     }, [currentUser])
 
     return (
-        <AuthContext.Provider value={{currentUser, error, login, logout, deleteAccount, changePassword, verifyEmailCode, setVerifyEmailCode}}>
+        <AuthContext.Provider value={{currentUser, error, login, logout, deleteAccount, changePassword, email, setEmail,sendResetEmailCode, compareCodes, resetPass}}>
             {children}
         </AuthContext.Provider>
     )
