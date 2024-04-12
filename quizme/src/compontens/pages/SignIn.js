@@ -53,17 +53,12 @@ function SignIn() {
 
     function handleForgetPassword() {
         setForgetPass(true)
-        console.log("forget password?")
     }
 
     const handleClose = () => {
         setForgetPass(false)
     }
-
-    const handleSendEmail = () => {
-
-    }
-
+    
     return (
         <div className="form">
             <div className="wrapper form-wrapper">
