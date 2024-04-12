@@ -4,7 +4,7 @@ export default function AddAnswer(props) {
 
 
     return (
-        <div className="addAnswer-container" >
+        <div className={props.delete ? "addAnswer-container" :"reqiuerdAnswers"}>
             <div>
                 {props.value !== null && (
                 <label className="answers--container">
