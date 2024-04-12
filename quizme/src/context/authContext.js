@@ -23,7 +23,6 @@ export const AuthContextProvider = ({children}) => {
 
     useEffect(() => {
         setTimeout(()=> {
-            console.log("code expired")
             verifyEmailCode.current =""
         }, 600000)
     }, [generateCode])
