@@ -28,18 +28,23 @@ const ResetPasswordTemplate = (verificationCode) => {
     
                 .nav--logo {
                     font-weight: bold;
-                    font-size: 2.5rem;
+                    font-size: 3rem;
                     font-family: 'Yanone Kaffeesatz', sans-serif;
                 }
     
                 .message--container {
                     text-align: center;
-                    color: rgb(var(--text-dark))
+                    color: rgb(var(--text-dark));
+                }
+
+                .message--text {
+                    font-size: 1.5rem;
                 }
     
                 .message--header {
                     padding-top: 3rem;
                     padding-bottom: 1rem;
+                    font-size: 2rem;
                 }
             </style>
         </head>
