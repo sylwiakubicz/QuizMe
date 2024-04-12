@@ -1,6 +1,7 @@
 import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import { AuthContext } from "../../context/authContext"
+import SendMailModal from "../SendMailModal"
 import "../../styles/form.css"
 
 
@@ -16,6 +17,7 @@ function SignIn() {
         }
     )
     const [error, setError] = React.useState("")
+    const [forgetPass, setForgetPass] = React.useState(false)
 
     const {login} = React.useContext(AuthContext)
 
@@ -41,13 +43,27 @@ function SignIn() {
             console.log(err.response.data)
             if (err.response.data === "Verify your email to sign in") {
                 localStorage.setItem("useremail_or_username", JSON.stringify(signInData.email))
-                setTimeout(() => navigate("/verifyemail"), 1000)
+                navigate("/verifyemail")
+            } else {
+                setError(err.response.data)
             }
-            setError(err.response.data)
         }
     }
 
-    
+
+    function handleForgetPassword() {
+        setForgetPass(true)
+        console.log("forget password?")
+    }
+
+    const handleClose = () => {
+        setForgetPass(false)
+    }
+
+    const handleSendEmail = () => {
+
+    }
+
     return (
         <div className="form">
             <div className="wrapper form-wrapper">
@@ -86,7 +102,7 @@ function SignIn() {
                             <span className="checkmark"></span>
                         </label>
                         <div className="register-or-login-link">
-                        <Link>Forgot password?</Link>
+                        <Link onClick={handleForgetPassword}>Forgot password?</Link>
                         </div>
                     </div>
                     <button className="btn" onClick={handleSubmit}>Sign In</button>
@@ -97,6 +113,7 @@ function SignIn() {
                     </div>
                 </form>
             </div>
+            <SendMailModal handleClose={handleClose} showModal={forgetPass} message={"We will send a code to verify your e-mail address. After correct verification, you will be able to set a new password."}/>
         </div>
     )
 }
