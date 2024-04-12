@@ -10,6 +10,11 @@ export const AuthContextProvider = ({children}) => {
         )
     
     const [error, setError] = React.useState("")
+    
+
+    //
+    const [verifyEmailCode, setVerifyEmailCode] = React.useState("")
+    //
 
 
     const login = async (inputs) => {
@@ -49,7 +54,7 @@ export const AuthContextProvider = ({children}) => {
     }, [currentUser])
 
     return (
-        <AuthContext.Provider value={{currentUser, error, login, logout, deleteAccount, changePassword}}>
+        <AuthContext.Provider value={{currentUser, error, login, logout, deleteAccount, changePassword, verifyEmailCode, setVerifyEmailCode}}>
             {children}
         </AuthContext.Provider>
     )
