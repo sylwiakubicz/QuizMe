@@ -76,7 +76,8 @@ function ContactUs() {
         
                     <button className="btn" onClick={(e) => {
                         e.preventDefault()
-                        }}>Verify</button>
+                        sendMail()
+                        }}>Send</button>
                 </form>
             </div>
         </div>
