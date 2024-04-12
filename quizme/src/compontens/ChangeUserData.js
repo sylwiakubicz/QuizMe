@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { AuthContext } from "../context/authContext"
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import DeleteConfirm from "./DeleteConfirm";
+
 
 
 function ChangeUserData(props) {
@@ -13,6 +15,13 @@ function ChangeUserData(props) {
         username: currentUser.username,
         userID: currentUser.id
     })
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => { 
+        e.preventDefault()
+        setShow(true)
+    }
 
     const navigate = useNavigate()
 
@@ -37,6 +46,7 @@ function ChangeUserData(props) {
             logout()
             navigate("/SignIn")
         } 
+        handleClose()
     }
 
     return (
@@ -65,7 +75,9 @@ function ChangeUserData(props) {
                         />
                 </div>
                 
-                <button className="btn" onClick={handleSave}>Save</button>
+                <button className="btn" onClick={handleShow}>Save</button>
+                <DeleteConfirm changeData={true} handleDelete={handleSave} handleClose={handleClose} showModal={show} message={"Your credential will be changed. You will be asked to sign in again."}/>
+
             </form>
         </div>
     )

@@ -30,7 +30,7 @@ function DeleteConfirm(props) {
           <Button onClick={props.handleClose} >
             Close
           </Button>
-          <Button onClick={props.handleDelete}>Delete Quiz</Button>
+          <Button onClick={props.handleDelete}>{props.changeData ? "Save" : "Delete Quiz"}</Button>
         </Modal.Footer>
       </Modal>
   );
