@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 
 export const AuthContext = React.createContext()
 
@@ -13,12 +13,20 @@ export const AuthContextProvider = ({children}) => {
     const [email, setEmail] = React.useState("")
     const [resetPass, setResetPass] = React.useState(false)
 
+    
 
     const verifyEmailCode = React.useRef("")
     const generateCode = () => {
         let code = (Math.random() + 1).toString(36).substring(7);
         verifyEmailCode.current = code
     }
+
+    useEffect(() => {
+        setTimeout(()=> {
+            console.log("code expired")
+            verifyEmailCode.current =""
+        }, 600000)
+    }, [generateCode])
 
     const sendResetEmailCode = async () => {
         setResetPass(true)
