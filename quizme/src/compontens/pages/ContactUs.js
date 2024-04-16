@@ -66,7 +66,7 @@ function ContactUs() {
         
                     <button className="btn" onClick={async (e) => {
                         e.preventDefault()
-                        if (await sendMail("", contactFormData)) {
+                        if (await sendMail("/mail/send", contactFormData)) {
                             navigate("/success")
                         }
                         }}>Send</button>

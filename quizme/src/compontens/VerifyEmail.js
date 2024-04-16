@@ -2,10 +2,13 @@ import React from "react"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 import { AuthContext } from "../context/authContext"
+import { useSendMail } from "../hooks/useSandMail"
 
 export default function VerifyEmail() {
 
     const navigate = useNavigate()
+    const sendMail = useSendMail()
+
     const {resetPass, sendResetEmailCode, compareCodes, error, setError} = React.useContext(AuthContext)
     const [verificationCode, setVerficationCode] = React.useState("")
 
@@ -49,14 +52,8 @@ export default function VerifyEmail() {
             email: JSON.parse(localStorage.getItem("useremail_or_username")),
             }
             console.log(verifyData)
-            try {
-                await axios.post("/auth/send/verificationMail/new", verifyData, {
-                    withCredentials: true
-                })
-                console.log("finshed")
-            } catch (error) {
-                console.log(error)
-            }
+
+            sendMail("/auth/send/verificationMail/new" ,verifyData)
         }
         
     }

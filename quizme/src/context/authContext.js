@@ -43,7 +43,7 @@ export const AuthContextProvider = ({children}) => {
             verificationCode: verifyEmailCode.current,
             email: email
         }
-        sendMail("/resetpasswordMail/code", resetPassData)
+        sendMail("/mail/send/resetpasswordMail/code", resetPassData)
     }
 
     const compareCodes = (code) => {
