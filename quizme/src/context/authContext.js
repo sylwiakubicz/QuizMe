@@ -1,9 +1,12 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useSendMail } from "../hooks/useSandMail";
 
 export const AuthContext = React.createContext()
 
 export const AuthContextProvider = ({children}) => {
+
+    const sendMail = useSendMail()
 
     const [currentUser, setCurrentUser] = React.useState(
         JSON.parse(localStorage.getItem("user")) || null
@@ -40,17 +43,7 @@ export const AuthContextProvider = ({children}) => {
             verificationCode: verifyEmailCode.current,
             email: email
         }
-
-        try {
-            await axios.post("/mail/send/resetpasswordMail/code", resetPassData, {
-                withCredentials: true
-            })
-            console.log("sent")
-            return true
-        } catch (error) {
-            setError(error.response.data)
-            return false
-        }
+        sendMail("/resetpasswordMail/code", resetPassData)
     }
 
     const compareCodes = (code) => {
