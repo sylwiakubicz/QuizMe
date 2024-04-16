@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef, useContext } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import React, { useEffect, useState, useRef, useContext, useCallback } from "react"
+import { useLocation } from "react-router-dom"
 import axios from "axios"
 import "../../styles/quizQuestionCard.css"
 import Question from "../Question"
@@ -13,9 +13,8 @@ import {AuthContext} from "../../context/authContext"
 
 export default function TakeTheQuiz() {
 
-    const navigate = useNavigate()
     const quizID = useLocation().pathname.split("/")[1]
-    const {currentUser, logout} = useContext(AuthContext)
+    const {currentUser} = useContext(AuthContext)
 
     const [error, setError] = useState("")
     const [questions, setQuestions] = useState([])
@@ -23,9 +22,36 @@ export default function TakeTheQuiz() {
     const [currentAnswer, setCurrentAnswer] = useState("")
     const [showScore, setShowScore] = useState(false)
     const score = useRef(0)
-
     const [isLoading, setIsLoading] = React.useState(false)
+    
 
+    const getUserScore = async () => {
+        console.log("user score")
+        const userID = currentUser ? currentUser.id : null
+        if (!userID) {
+            return console.log("not logged in")
+        } else{ 
+            try {
+                const res = await axios.get(`/quiz/${quizID}/score?userID=${userID}`, {
+                    withCredentials:true,
+                })
+                if (res.data.length === 0) {
+                    setPrevScore(null)
+                    return null
+                } else
+                {
+                    setPrevScore(res.data[0].score)
+                    return res.data[0].score
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+
+
+    const [prevScore, setPrevScore] = React.useState(null) 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +60,7 @@ export default function TakeTheQuiz() {
                 withCredentials:true,
             })
             setQuestions(res.data)
+            await getUserScore()
             setIsLoading(false)
         } catch (err) {
             console.log(err)
@@ -53,43 +80,35 @@ export default function TakeTheQuiz() {
         }
     }
 
+
+
+
     const setUserScore = async () => {
         const userID = currentUser ? currentUser.id : null
         if (!userID) {
             return console.log("not logged in")
         } else {
-            try {
-                const res = await axios.get(`/quiz/${quizID}/score?userID=${userID}`, {
-                    withCredentials:true,
-                })
-                if (res.data.length === 0) {
-                    try {
-                        await axios.post(`/quiz/user/${quizID}`, {
-                            quizScore: score.current,
-                            userID: userID,
-                        })
-                    } catch (err) {
-                        console.log(err)
-                    }
-                } 
-                else if (res.data[0].score < score.current) {
-                    try{
-                        await axios.put(`/quiz/user/${quizID}`, {
-                            quizScore: score.current,
-                            userID: userID
-                        })
-                    } catch (err) {
-                        console.log(err)
-                    }
+            const prevScore = await getUserScore()
+            if (prevScore === null) {
+                try {
+                    await axios.post(`/quiz/user/${quizID}`, {
+                        quizScore: score.current,
+                        userID: userID,
+                    })
+                } catch (err) {
+                    console.log(err)
                 }
-            } catch (err) {
-                if (err.response.data === "Token is not valid") {
-                    logout()
-                    navigate("/SignIn")
+            } else if (prevScore < score.current) {
+                try{
+                    await axios.put(`/quiz/user/${quizID}`, {
+                        quizScore: score.current,
+                        userID: userID
+                    })
+                } catch (err) {
+                    console.log(err)
                 }
             }
         }
-
     }
 
     const handleAnswerChange = (answerText) => {
@@ -143,7 +162,7 @@ export default function TakeTheQuiz() {
 
                     {questions.length > 0 && (
                         <div >
-                            <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length}/>
+                            <QuizQuestionInfo quizTitle={questions[currentIndex].quizTitle} quizImage={questions[currentIndex].quizImage} numberOfQuestions={questions.length} userScore={prevScore}/>
                             <Question 
                                 quizText={questions[currentIndex].question}
                                 answers={questions[currentIndex].answers}

@@ -19,7 +19,7 @@ export default function QuizQuestionInfo(props) {
                 <hr className="quiz--line"/>
                 <div className="quiz--userInfo">
                     <p>{currentUser.username}</p>
-                    <p>Your best score: {2}/{props.numberOfQuestions}</p>
+                    <p>Your best score: {props.userScore === null ? 0 : props.userScore}/{props.numberOfQuestions}</p>
                 </div>
             </>
             }
