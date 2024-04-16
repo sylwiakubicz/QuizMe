@@ -1,11 +1,12 @@
 import React from "react"
 import "../../styles/form.css"
-import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { useSendMail } from "../../hooks/useSandMail";
 
 
 function ContactUs() {
     const navigate = useNavigate()
+
     const [contactFormData, setContanctFormData] = React.useState(
         {
             email: "",
@@ -13,6 +14,7 @@ function ContactUs() {
             message: ""
         }
     )
+    const sendMail = useSendMail()
     
     function handleChange(event) {
         const {name, value} = event.target
@@ -23,18 +25,6 @@ function ContactUs() {
             }
         })
     }
-
-    const sendMail = async () => {
-        try {
-            await axios.post("/mail/send", contactFormData, {
-                withCredentials: true
-            })
-            navigate("/success")
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
 
     return (
         <div className="size" id="contact-form">
@@ -74,9 +64,11 @@ function ContactUs() {
                             required></textarea>
                     </div>
         
-                    <button className="btn" onClick={(e) => {
+                    <button className="btn" onClick={async (e) => {
                         e.preventDefault()
-                        sendMail()
+                        if (await sendMail("", contactFormData)) {
+                            navigate("/success")
+                        }
                         }}>Send</button>
                 </form>
             </div>
