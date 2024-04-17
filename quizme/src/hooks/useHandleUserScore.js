@@ -34,7 +34,6 @@ export const useHandleUserScore = (currentUser) => {
         if (!userID) {
             return console.log("not logged in")
         } else {
-            // const prevScore = await getUserScore()
             if (prevScore === null) {
                 try {
                     await axios.post(`/quiz/user/${quizID}`, {

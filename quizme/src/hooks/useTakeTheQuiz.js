@@ -15,12 +15,10 @@ export const useTakeTheQuiz = (currentUser) => {
     const [showScore, setShowScore] = useState(false)
     const score = useRef(0)
 
-    // error i isLoading jako osobny hook?
     const [error, setError] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     
 
-    // jak import?
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true)
