@@ -4,8 +4,10 @@ import { useEffect, useState, useRef} from "react"
 import { useHandleUserScore } from "./useHandleUserScore"
     
 export const useTakeTheQuiz = (currentUser) => {
+    const { username, email, id } = currentUser;
+
     const quizID = useLocation().pathname.split("/")[1]
-    const {prevScore, setUserScore, getUserScore} = useHandleUserScore()
+    const {prevScore, setUserScore, getUserScore} = useHandleUserScore(currentUser)
 
     const [questions, setQuestions] = useState([])
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -26,7 +28,7 @@ export const useTakeTheQuiz = (currentUser) => {
                 withCredentials:true,
             })
             setQuestions(res.data)
-            await getUserScore(currentUser, quizID)
+            await getUserScore(quizID)
             setIsLoading(false)
         } catch (err) {
             console.log(err)
@@ -52,7 +54,7 @@ export const useTakeTheQuiz = (currentUser) => {
         return answerText
     }
 
-    const handleNextQuestion = (correctAnswer, quizStats) => {
+    const handleNextQuestion = (correctAnswer, quizStats, currentUser) => {
         if (currentAnswer === "") {
             setError("Choose an answer to continue")
             return
@@ -68,7 +70,7 @@ export const useTakeTheQuiz = (currentUser) => {
         else {
             quizStats += 1
             sendStats(quizStats)
-            setUserScore(currentUser, score, quizID)
+            setUserScore(score, quizID)
             setCurrentIndex(0)
             setShowScore(true)
         }
@@ -76,11 +78,12 @@ export const useTakeTheQuiz = (currentUser) => {
         setCurrentAnswer("")
     };
 
-    const handleTryAgain = () => {
+    const handleTryAgain = async () => {
+        await getUserScore(quizID)
         setCurrentAnswer("")
         score.current = 0
         setShowScore(false)
     }
     
-    return [isLoading, showScore, currentIndex, score, prevScore, currentAnswer, error, questions, handleTryAgain, handleNextQuestion, handleAnswerChange]
+    return {isLoading, showScore, currentIndex, score, prevScore, currentAnswer, error, questions, handleTryAgain, handleNextQuestion, handleAnswerChange}
 }

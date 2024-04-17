@@ -14,7 +14,7 @@ import "../../styles/quizQuestionCard.css"
 export default function TakeTheQuiz() {
     
     const {currentUser} = useContext(AuthContext)
-    const [isLoading, showScore, currentIndex, score, prevScore, currentAnswer, error, questions, handleTryAgain, handleNextQuestion, handleAnswerChange] = useTakeTheQuiz(currentUser)
+    const {isLoading, showScore, currentIndex, score, prevScore, currentAnswer, error, questions, handleTryAgain, handleNextQuestion, handleAnswerChange} = useTakeTheQuiz(currentUser)
     
     return (
         <div> 
