@@ -1,6 +1,6 @@
 import React from "react";
 import { CreateQuizContext } from "../context/CreateQuizContext";
-
+import ImageUpload from "./ImageUpload"
 
 export default function SetPreferences(props) {
 
@@ -31,9 +31,8 @@ export default function SetPreferences(props) {
                 />
             </div>
 
-            <h1>Add quiz image: </h1>
-            <input type="file"></input>
-
+            
+            <ImageUpload />
 
                     
 

@@ -160,3 +160,16 @@ text-wrap: wrap;
     font-size: 1.1rem;
 }
 
+.setQuizImage {
+    position: relative;
+}
+
+.setQuizImage i {
+    color: black;
+}
+
+.setQuizImage button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.3rem;
+}
