@@ -1,5 +1,8 @@
 import React, {useState, useRef} from "react";
+import axios from "axios"
 import DefaultImage from "../images/randomImg.jpg"
+import LoadingImage from "../images/loading.gif"
+
 
 const ImageUpload = () => {
     const [quizImage, setQuizImage] = useState(DefaultImage)
@@ -10,11 +13,21 @@ const ImageUpload = () => {
         fileUploadRef.current.click()
     }
 
-    const uploadImageDisplay = () => {
+    const uploadImageDisplay = async () => {
+        setQuizImage(LoadingImage)
         const uploadedFile = fileUploadRef.current.files[0]
 
-        const cachedURL = URL.createObjectURL(uploadedFile)
-        setQuizImage(cachedURL)
+        const formData = new FormData()
+        formData.append("file", uploadedFile)
+        try {
+            const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData)
+            setQuizImage(response.data?.location)
+        } catch (error) {
+            console.log(error)
+            setQuizImage(DefaultImage)
+        }
+        // const cachedURL = URL.createObjectURL(uploadedFile)
+        // setQuizImage(cachedURL)
     }
 
     return (
