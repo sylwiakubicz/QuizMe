@@ -4,7 +4,7 @@ import Question from "./Question"
 import QuizQuestionInfo from "./QuizQuestionInfo"
 import {AuthContext} from "../context/authContext"
 import axios from "axios";
-import { useNavigate, useLocation} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 
 
 
@@ -17,6 +17,8 @@ export default function Activate(props) {
 
     const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
+    const quizImage = localStorage.getItem("imageURL")
+    console.log(quizImage)
 
     const handleSubmitForEditQuiz = async (quizData) => {
             try {
@@ -41,12 +43,14 @@ export default function Activate(props) {
     const handleSubmit = async () => {
         const quizData = {
             title: JSON.parse(window.localStorage.getItem('quizTitle')),
-            image: "",
+            image: quizImage,
             category: JSON.parse(window.localStorage.getItem('category')),
             user_id: currentUser.id,
             questions: questions,
             quiz_id: quizID.current
         }
+
+        console.log(quizData)
         if (editExistingQuiz) {
             await handleSubmitForEditQuiz(quizData)
         } else {
@@ -73,6 +77,7 @@ export default function Activate(props) {
         localStorage.removeItem('quizTitle')
         localStorage.removeItem('category')
         localStorage.removeItem('quizTitle')
+        localStorage.removeItem('imageURL')
     }
     
     return (
@@ -80,7 +85,7 @@ export default function Activate(props) {
             <div className={props.active === "activate" ? "settings-container" : "notShow"}>
             {questions.length > 0 && 
             <div>
-                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={""} numberOfQuestions={questions.length} category={category}/>
+                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={quizImage} numberOfQuestions={questions.length} category={category}/>
                 {questions.map((question, questionIndex) =>
                     <Question 
                         key={questionIndex}

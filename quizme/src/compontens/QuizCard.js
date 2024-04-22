@@ -74,7 +74,7 @@ export function QuizCard(props) {
         <div className="quizCard" >
             <Link to={`/${props.id}`}>
                 <img 
-                    src={img} 
+                    src={props.quizImage} 
                     alt="" 
                     className="quizImg">
                 </img>

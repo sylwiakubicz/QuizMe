@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import img from "../images/randomImg.jpg"
 import {AuthContext} from "../context/authContext"
 
 
@@ -12,7 +11,7 @@ export default function QuizQuestionInfo(props) {
         <div className="quiz--infoCard">
             <div className="quiz--info">
                 <h1 className="quiz--title">{props.quizTitle}</h1>
-                <img className="quiz--img" src={img} alt=""></img>
+                <img className="quiz--img" src={props.quizImage} alt=""></img>
             </div>
             {currentUser && !props.fromActivate && 
             <>

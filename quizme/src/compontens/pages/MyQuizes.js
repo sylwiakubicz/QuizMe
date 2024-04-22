@@ -63,7 +63,7 @@ function MyQuizes() {
                         </select>
                     </div>
                     <div className="quizes">
-                        {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id}/>))}    
+                        {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image}/>))}    
                     </div> 
                 </div>
                 : <div className="question--container quiz--infoCard myQuizes--container">

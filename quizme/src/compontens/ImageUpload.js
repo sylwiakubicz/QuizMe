@@ -5,7 +5,7 @@ import LoadingImage from "../images/loading.gif"
 
 
 const ImageUpload = () => {
-    const [quizImage, setQuizImage] = useState(DefaultImage)
+    const [quizImage, setQuizImage] = useState(localStorage.getItem("imageURL") || DefaultImage)
     const fileUploadRef = useRef()
 
     const handleImageUpload = (e) => {
@@ -22,8 +22,10 @@ const ImageUpload = () => {
         try {
             const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData)
             setQuizImage(response.data?.location)
+            localStorage.setItem("imageURL", response.data?.location)
         } catch (error) {
             console.log(error)
+            localStorage.removeItem("imageURL")
             setQuizImage(DefaultImage)
         }
         // const cachedURL = URL.createObjectURL(uploadedFile)
