@@ -1,6 +1,6 @@
 import React from "react"
 import {useNavigate} from "react-router-dom"
-import img from "../images/randomImg.jpg"
+import DefaultImage from "../images/randomImg.jpg"
 
 
 export default function QuizScoreCard(props) {
@@ -17,8 +17,8 @@ export default function QuizScoreCard(props) {
                     <h1 className="title">{props.quizTitle}</h1>
                     <h2 className="score">Score {props.quizScore}/{props.quizLenght}</h2>
                 </div>
-                <img className="quiz--imgBig" src={img} alt=""></img>
-            </div>
+                <img className="quiz--imgBig" src={props.quizImage ? props.quizImage : DefaultImage} alt=""></img>
+            </div> 
             <hr className="quiz--line"/>
             <div className="quiz--btnContainer">
                 <button className="quiz--btn" onClick={props.resetFunction}>Try Again</button>

@@ -24,7 +24,7 @@ export default function TakeTheQuiz() {
                 </div>
                 :
                 showScore  ?  <div>
-                    {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length}/>}
+                    {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length} quizImage={questions[currentIndex].quizImage}/>}
                 </div>
                 : <div className="question--container"> 
 

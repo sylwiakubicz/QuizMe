@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import DefaultImage from "../images/randomImg.jpg"
 
 export const CreateQuizContext = React.createContext()
 
@@ -15,6 +16,7 @@ export const CreateQuizContextProvider = ({children}) => {
     })
     const [error, setError] = useState("")
     const [editExistingQuiz, setEditExistingQuiz] = useState(false)
+    const [quizImage, setQuizImage] = useState(JSON.parse(window.localStorage.getItem("imageURL")) || DefaultImage)
 
     const isEdit = React.useRef(false)
     const quizID = React.useRef(0)
@@ -43,16 +45,21 @@ export const CreateQuizContextProvider = ({children}) => {
         localStorage.setItem('quizTitle', JSON.stringify(title));
     }, [title]);
       
+    useEffect(() => {
+        localStorage.setItem('imageURL', JSON.stringify(quizImage));
+    }, [quizImage]);
     
     function deleteFromLocalStorage() {
         localStorage.removeItem("active");
         localStorage.removeItem("questions");
         localStorage.removeItem("quizTitle");
         localStorage.removeItem("category");
+        localStorage.removeItem("imageURL")
 
         setQuestions([])
         setTitle("")
         setCategory("None")
+        setQuizImage("")
     }
     
     const handledelete = () => {
@@ -230,6 +237,7 @@ export const CreateQuizContextProvider = ({children}) => {
                 deleteFromLocalStorage,
                 handledelete,
                 filterAnswers,
+                setQuizImage,
                 category,
                 answers, 
                 questions, 
@@ -238,7 +246,8 @@ export const CreateQuizContextProvider = ({children}) => {
                 editExistingQuiz,
                 title,
                 isEdit,
-                quizID
+                quizID,
+                quizImage
             }}>
             {children}
         </CreateQuizContext.Provider>

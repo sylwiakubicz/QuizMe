@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/authContext"
 import { QuizCard } from "../QuizCard"
 import axios from "axios";
 import {Link} from "react-router-dom"
+import DefaultImage from "../../images/randomImg.jpg"
 
 
 
@@ -63,7 +64,7 @@ function MyQuizes() {
                         </select>
                     </div>
                     <div className="quizes">
-                        {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image}/>))}    
+                        {myQuizes.length > 0 && myQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image ? quiz.image : DefaultImage}/>))}    
                     </div> 
                 </div>
                 : <div className="question--container quiz--infoCard myQuizes--container">

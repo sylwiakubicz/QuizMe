@@ -3,7 +3,7 @@ import {useEffect} from "react"
 import { useLocation } from "react-router-dom"
 import { QuizCard } from "../QuizCard"
 import { QuizContext } from "../../context/quizContext"
-
+import DefaultImage from "../../images/randomImg.jpg"
 
 
 function Home() {
@@ -42,7 +42,7 @@ function Home() {
                 serachingText ?
                 filterQuizes.length > 0 ? 
                     <div className="quizes">
-                        {filterQuizes.length > 0 && filterQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz?.image}/>))}    
+                        {filterQuizes.length > 0 && filterQuizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image ? quiz.image : DefaultImage }/>))}    
                     </div> 
                     : 
                     <div className="quizNotFound">
@@ -52,7 +52,7 @@ function Home() {
 
                 :
                 <div className="quizes">
-                    {quizes.length > 0 && quizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz?.image}/>))}    
+                    {quizes.length > 0 && quizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image ? quiz.image : DefaultImage}/>))}    
                 </div> 
             }
         </>

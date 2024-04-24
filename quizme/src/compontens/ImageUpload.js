@@ -1,11 +1,12 @@
-import React, {useState, useRef} from "react";
+import React, {useRef} from "react";
 import axios from "axios"
-import DefaultImage from "../images/randomImg.jpg"
 import LoadingImage from "../images/loading.gif"
+import { CreateQuizContext } from "../context/CreateQuizContext";
+import DefaultImage from "../images/randomImg.jpg"
 
 
 const ImageUpload = () => {
-    const [quizImage, setQuizImage] = useState(localStorage.getItem("imageURL") || DefaultImage)
+    const {quizImage, setQuizImage} = React.useContext(CreateQuizContext)
     const fileUploadRef = useRef()
 
     const handleImageUpload = (e) => {
@@ -21,15 +22,15 @@ const ImageUpload = () => {
         formData.append("file", uploadedFile)
         try {
             const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData)
-            setQuizImage(response.data?.location)
-            localStorage.setItem("imageURL", response.data?.location)
+            if (response) {
+                setQuizImage(response.data?.location)
+                localStorage.setItem("imageURL", response.data?.location)
+            }
         } catch (error) {
             console.log(error)
             localStorage.removeItem("imageURL")
             setQuizImage(DefaultImage)
         }
-        // const cachedURL = URL.createObjectURL(uploadedFile)
-        // setQuizImage(cachedURL)
     }
 
     return (
@@ -39,7 +40,7 @@ const ImageUpload = () => {
                 <input ref={fileUploadRef} onChange={uploadImageDisplay} type="file" hidden></input> 
                 
                 <div className="setQuizImage">
-                    <img src={quizImage} alt="quiz image" className="quizImg"></img>
+                    <img src={quizImage ? quizImage : DefaultImage} alt="quiz image" className="quizImg"></img>
                     <button className="quizCard-icons" type="submit" onClick={handleImageUpload}>
                         <i className="fa-solid fa-pen-to-square quizCard-icon"></i>
                     </button>

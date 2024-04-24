@@ -5,7 +5,7 @@ import QuizQuestionInfo from "./QuizQuestionInfo"
 import {AuthContext} from "../context/authContext"
 import axios from "axios";
 import { useNavigate} from "react-router-dom"
-
+import DefaultImage from "../images/randomImg.jpg"
 
 
 
@@ -17,7 +17,7 @@ export default function Activate(props) {
 
     const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
-    const quizImage = localStorage.getItem("imageURL")
+    const quizImage = JSON.parse(window.localStorage.getItem("imageURL"))
     console.log(quizImage)
 
     const handleSubmitForEditQuiz = async (quizData) => {
@@ -85,7 +85,7 @@ export default function Activate(props) {
             <div className={props.active === "activate" ? "settings-container" : "notShow"}>
             {questions.length > 0 && 
             <div>
-                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={quizImage} numberOfQuestions={questions.length} category={category}/>
+                <QuizQuestionInfo fromActivate={true} quizTitle={quizTitle} quizImage={quizImage ? quizImage : DefaultImage} numberOfQuestions={questions.length} category={category}/>
                 {questions.map((question, questionIndex) =>
                     <Question 
                         key={questionIndex}
