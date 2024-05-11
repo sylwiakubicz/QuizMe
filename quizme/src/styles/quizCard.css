@@ -3,16 +3,16 @@
     display: flex;
     flex-direction: column;
     z-index: 1;
-    width: 20.9rem;
-    height: 31.25rem;
-    border: .188rem solid rgba(var(--primary-color), .1);
+    width: 19rem;
+    height: 25rem;
+    border: .15rem solid rgba(var(--primary-color), .1);
     border-radius:.938rem;
     margin-bottom: .938rem;
     background-color: rgba(var(--primary-color), .6);
 }
 
 .quizImg {
-    height: 25rem;
+    height: 19rem;
     border-radius: .88rem;
     width: 100%;
 }
@@ -25,13 +25,13 @@
 .quizStats {
     padding-left: .625rem;
     position: absolute;
-    bottom: .938rem;
+    bottom: .3rem;
 }
 
 
 .quizCard:hover {
     background-color: rgba(var(--primary-color), .8);  
-    border: .188rem solid rgba(var(--primary-color), .6);
+    border: .15rem solid rgba(var(--primary-color), .6);
     scale: 1.05;
     transition: all ease-in-out 300ms;
 }
@@ -46,4 +46,79 @@
 
 .quizCard-icon {
     padding-left: .5rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .quizCard {
+        height: 23.813rem;
+        width: 16.313rem;
+    }
+
+    .quizImg{
+        height: 16.313rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .quizCard {
+        height: 20.875rem;
+        width: 13.375rem;
+    }
+
+    .quizImg{
+        height: 13.375rem;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .quizCard {
+        display: flex;
+        height: 3.5rem;
+        width: 32.125rem;
+        flex-direction: row;
+        border-radius: 0;
+    }
+
+    .quizImg{
+        height: 3.2rem;
+        width: 3.2rem;
+        border-radius: 0;
+    }
+    
+    .quizStats {
+        right: .125rem;
+        font-size: .7rem;
+    } 
+    .quizTitle {
+        padding-left: 4.225rem;
+        position: absolute;
+        top: 0;
+        font-size: 1rem;
+    }
+
+    .quizCard-icons {
+        bottom: 2rem;
+        font-size: .7rem;
+        right: .125rem;
+    }
+    
+    .quizCard-icon {
+        padding-left: .5rem;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .quizCard {
+        height: 3.5rem;
+        width: 100%;
+    }
+
+    .quizImg{
+        height: 3.2rem;
+        width: 3.2rem;
+    }
+
+    .quizTitle {
+        text-wrap: wrap;
+    }
 }

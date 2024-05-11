@@ -41,6 +41,7 @@ a {
     position: relative;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     background-color: rgb(var(--main-bg));
+    padding-top: 12rem;
 }
 
 .page {
@@ -49,14 +50,20 @@ a {
 
 /* QUIZES */
 .quizes {
+    max-width: 1320px;
     display: grid;
-    grid-template-columns: 21rem 21rem 21rem 21rem;
-    gap: 4rem;
-    padding: 5rem 10%;
+    grid-template-columns: repeat(4, minmax(19rem, 1fr));
+    grid-gap: 1rem;
+    margin-top: 3rem;
+    justify-items: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .searchSection {
-    padding: 12.5rem 10% 0 10%;
+    max-width: 1320px;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -234,4 +241,83 @@ a {
 
 .additional-padding {
     padding-top: 1rem;
+}
+
+
+@media (max-width: 1400px) {
+    .quizes {
+        max-width: 1140px;
+        grid-template-columns: repeat(4, minmax(16.313rem, 1fr));
+    }
+
+    .searchSection {
+        max-width: 1140px;
+    }
+
+    .serachContainer {
+        width: 50rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .quizes {
+        max-width: 960px;
+        grid-template-columns: repeat(4, minmax(13.375rem, 1fr));
+    }
+
+    .searchSection {
+        max-width: 960px;
+    }
+
+    .serachContainer {
+        width: 40rem;
+    }
+}
+
+@media (max-width: 1035px) {
+    .quizes {
+        max-width: 720px;
+        grid-template-columns: repeat(3, minmax(13.375rem, 1fr));
+    }
+
+    .searchSection {
+        max-width: 720px;
+    }
+
+    .serachContainer {
+        width: 25rem;
+    }
+}
+
+@media (max-width: 830px) {
+    .quizes {
+        max-width: 540px;
+        grid-template-columns: repeat(1, minmax(32.125rem, 1fr));
+    }
+
+    .searchSection {
+        max-width: 540px;
+        flex-direction: column-reverse;
+        align-items: end;
+    }
+
+    .serachContainer {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 570px) {
+    .quizes {
+        display: flex;
+        flex-direction: column;
+        max-width: 570px;
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+
+    .searchSection {
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
 }
