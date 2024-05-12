@@ -87,7 +87,7 @@ const Header = (props) => {
                                 {/* logged in users on smaller screens */}
 
                                 <div className="btn-toggle" onClick={() => setBtnActive(prev => !prev)} style={btnActive ? {display: "none"} : {display: ""}}>
-                                    <i class="fa-solid fa-bars"></i>
+                                    <i className="fa-solid fa-bars"></i>
                                 </div>
 
                                 <div className="dropdown-menu" style={btnActive ? { right: 0 } : {right: -500}}>
@@ -139,7 +139,7 @@ const Header = (props) => {
 
                             {/* not logged in users on small screens */}
                             <div className="btn-toggle" onClick={() => setBtnActive(prev => !prev)} style={btnActive ? {display: "none"} : {display: ""}}>
-                                    <i class="fa-solid fa-bars"></i>
+                                    <i className="fa-solid fa-bars"></i>
                                 </div>
 
                                 <div className="dropdown-menu" style={btnActive ? { right: 0 } : {right: -500}}>

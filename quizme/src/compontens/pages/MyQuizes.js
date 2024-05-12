@@ -47,7 +47,7 @@ function MyQuizes() {
     
 
     return (
-        <div className="size">
+        <div className="main-padding">
             { isLoading ? 
                 <div className="myaccount-container">
                     <p className="text ">Loading...</p> 
@@ -55,7 +55,7 @@ function MyQuizes() {
                 :
                 myQuizes.length !== 0 ? 
                 <div>
-                    <div className="searchSection">
+                    <div className="searchSection searchSectionMyQuizes">
                         <h1 className="text">Quizes by {currentUser.username}: </h1>
                         <select id="sort" name="sort" className="categoryDropList" onChange={(e) => setCurrentFiler(e.target.value)} value={currentFilter}>
                             <option className="option" value="" defaultChecked>Show</option>

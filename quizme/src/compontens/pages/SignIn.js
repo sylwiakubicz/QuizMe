@@ -60,8 +60,8 @@ function SignIn() {
     }
     
     return (
-        <div className="form">
-            <div className="wrapper form-wrapper">
+        <div className="size">
+            <div className="wrapper form-wrapper form">
                 <form action="">
                     <h1>Sign In</h1>
                     <div className="input-box">

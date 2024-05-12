@@ -1,17 +1,14 @@
 /* Login form styling */
-.form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .wrapper {
     width: 26.25rem;
     background-color: rgb(var(--light-bg));
     border-radius: .938rem;
     color: rgba(var(--primary-color), .8);
     transition: color .5s ease-in-out;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .form-wrapper {
@@ -38,6 +35,7 @@
     width: 100%;
     height: 3.125rem;
     margin:  .938rem 0;
+    position: relative;
 }
 
 .input-box input,
@@ -190,10 +188,6 @@
     max-height: 23.75rem;
 }
 
-textarea {
-    resize: none;
-    overflow: hidden;
-}
 
 .error {
     color: red;
@@ -215,4 +209,15 @@ textarea {
 
 .addQuestion .btn {
     margin: 2rem 5rem;
+}
+
+
+@media screen and (max-width: 440px) {
+    .wrapper {
+        width: 100%;
+        border-radius: 0;
+    }
+    .wrapper h1 {
+        font-size: 2rem;
+    }
 }

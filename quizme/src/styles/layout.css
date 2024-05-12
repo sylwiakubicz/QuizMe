@@ -144,8 +144,6 @@ footer li:hover::after {
 
 
 /* Theme toggle */
-
-
 .themeToggle {
     color: rgb(var(--text-light));
     background-color: rgb(var(--additional-color));
@@ -154,7 +152,7 @@ footer li:hover::after {
     height: 2.8rem;
     border-radius: 50%;
     position: absolute;
-    right: .5rem;
+    right: 1.5rem;
 }
 
 .themeToggleDropdown {
@@ -242,6 +240,8 @@ ul {
 
     .nav--container {
         width: 100%;
+        margin-left: .5rem;
+        margin-right: .5rem;
     }
 
     .dropdown-menu {

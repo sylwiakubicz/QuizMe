@@ -62,8 +62,8 @@ function SignUp() {
     }
 
     return (
-        <div className="form">
-            <div className="wrapper form-wrapper">
+        <div className="size">
+            <div className="wrapper form-wrapper form">
                 <form onSubmit={handleSubmit}>
                     <h1>Sign Up</h1>
                     <div className="input-box">

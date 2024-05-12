@@ -17,7 +17,7 @@ function Home() {
 
 
     return (
-        <>
+        <div className="main-padding">
             <div className="searchSection">
                 <div className="serachContainer">
                     <input className="search" placeholder="Search..." onChange={e => {setSearchingText(e.target.value)}}></input>
@@ -55,7 +55,7 @@ function Home() {
                     {quizes.length > 0 && quizes.map(quiz => ( <QuizCard title={quiz.title} stats={quiz.stats} id={quiz.quiz_id} key={quiz.quiz_id} user_id={quiz.user_id} quizImage={quiz.image ? quiz.image : DefaultImage}/>))}    
                 </div> 
             }
-        </>
+        </div>
     )
 }
 
