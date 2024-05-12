@@ -16,7 +16,7 @@ export const CreateQuizContextProvider = ({children}) => {
     })
     const [error, setError] = useState("")
     const [editExistingQuiz, setEditExistingQuiz] = useState(false)
-    const [quizImage, setQuizImage] = useState(JSON.parse(window.localStorage.getItem("imageURL")) || DefaultImage)
+    const [quizImage, setQuizImage] = useState(window.localStorage.getItem("imageURL") || DefaultImage)
 
     const isEdit = React.useRef(false)
     const quizID = React.useRef(0)

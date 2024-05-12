@@ -173,3 +173,7 @@ text-wrap: wrap;
     background-color: transparent;
     font-size: 1.3rem;
 }
+
+.quizImage {
+    max-width: 100%;
+}

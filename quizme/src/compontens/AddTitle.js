@@ -9,7 +9,7 @@ export default function AddTitle(props) {
         <div className={props.active === "" ? "settings-container center-container" : "notShow"}>
             <h1 className="text-header">Let's start!</h1>
             <p className="paragraph">Create your own quiz for free. Start by giving it a name. Don't worry, you can change this later.</p>
-            <form className="wrapper">
+            <form className="wrapper myProfileFormWrapper">
                 <div className="input-box">
                     <input 
                         type="text" 

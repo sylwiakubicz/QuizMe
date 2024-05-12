@@ -182,6 +182,10 @@ a {
     margin-bottom: 4rem;
 }
 
+.settings-container p {
+    text-wrap: wrap;
+    width: 100%;
+}
 .notShow {
     display: none;
 }
@@ -276,6 +280,14 @@ a {
     .serachContainer {
         width: 40rem;
     }
+
+    .paragraph {
+        font-size: 1.5rem;
+    }
+    
+    .text-header {
+        font-size: 2.5rem;
+    }
 }
 
 @media (max-width: 1035px) {
@@ -298,6 +310,15 @@ a {
 
     .size {
         min-height: calc(100vh - 6.425rem);
+    }
+
+    .account-wrapper {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .text-header {
+        font-size: 2rem;
     }
 }
 
@@ -323,6 +344,18 @@ a {
     }
 }
 
+@media (max-width: 660px) {
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .quiz--btn {
+        width: 100%;
+    }
+}
+
 @media (max-width: 570px) {
     .quizes {
         display: flex;
@@ -338,8 +371,21 @@ a {
     }
 
     .size {
-        padding-top: 6rem;
+        padding-top: 7rem;
         height: calc(100vh - 9rem);
+    }
+
+    .options {
+        width: 100%;
+    }
+
+    .accountSetingsOption {
+        text-wrap: wrap;
+        text-align: center;
+    }
+
+    .myProfileFormWrapper {
+        width: 100%;
     }
 }
 

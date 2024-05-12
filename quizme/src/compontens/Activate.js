@@ -17,7 +17,7 @@ export default function Activate(props) {
 
     const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
-    const quizImage = JSON.parse(window.localStorage.getItem("imageURL"))
+    const quizImage = window.localStorage.getItem("imageURL")
     console.log(quizImage)
 
     const handleSubmitForEditQuiz = async (quizData) => {

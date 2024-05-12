@@ -47,7 +47,7 @@ function MyQuizes() {
     
 
     return (
-        <div className="main-padding">
+        <div className={myQuizes.length > 4 ? "main-padding" : "size"}>
             { isLoading ? 
                 <div className="myaccount-container">
                     <p className="text ">Loading...</p> 

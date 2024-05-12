@@ -21,8 +21,13 @@ const ImageUpload = () => {
         const formData = new FormData()
         formData.append("file", uploadedFile)
         try {
-            const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData)
+            console.log("hi")
+            const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }})
             if (response) {
+                console.log("response")
                 setQuizImage(response.data?.location)
                 localStorage.setItem("imageURL", response.data?.location)
             }
@@ -40,7 +45,7 @@ const ImageUpload = () => {
                 <input ref={fileUploadRef} onChange={uploadImageDisplay} type="file" hidden></input> 
                 
                 <div className="setQuizImage">
-                    <img src={quizImage ? quizImage : DefaultImage} alt="quiz image" className="quizImg"></img>
+                    <img src={quizImage ? quizImage : DefaultImage} alt="quiz image" className="quizImage"></img>
                     <button className="quizCard-icons" type="submit" onClick={handleImageUpload}>
                         <i className="fa-solid fa-pen-to-square quizCard-icon"></i>
                     </button>
