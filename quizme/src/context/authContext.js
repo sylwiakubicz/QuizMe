@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useSendMail } from "../hooks/useSandMail";
 
 export const AuthContext = React.createContext()
@@ -19,11 +19,11 @@ export const AuthContextProvider = ({children}) => {
     
 
     const verifyEmailCode = React.useRef("")
-    const generateCode = () => {
+    const generateCode = useCallback(() => {
         let code = (Math.random() + 1).toString(36).substring(7);
         verifyEmailCode.current = code
-    }
-
+    }, []
+)
     useEffect(() => {
         setTimeout(()=> {
             verifyEmailCode.current =""

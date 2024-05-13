@@ -4,7 +4,6 @@ import { useEffect, useState, useRef} from "react"
 import { useHandleUserScore } from "./useHandleUserScore"
     
 export const useTakeTheQuiz = (currentUser) => {
-    const { username, email, id } = currentUser;
 
     const quizID = useLocation().pathname.split("/")[1]
     const {prevScore, setUserScore, getUserScore} = useHandleUserScore(currentUser)

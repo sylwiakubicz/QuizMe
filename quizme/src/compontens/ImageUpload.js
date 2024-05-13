@@ -45,7 +45,7 @@ const ImageUpload = () => {
                 <input ref={fileUploadRef} onChange={uploadImageDisplay} type="file" hidden></input> 
                 
                 <div className="setQuizImage">
-                    <img src={quizImage ? quizImage : DefaultImage} alt="quiz image" className="quizImage"></img>
+                    <img src={quizImage ? quizImage : DefaultImage} alt="" className="quizImage"></img>
                     <button className="quizCard-icons" type="submit" onClick={handleImageUpload}>
                         <i className="fa-solid fa-pen-to-square quizCard-icon"></i>
                     </button>

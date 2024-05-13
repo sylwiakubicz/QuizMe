@@ -99,7 +99,7 @@ const Header = (props) => {
                                         </div>
                                         <div className="btnContainer">
                                             <div className="btn-toggle btn-dropdown" onClick={() => setBtnActive(prev => !prev)}>
-                                                <i class="fa-solid fa-bars"></i>
+                                                <i className="fa-solid fa-bars"></i>
                                             </div>
                                             <button onClick={props.switchTheme} className="themeToggle themeToggleDropdown" style={{display: "block"}}><i className={props.theme === 'dark' ? "fa-solid fa-moon" : "fa-solid fa-sun"}></i></button>
 
@@ -151,7 +151,7 @@ const Header = (props) => {
                                         </div>
                                         <div className="btnContainer">
                                             <div className="btn-toggle btn-dropdown" onClick={() => setBtnActive(prev => !prev)}>
-                                                <i class="fa-solid fa-bars"></i>
+                                                <i className="fa-solid fa-bars"></i>
                                             </div>
                                             <button onClick={props.switchTheme} className="themeToggle themeToggleDropdown" style={{display: "block"}}><i className={props.theme === 'dark' ? "fa-solid fa-moon" : "fa-solid fa-sun"}></i></button>
                                         </div>

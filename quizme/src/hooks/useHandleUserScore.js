@@ -2,7 +2,6 @@ import axios from "axios"
 import { useState } from "react"
 
 export const useHandleUserScore = (currentUser) => {
-    const { username, email, id } = currentUser;
 
     const [prevScore, setPrevScore] = useState(null) 
 
