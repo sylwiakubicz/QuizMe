@@ -23,7 +23,7 @@ export default function TakeTheQuiz() {
                         <p className="text ">Loading...</p> 
                 </div>
                 :
-                showScore  ?  <div>
+                showScore  ?  <div className="size">
                     {questions.length > 0 && currentIndex === 0 && <QuizScoreCard resetFunction={handleTryAgain} quizTitle={questions[currentIndex].quizTitle} quizScore={score.current} quizLenght={questions.length} quizImage={questions[currentIndex].quizImage}/>}
                 </div>
                 : <div className="question--container main-padding"> 

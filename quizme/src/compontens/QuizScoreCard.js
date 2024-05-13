@@ -12,7 +12,7 @@ export default function QuizScoreCard(props) {
 
     return (
         <div className="question--container quiz--infoCard">
-            <div className="score-container">
+            <div className="score-container ">
                 <div className="info">
                     <h1 className="title">{props.quizTitle}</h1>
                     <h2 className="score">Score {props.quizScore}/{props.quizLenght}</h2>
