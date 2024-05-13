@@ -46,7 +46,7 @@ export const CreateQuizContextProvider = ({children}) => {
     }, [title]);
       
     useEffect(() => {
-        localStorage.setItem('imageURL', JSON.stringify(quizImage));
+        localStorage.setItem('imageURL', quizImage);
     }, [quizImage]);
     
     function deleteFromLocalStorage() {
