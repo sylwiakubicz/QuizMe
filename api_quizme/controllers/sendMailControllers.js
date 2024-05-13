@@ -89,7 +89,6 @@ export const sendResetPasswordMail = (req, res) => {
                 if (error) {
                     return res.status(400)
                 }
-                console.log("reset")
                 return res.status(200).json("Message sent!")
             })
         }
