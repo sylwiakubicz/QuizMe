@@ -6,9 +6,6 @@ import DefaultImage from "../images/randomImg.jpg"
 export default function QuizQuestionInfo(props) {
     const {currentUser} = useContext(AuthContext)
 
-    console.log("from quizQuestionInfo: " + props.quizImage)
-
-
     return (
         <div className="quiz--infoCard">
             <div className="quiz--info">

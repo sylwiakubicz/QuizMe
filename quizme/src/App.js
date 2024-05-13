@@ -28,7 +28,6 @@ function App() {
   const location = useLocation();
   useEffect(() => {
     if (location.pathname !== "/createquiz") {
-      console.log("delete")
       deleteFromLocalStorage()
     }
 }, [location]);

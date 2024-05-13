@@ -4,7 +4,6 @@ export default function Answer({fromActivate, onChangeAnswer, answerText, answer
 
     const handleChange = (event) => {
         onChangeAnswer(event.target.value)
-        console.log(event.target.value)
     }
 
     return (

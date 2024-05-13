@@ -18,7 +18,6 @@ export default function Activate(props) {
     const {questions, quizID, category, editExistingQuiz, setEditExistingQuiz, handledelete} = React.useContext(CreateQuizContext)
     const quizTitle = JSON.parse(window.localStorage.getItem('quizTitle'))
     const quizImage = window.localStorage.getItem("imageURL")
-    console.log(quizImage)
 
     const handleSubmitForEditQuiz = async (quizData) => {
             try {
@@ -50,7 +49,6 @@ export default function Activate(props) {
             quiz_id: quizID.current
         }
 
-        console.log(quizData)
         if (editExistingQuiz) {
             await handleSubmitForEditQuiz(quizData)
         } else {

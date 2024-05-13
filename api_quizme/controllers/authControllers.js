@@ -75,7 +75,6 @@ export const sendVerificationEmail = async (verificationCode, userEmail) => {
             mail: userEmail
         }
         await axios.post("http://localhost:12345/api/mail/send/veryficationMail", values)
-        console.log("poprawnie")
     } catch (error) {
         console.log(error)
     }
@@ -84,10 +83,8 @@ export const sendVerificationEmail = async (verificationCode, userEmail) => {
 export const sendNewVerificationEmail = (req, res) => {
     const newCode = generateCode()
     const emailOrUsername = req.body.email
-    console.log(emailOrUsername)
     var emailRegex = new RegExp("^(?=.*[@])");
     const isEmail = emailRegex.test(emailOrUsername); 
-    console.log(isEmail)
     const q = isEmail ? "UPDATE users SET verification_code = ? WHERE email = ?" : "UPDATE users SET verification_code = ? WHERE username = ?";
 
     db.query(q, [newCode, emailOrUsername], (err, data) => {
@@ -95,14 +92,11 @@ export const sendNewVerificationEmail = (req, res) => {
             return res.status(400).json(err)
         }
         if (!isEmail) {
-            console.log("send")
             const q = "SELECT email FROM users WHERE username = ?"
             db.query(q, emailOrUsername, (err, data) => {
                 if (err) {
                     return res.status(400).json(err)
                 } 
-                console.log("send 2")
-                console.log(data)
                 const userEmail = data[0].email
                 sendVerificationEmail(newCode, userEmail)
                 return res.status(200).json("Email sent")
@@ -263,9 +257,7 @@ export const deleteAccount = (req, res) => {
 
 
 export const changePassword = (req, res) => {
-    console.log(req.body.oldPassword)
     if (req.body.oldPassword) {
-        console.log("Change pass")
         const q = "SELECT * FROM users WHERE id = ?"
         db.query(q, req.query.user_id, (err, data) => {
             if (err) {
@@ -305,16 +297,11 @@ export const changePassword = (req, res) => {
            return
         })
     } else {
-        console.log("reset password")
-        console.log(req.body.newPassword)
-        console.log(req.body.repeatedNewPassword)
         if (req.body.newPassword !== req.body.repeatedNewPassword) {
-            console.log("err 1")
             return res.status(401).json("New passwords do not match")
         }
 
         if (validatePassword(req.body.newPassword) !== "correct") {
-            console.log("err 2")
             return res.status(409).json(validatePassword(req.body.newPassword))
         }
 

@@ -17,7 +17,6 @@ export default function VerifyEmail() {
     }
 
     const handleVerify = async () => {
-        console.log(resetPass)
         if (resetPass) {
             if (compareCodes(verificationCode)) {
                 navigate("/resetpassword")
@@ -29,7 +28,6 @@ export default function VerifyEmail() {
                 email: JSON.parse(localStorage.getItem("useremail_or_username")),
                 verificationCode: verificationCode
             }
-            console.log(verificationCode)
             await axios.post("/auth/verify/email", verifyData, {
                 withCredentials: true
             })
@@ -51,7 +49,6 @@ export default function VerifyEmail() {
             const verifyData = {
             email: JSON.parse(localStorage.getItem("useremail_or_username")),
             }
-            console.log(verifyData)
 
             sendMail("/auth/send/verificationMail/new" ,verifyData)
         }

@@ -66,7 +66,6 @@ export const QuizContextProvider = ({children}) => {
 
 
     const deleteQuiz = async (id) => {
-        console.log("deletet")
         try {
             await axios.delete(`/quiz/${id}`, {
                 withCredentials:true,

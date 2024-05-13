@@ -8,7 +8,7 @@ export const useHandleUserScore = (currentUser) => {
     const getUserScore = async (quizID) => {
         const userID = currentUser ? currentUser.id : null
         if (!userID) {
-            return console.log("not logged in")
+            return 
         } else { 
             try {
                 const res = await axios.get(`/quiz/${quizID}/score?userID=${userID}`, {
@@ -31,7 +31,7 @@ export const useHandleUserScore = (currentUser) => {
     const setUserScore = async (score, quizID) => {
         const userID = currentUser ? currentUser.id : null
         if (!userID) {
-            return console.log("not logged in")
+            return 
         } else {
             if (prevScore === null) {
                 try {

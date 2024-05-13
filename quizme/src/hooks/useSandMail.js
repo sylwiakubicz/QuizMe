@@ -8,7 +8,6 @@ export function useSendMail () {
          await axios.post(path, dataToSend, {
             withCredentials: true
         })
-        console.log("sent from hook")
         return true
     } catch (err) {
         console.log(err)

@@ -21,13 +21,11 @@ const ImageUpload = () => {
         const formData = new FormData()
         formData.append("file", uploadedFile)
         try {
-            console.log("hi")
             const response = await axios.post("https://api.escuelajs.co/api/v1/files/upload", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }})
             if (response) {
-                console.log("response")
                 setQuizImage(response.data?.location)
                 localStorage.setItem("imageURL", response.data?.location)
             }

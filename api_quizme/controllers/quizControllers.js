@@ -182,12 +182,9 @@ export const addQuiz = (req,res) => {
 }
 
 export const addQuestions = (req, res) => {
-    console.log("adding questions")
     const questionData = req.body.quizData.questions
     const quizData = req.body.quizData
 
-    console.log(questionData)
-    console.log(quizData)
 
     const getQuizId = "SELECT id FROM quizes WHERE title = ? AND user_id = ?"
     const inserQuestionData = "INSERT INTO questions (quiz_id, question, answer1, answer2, answer3, answer4, answer5, correctAnswer) VALUES (?)"
@@ -215,7 +212,6 @@ export const addQuestions = (req, res) => {
                 if (err) {
                     return res.status(500).send(err)
                 }
-                console.log("add " + i)
             })
         }
         return res.status(200).send("Questions added successfully")
