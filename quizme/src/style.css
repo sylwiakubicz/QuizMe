@@ -371,7 +371,7 @@ a {
     }
 
     .size {
-        padding-top: 7rem;
+        padding-bottom: 7rem;
         height: calc(100vh - 9rem);
     }
 

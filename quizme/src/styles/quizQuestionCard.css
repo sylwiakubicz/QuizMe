@@ -1,14 +1,10 @@
 .question--container {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 10rem auto;
+    margin-bottom: 12rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
 }
 
 /* SECTION 1 */
@@ -16,7 +12,8 @@
     border: .003rem solid rgba(var(--secondary-color), .1);
     border-radius: 0 0 .625rem .625rem;
     padding: 2% 5%;
-    background-color: rgb(var(--text-light))
+    background-color: rgb(var(--text-light));
+    position: relative;
 }
 
 .quiz--infoCard::before {
@@ -199,4 +196,47 @@
 .title {
     font-size: 2.188rem;
     padding: 1.25rem 0;
+}
+
+@media (max-width: 1035px) {
+    .question--container {
+        width: 800px;
+    }
+}
+
+@media (max-width: 830px) {
+    .question--container {
+        width: 600px;
+    }
+}
+
+@media (max-width: 660px) {
+    .question--container {
+        width: 400px;
+    }
+}
+
+@media (max-width: 570px) {
+    .question--container {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .quiz--infoCard {
+        border-radius: 0;
+    }
+
+    .question--card {
+        border-radius: 0;
+    }
+
+    .quiz--title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-height: 400px) {
+    .question--container {
+        margin-top: 3rem;
+    }
 }
