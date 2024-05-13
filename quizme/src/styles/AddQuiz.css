@@ -162,6 +162,9 @@ text-wrap: wrap;
 
 .setQuizImage {
     position: relative;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .setQuizImage i {
@@ -175,5 +178,15 @@ text-wrap: wrap;
 }
 
 .quizImage {
-    max-width: 100%;
+    width: 400px;
+}
+
+@media (max-width: 660px) {
+    .quizImage {
+        width: 100%;
+    }
+
+    .setQuizImage {
+        width: 100%;
+    }
 }
