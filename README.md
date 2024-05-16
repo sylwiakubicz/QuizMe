@@ -50,7 +50,7 @@
   <li>CSS</li>
   <li>HTML5</li>
   <li>JavaScript</li>
-  <li>MySQL</li>
+  <li>MySQL 5.7.40</li>
 
 <h2>Dependencies used</h2>
 <h4>Backend: </h4>
